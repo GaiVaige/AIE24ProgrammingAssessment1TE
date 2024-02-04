@@ -44,7 +44,6 @@
 		//Twine object that clals it, the other can be called seperatley to
 		//an object
 		void Copy(char* newTextTwine);
-		void Copy(char* newTextTwine, size_t size);
 		static void Copy(Twine &twineA, Twine &twineB);
 
 

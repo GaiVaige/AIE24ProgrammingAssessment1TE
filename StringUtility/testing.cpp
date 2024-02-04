@@ -6,13 +6,11 @@
 int main() {
 
 	Twine t1 = "Antyyyyu";
-	Twine t2 = "antiii";
-	Twine t3 = t1 + t2;
+	Twine t2 = "I am stinky";
 
-	t1.Erase(4, 3);
+	Twine::Copy(t1, t2);
 	t1.DisplayTwine();
-	t3.DisplayTwine();
-
+	std::cout << t2.LengthNoSpace();
 	}
 
 

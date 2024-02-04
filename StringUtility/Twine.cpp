@@ -9,282 +9,166 @@ using namespace std;
 
 
 Twine::Twine() {
-
+	//initialise an empty twine 
 	twine = new char[1];
 	twine[0] = '\0';
-	
-	
 }
 
 Twine::Twine(const char* c) {
-
+	//set twine to entered text in ide
 	this->SetTwine(c);
 }
 
 Twine::Twine(char* c) {
-
+	//set twine to a char array
 	this->SetTwine(c);
 }
 
 Twine::~Twine() {
-
+	//destroy twine when swapped
 	delete[] twine;
-
-
 }
 
 void Twine::SetTwine(char* c) {
-
 	//confirm length of char array
 	size_t l = Length(c);
-
 	//destroy previous twine 
 	Twine::~Twine();
-
 	//copy each value in array to new array
 	twine = new char[l+1];
-
 	for (int i = 0; i < l; i++) {
-
 			twine[i] = c[i];
-
-
-
 	}
 	twine[l] = '\0';
-
 }
 
 void Twine::SetTwine(const char* c) {
-
 	//confirm length of char array
 	size_t l = Length(c);
-
 	//destroy previous twine 
 	Twine::~Twine();
-
 	//copy each value in array to new array
 	twine = new char[l + 1];
 	for (int i = 0; i < l; i++) {
-
 			twine[i] = c[i];
-
 	}
 	twine[l] = '\0';
-
-	
-
-
-
 }
 
 const char* Twine::TStr() {
-
+	//returns twine for use with std::Cout<<
+	//redundant as operator overloaded
 	return this->twine;
 }
 
 void Twine::DisplayTwine() {
-
-
+    //cleaner method of displaying twine
 	cout << twine << '\n';
-
-	
 }
 
-void Twine::GetTwine() {
-
+void Twine::GetTwine(){
 	//initalise a single char to be referenced for taking in characters from input
 	char c;
-
 	//place characters immediately into input buffer
-
-	
 	cin.get(c);
-
-		cin.putback(c);
-
-	
+	cin.putback(c);
 	//std::cin stops when enter is pressed
-
-	//check size of buffer when enter is pressed (cin halts)
+	//check size of buffer when enter is pressed (cin halts at this point)
+	//this is used as a reference to create the new array to ensure that nothing beyond
+	//what has been inputted to cin is used
 	streamsize size = cin.rdbuf()->in_avail();
-	
-
 	//create a pointer to a new array, newTwi, to have the data copied to from buffer, and size to buffer+1
 	// to account for nullchar
 	char* newTwine = new char[size + 1];
-
 	//read an amount of characters equal to the read characters from buffer
 	cin.readsome(newTwine, size);
+	//failsafe to ensure that there is definitely a nullchar
 	newTwine[size] = '\0';
 	SetTwine(newTwine);
-
-	//flush the memory to ensure no leakages
+	//flush the memory and input stream to ensure no leakages
 	delete[] newTwine;
 	&std::ostream::flush;
-
 }
 
 int Twine::Length() {
-
 	for (int i = 0; ; i++) {
-
+		//if end of string detected, return value of i
 		if (this->twine[i] == '\0') {
-			
 			return i;
 		}
-
-
 	}
 }
 
 int Twine::LengthNoSpace() {
-
 	int y = 0;
-
 	for (int i = 0; ; i++) {
-
+		//only increments return value y if there is no space
 		if (!isspace(this->twine[i])) {
-
-
+			//if end of string detected, return current value of y
 			if (this->twine[i] == '\0') {
 				return y;
 			}
-
 			y++;
 		}
-
-
 	}
+	return y;
 }
 
 int Twine::Length(char* c) {
-
-
-
 	for (int i = 0; ; i++) {
-
 		if (c[i] == '\0') {
 			return i;
 		}
-
 	}
-
 }
 
 int Twine::LengthNoSpace(char* c) {
 	int i = 0;
-
-
 	for (int y = 0; ; y++){
-
 		if (!isspace(c[i])) {
-
-
 			if (c[i] == '\0') {
-
 				return i;
 			}
-
 			i++;
 		}
-
-
 	}
-
 }
 
 int Twine::Length(const char* c) {
-
-
-
 	for (int i = 0; ; i++) {
-
 		if (c[i] == '\0') {
 			return i;
 		}
-
 	}
-
 }
 
 int Twine::LengthNoSpace(const char* c) {
 	int i = 0;
-
-
 	for (int y = 0; ; y++) {
-
 		if (!isspace(c[i])) {
-
-
 			if (c[i] == '\0') {
-
 				return i;
 			}
-
 			i++;
 		}
-
-
 	}
-
 }
 
 void Twine::Copy(char* newTextTwine) {
-
-	Twine::~Twine();
-	int a = Length(newTextTwine);
-	twine = new char[a + 1];
-
-	for (int i = 0; i < a; i++) {
-
-		twine[i] = newTextTwine[i];
-	}
-	twine[a] = '\0';
-
-}
-
-void Twine::Copy(char* newTextTwine, size_t size) {
-
-	Twine::~Twine();
-
-	twine = new char[size + 1];
-
-	for (int i = 0; i < size; i++) {
-
-		twine[i] = newTextTwine[i];
-	}
-	twine[size] = '\0';
-
+	this->SetTwine(newTextTwine);
 }
 
 void Twine::Copy(Twine& twineA, Twine& twineB) {
-
-	twineA.~Twine();
-	int size = twineB.Length();
-
-	twineA.twine = new char[size + 1];
-
-	for (int i = 0; i < size; i++) {
-
-		twineA.twine[i] = twineB.twine[i];
-	}
-	twineA.twine[size] = '\0';
-
-
+	twineA.SetTwine(twineB.twine);
 }
 
 char Twine::CharAt(int i) {
-
 	if (this->twine[i] == '\0' || i > this->Length() || i < 0) {
 		return '\0';
-
 	}
 	else {
 		return this->twine[i];
 	}
-
-
 }
 
 int Twine::CharFind(char c) {
