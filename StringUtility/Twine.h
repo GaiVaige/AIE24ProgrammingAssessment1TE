@@ -63,10 +63,11 @@
 		int TFind(const char* c);
 		int TFind(char* c, int sIn);
 		int TFind(const char* c, int sIn);
-		int TFindOnly(char* c);
+		bool TFindOnly(char* c);
 		bool TFindOnly(const char* c);
-		int TFindOnly(char* c, int sIn);
-		int TFindOnly(const char* c, int sIn);
+		bool TFindOnly(char* c, int sIn);
+		bool TFindOnly(const char* c, int sIn);
+		bool FindInSpool(Twine tAr[], int size);
 
 		//Shifts all chars in Twine to lowercase and returns it as a NEW twine object
 		Twine ToLower();
@@ -106,6 +107,7 @@
 
 		friend std::ostream& operator << (std::ostream& out, Twine& t);
 		friend std::istream& operator >> (std::istream& in, Twine& t);
+		Twine& operator = (const char* c);
 		Twine& operator = (Twine& t);
 		bool operator == (Twine& t);
 		Twine& operator += (Twine& t);

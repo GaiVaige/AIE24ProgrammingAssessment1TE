@@ -66,7 +66,7 @@ const char* Twine::TStr() {
 
 void Twine::DisplayTwine() {
     //cleaner method of displaying twine
-	cout << twine << '\n';
+	cout << twine;
 }
 
 void Twine::GetTwine(){
@@ -330,7 +330,7 @@ int Twine::TFind(const char* c, int sIn){
 
 }
 
-int Twine::TFindOnly(char* c) {
+bool Twine::TFindOnly(char* c) {
 
 	int curLen = this->Length();
 	int checkLen = Length(c);
@@ -342,20 +342,20 @@ int Twine::TFindOnly(char* c) {
 		if (isspace(this->twine[i]) || this->twine[i] == '\0') {
 			int wordGap = i - previousWordSpot;
 			previousWordSpot = i + 1;
-			cout << "Word length is: " << wordGap << '\n';
+			//cout << "Word length is: " << wordGap << '\n';
 
 
 			if (wordGap != checkLen) {
-				cout << "Word length didn't match" << '\n';
+				//cout << "Word length didn't match" << '\n';
 			}
 			else {
 				searchIndex = i - wordGap;
 				for (int x = 0; x < checkLen; x++) {
 					if (this->twine[searchIndex] == c[x]) {
-						cout << this->twine[searchIndex] << " & " << c[x] << " are the same!!" << '\n';
+						//cout << this->twine[searchIndex] << " & " << c[x] << " are the same!!" << '\n';
 					}
 					else {
-						cout << this->twine[searchIndex] << " & " << c[x] << " are NOT the same!!" << '\n';
+						//cout << this->twine[searchIndex] << " & " << c[x] << " are NOT the same!!" << '\n';
 						break;
 					}
 					searchIndex++;
@@ -384,20 +384,20 @@ bool Twine::TFindOnly(const char* c) {
 		if (isspace(this->twine[i]) || this->twine[i] == '\0') {
 			int wordGap = i - previousWordSpot;
 			previousWordSpot = i + 1;
-			cout << "Word length is: " << wordGap << '\n';
+			//cout << "Word length is: " << wordGap << '\n';
 
 
 			if (wordGap != checkLen) {
-				cout << "Word length didn't match" << '\n';
+				//cout << "Word length didn't match" << '\n';
 			}
 			else{
 				searchIndex = i - wordGap;
 				for (int x = 0; x < checkLen; x++) {
 					if (this->twine[searchIndex] == c[x]) {
-						cout << this->twine[searchIndex] << " & " << c[x] << " are the same!!" << '\n';
+						//cout << this->twine[searchIndex] << " & " << c[x] << " are the same!!" << '\n';
 					}
 					else {
-						cout << this->twine[searchIndex] << " & " << c[x] << " are NOT the same!!" << '\n';
+						//cout << this->twine[searchIndex] << " & " << c[x] << " are NOT the same!!" << '\n';
 						break;
 					}
 					searchIndex++;
@@ -414,7 +414,7 @@ bool Twine::TFindOnly(const char* c) {
 
 }
 
-int Twine::TFindOnly(char* c, int sIn) {
+bool Twine::TFindOnly(char* c, int sIn) {
 
 	int curLen = this->Length();
 	int checkLen = Length(c);
@@ -426,20 +426,20 @@ int Twine::TFindOnly(char* c, int sIn) {
 		if (isspace(this->twine[i]) || this->twine[i] == '\0') {
 			int wordGap = i - previousWordSpot;
 			previousWordSpot = i + 1;
-			cout << "Word length is: " << wordGap << '\n';
+			//cout << "Word length is: " << wordGap << '\n';
 
 
 			if (wordGap != checkLen) {
-				cout << "Word length didn't match" << '\n';
+				//cout << "Word length didn't match" << '\n';
 			}
 			else {
 				searchIndex = i - wordGap;
 				for (int x = 0; x < checkLen; x++) {
 					if (this->twine[searchIndex] == c[x]) {
-						cout << this->twine[searchIndex] << " & " << c[x] << " are the same!!" << '\n';
+						//cout << this->twine[searchIndex] << " & " << c[x] << " are the same!!" << '\n';
 					}
 					else {
-						cout << this->twine[searchIndex] << " & " << c[x] << " are NOT the same!!" << '\n';
+						//cout << this->twine[searchIndex] << " & " << c[x] << " are NOT the same!!" << '\n';
 						break;
 					}
 					searchIndex++;
@@ -455,7 +455,7 @@ int Twine::TFindOnly(char* c, int sIn) {
 	return false;
 }
 
-int Twine::TFindOnly(const char* c, int sIn) {
+bool Twine::TFindOnly(const char* c, int sIn) {
 
 	int curLen = this->Length();
 	int checkLen = Length(c);
@@ -467,20 +467,20 @@ int Twine::TFindOnly(const char* c, int sIn) {
 		if (isspace(this->twine[i]) || this->twine[i] == '\0') {
 			int wordGap = i - previousWordSpot;
 			previousWordSpot = i + 1;
-			cout << "Word length is: " << wordGap << '\n';
+			//cout << "Word length is: " << wordGap << '\n';
 
 
 			if (wordGap != checkLen) {
-				cout << "Word length didn't match" << '\n';
+				//cout << "Word length didn't match" << '\n';
 			}
 			else {
 				searchIndex = i - wordGap;
 				for (int x = 0; x < checkLen; x++) {
 					if (this->twine[searchIndex] == c[x]) {
-						cout << this->twine[searchIndex] << " & " << c[x] << " are the same!!" << '\n';
+						//cout << this->twine[searchIndex] << " & " << c[x] << " are the same!!" << '\n';
 					}
 					else {
-						cout << this->twine[searchIndex] << " & " << c[x] << " are NOT the same!!" << '\n';
+						//cout << this->twine[searchIndex] << " & " << c[x] << " are NOT the same!!" << '\n';
 						break;
 					}
 					searchIndex++;
@@ -495,6 +495,17 @@ int Twine::TFindOnly(const char* c, int sIn) {
 
 	return false;
 
+}
+
+bool Twine::FindInSpool(Twine tAr[], int size) {
+
+	for (int i = 0; i < size; i++) {
+
+		if (this->TFindOnly(tAr[i].twine)) {
+			return true;
+		}
+	}
+	return false;
 }
 
 Twine Twine::ToLower() {
@@ -978,6 +989,17 @@ std::istream& operator >> (std::istream& in, Twine& t) {
 
 	return in;
 
+}
+
+Twine& Twine::operator = (const char* c) {
+
+	if (this->twine == c) {
+		return *this;
+	}
+
+	this->SetTwine(c);
+
+	return *this;
 }
 
 Twine& Twine::operator = (Twine& t1) {

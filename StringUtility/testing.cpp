@@ -5,14 +5,33 @@
 
 int main() {
 
-	Twine t1 = "cooocoooo cooco Cocoo";
-	Twine t2 = "Coco";
+	bool gameShouldRun = true;
+	Twine pTwine;
+	Twine validTwine[4];
+	Twine errorTwine = "Invalid Command. Fuckface.";
+	validTwine[0] = "use";
+	validTwine[1] = "dance";
+	validTwine[2] = "sing";
+	validTwine[3] = "fight";
 
 
-	std::cout << t1.TFindOnly("Cocoo") << '\n';
-	
+
+	while (gameShouldRun) {
+
+
+		pTwine.GetTwine();
+		if (!pTwine.FindInSpool(validTwine, 4)) {
+			std::cout << errorTwine << '\n';
+			
+		}
 
 	}
+
+
+
+	
+
+	}	
 
 
 
