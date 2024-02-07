@@ -63,6 +63,10 @@
 		int TFind(const char* c);
 		int TFind(char* c, int sIn);
 		int TFind(const char* c, int sIn);
+		int TFindOnly(char* c);
+		bool TFindOnly(const char* c);
+		int TFindOnly(char* c, int sIn);
+		int TFindOnly(const char* c, int sIn);
 
 		//Shifts all chars in Twine to lowercase and returns it as a NEW twine object
 		Twine ToLower();

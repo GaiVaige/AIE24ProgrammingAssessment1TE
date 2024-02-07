@@ -5,12 +5,11 @@
 
 int main() {
 
-	Twine t1 = "Coconut coco Coco";
+	Twine t1 = "cooocoooo cooco Cocoo";
 	Twine t2 = "Coco";
 
-	t1.Replace("Coco", "Koko");
-	t1.DisplayTwine();
-	
+
+	std::cout << t1.TFindOnly("Cocoo") << '\n';
 	
 
 	}
