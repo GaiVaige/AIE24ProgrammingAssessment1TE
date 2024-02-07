@@ -5,12 +5,14 @@
 
 int main() {
 
-	Twine t1 = "Antyyyyu";
-	Twine t2 = "I am stinky";
+	Twine t1 = "Coconut coco Coco";
+	Twine t2 = "Coco";
 
-	Twine::Copy(t1, t2);
+	t1.Replace("Coco", "Koko");
 	t1.DisplayTwine();
-	std::cout << t2.LengthNoSpace();
+	
+	
+
 	}
 
 

@@ -2,6 +2,9 @@
 #include <iostream>
 #include <cstring>
 #include <cctype>
+#pragma warning (push)
+#pragma warning (disable:6386)
+
 
 
 using namespace std;
@@ -190,6 +193,7 @@ int Twine::TFind(char* c) {
 	int b = Length(c);
 	int cL = 0;
 	int t = 0;
+	bool doSwap = true;
 
 	for (int i = 0; i < a; i++) {
 
@@ -197,6 +201,7 @@ int Twine::TFind(char* c) {
 			cL++;
 			if (t == 0) {
 				t = i;
+				doSwap = false;
 			}
 
 			if (cL == b) {
@@ -208,6 +213,7 @@ int Twine::TFind(char* c) {
 		else {
 			t = 0;
 			cL = 0;
+			doSwap = true;
 		}
 
 	}
@@ -222,14 +228,17 @@ int Twine::TFind(const char* c) {
 	int b = Length(c);
 	int cL = 0;
 	int t = 0;
+	bool doSwap = true;
 
 	for (int i = 0; i < a; i++) {
 
 		if (this->twine[i] == c[cL]) {
 			cL++;
-
-			if (t == 0) {
+			
+			
+			if (t == 0 && doSwap) {
 				t = i;
+				doSwap = false;
 			}
 
 			if (cL == b) {
@@ -242,6 +251,7 @@ int Twine::TFind(const char* c) {
 		else {
 			t = 0;
 			cL = 0;
+			doSwap = true;
 		}
 
 	}
@@ -256,6 +266,7 @@ int Twine::TFind(char* c, int sIn) {
 	int b = Length(c);
 	int cL = 0;
 	int t = 0;
+	bool doSwap = true;
 
 	for (int i = sIn; i < a; i++) {
 
@@ -263,6 +274,7 @@ int Twine::TFind(char* c, int sIn) {
 			cL++;
 			if (t == 0) {
 				t = i;
+				doSwap = false;
 			}
 
 
@@ -274,6 +286,7 @@ int Twine::TFind(char* c, int sIn) {
 		else {
 			t = 0;
 			cL = 0;
+			doSwap = true;
 		}
 
 	}
@@ -287,6 +300,7 @@ int Twine::TFind(const char* c, int sIn){
 	int b = Length(c);
 	int cL = 0;
 	int t = 0;
+	bool doSwap = true;
 
 	for (int i = sIn; i < a; i++) {
 
@@ -294,6 +308,7 @@ int Twine::TFind(const char* c, int sIn){
 			cL++;
 			if (t == 0) {
 				t = i;
+				doSwap = false;
 			}
 
 
@@ -306,6 +321,7 @@ int Twine::TFind(const char* c, int sIn){
 		else {
 			t = 0;
 			cL = 0;
+			doSwap = true;
 		}
 
 	}
@@ -314,90 +330,129 @@ int Twine::TFind(const char* c, int sIn){
 
 }
 
-void Twine::ToLower() {
+Twine Twine::ToLower() {
 
 	size_t l = Length(this->twine);
+	Twine newT;
+	char* newArr = new char[l + 1];
 
 	for (int i = 0; i < l; i++) {
 
 
-		this->twine[i] = tolower(this->twine[i]);
+		newArr[i] = tolower(this->twine[i]);
 
 
 	}
+	newArr[l] = '\0';
+
+	newT.SetTwine(newArr);
+	delete[] newArr;
+	return newT;
 }
 
-void Twine::ToLower(char* c) {
+Twine Twine::ToLower(char* c) {
 
-	for (int i = 0; i < Length(c); i++) {
+	size_t l = Length(c);
+	Twine newT;
+	char* newArr = new char[l + 1];
+
+	for (int i = 0; i < l; i++) {
 
 
-		c[i] = tolower(c[i]);
+		newArr[i] = tolower(c[i]);
 
 
 	}
+	newArr[l] = '\0';
+
+	newT.SetTwine(newArr);
+	delete[] newArr;
+	return newT;
 	
 }
 
-void Twine::ToLower(const char* c) {
+Twine Twine::ToLower(const char* c) {
 
 	size_t l = Length(c);
-
-	Twine::~Twine();
-
-	twine = new char[l + 1];
-
-	for (int i = 0; i < Length(c); i++) {
-
-
-		twine[i] = tolower(c[i]);
-
-
-	}
-	twine[l] = '\0';
-}
-
-void Twine::ToUpper() {
-
-	size_t l = Length(this->twine);
+	Twine newT;
+	char* newArr = new char[l + 1];
 
 	for (int i = 0; i < l; i++) {
 
 
-		this->twine[i] = toupper(this->twine[i]);
+		newArr[i] = tolower(c[i]);
 
 
 	}
+	newArr[l] = '\0';
+
+	newT.SetTwine(newArr);
+	delete[] newArr;
+	return newT;
 }
-			  
-void Twine::ToUpper(char* c) {
 
-	for (int i = 0; i < Length(c); i++) {
+Twine Twine::ToUpper() {
 
 
-		c[i] = toupper(c[i]);
+	size_t l = Length(this->twine);
+	Twine newT;
+	char* newArr = new char[l + 1];
+
+	for (int i = 0; i < l; i++) {
+
+
+		newArr[i] = toupper(this->twine[i]);
 
 
 	}
+	newArr[l] = '\0';
 
+	newT.SetTwine(newArr);
+	delete[] newArr;
+	return newT;
 }
-			  
-void Twine::ToUpper(const char* c) {
+	  
+Twine Twine::ToUpper(char* c) {
+
+	return this->ToUpper((const char*)c);
 
 	size_t l = Length(c);
+	Twine newT;
+	char* newArr = new char[l + 1];
 
-	Twine::~Twine();
-
-	twine = new char[l + 1];
-
-	for (int i = 0; i < Length(c); i++) {
+	for (int i = 0; i < l; i++) {
 
 
-		twine[i] = toupper(c[i]);
+		newArr[i] = toupper(c[i]);
 
 
 	}
-	twine[l] = '\0';
+	newArr[l] = '\0';
+
+	newT.SetTwine(newArr);
+	delete[] newArr;
+	return newT;
+
+}
+	  
+Twine Twine::ToUpper(const char* c) {
+
+	size_t l = Length(c);
+	Twine newT;
+	char* newArr = new char[l + 1];
+
+	for (int i = 0; i < l; i++) {
+
+
+		newArr[i] = toupper(c[i]);
+
+
+	}
+	newArr[l] = '\0';
+
+	newT.SetTwine(newArr);
+	delete[] newArr;
+	return newT;
 }
 
 void Twine::Wobble() {
@@ -555,6 +610,12 @@ void Twine::Insert(const char* c, int insertIndex) {
 
 void Twine::Erase(int delInt, int startIndex) {
 
+
+	startIndex--;
+
+	if (startIndex < 0) {
+		startIndex = 0;
+	}
 	int newsize = this->Length() - delInt;
 	char* newTwine = new char[newsize + 1];
 
@@ -600,11 +661,13 @@ void Twine::Replace(const char* current, const char* newc) {
 		int checkTrack = 0;
 
 
-		for (i; i < d; i++) {
+			for (i; i < d; i++) {
 
-			newT[i] = this->twine[i];
-		}
-		
+				newT[i] = this->twine[i];
+			}
+
+
+
 		for (i; i < d + a; i++) {
 
 			newT[i] = newc[newCTracker];
@@ -612,7 +675,7 @@ void Twine::Replace(const char* current, const char* newc) {
 			checkTrack = i;
 		}
 		
-		for (i; i < Length(newT); i++) {
+		for (; i < Length(newT); i++) {
 
 			int j = d + c + finalTracker;
 			newT[i] = this->twine[j];
@@ -853,9 +916,6 @@ bool Twine::operator < (Twine& t) {
 			}
 			return false;
 		}
-		else if (cA == cB) {
-			
-		}
 
 
 	}
@@ -905,12 +965,11 @@ bool Twine::operator > (Twine& t) {
 			}
 			return true;
 		}
-		else if (cA == cB) {
-
-		}
 
 
 	}
+
+#pragma warning (pop)
 }
 
 

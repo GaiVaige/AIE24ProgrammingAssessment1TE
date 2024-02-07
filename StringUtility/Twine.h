@@ -35,7 +35,7 @@
 		//length functions for general and length-whitespace
 		int Length();
 		int Length(char* c);
-		int Length(const char* c);
+		static int Length(const char* c);
 		int LengthNoSpace();
 		int LengthNoSpace(char* c);
 		int LengthNoSpace(const char* c);
@@ -54,20 +54,25 @@
 		//TFind OL 1 returns the index of SubTwine start point sIn, and distance from sIn
 		char CharAt(int i);
 		int CharFind(char c);
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="c"></param>
+		/// <returns>integer to represent the index where the substring is found</returns>
 		int TFind(char* c);
 		int TFind(const char* c);
 		int TFind(char* c, int sIn);
 		int TFind(const char* c, int sIn);
 
-		//Shifts all chars in Twine to lowercase
-		void ToLower();
-		void ToLower(char* c);
-		void ToLower(const char* c);
-		//Shifts all chars in Twine to
-		void ToUpper();
-		void ToUpper(char* c);
-		void ToUpper(const char* c);
-		//Wobbles
+		//Shifts all chars in Twine to lowercase and returns it as a NEW twine object
+		Twine ToLower();
+		Twine ToLower(char* c);
+		Twine ToLower(const char* c);
+		//Shifts all chars in Twine to uppercase and returns it as a NEW twine object
+		Twine ToUpper();
+		Twine ToUpper(char* c);
+		Twine ToUpper(const char* c);
+		//Wobbles, it is destructive. It will overwrite the existing string.
 		void Wobble();
 
 		//Compares two strings to see if they are the same
