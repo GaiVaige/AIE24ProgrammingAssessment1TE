@@ -25,6 +25,7 @@
 		void GetTwine();
 
 		//set a Twine objects char* to a new char*
+		void SetTwine(Twine& c);
 		void SetTwine(char* c);
 		void SetTwine(const char* c);
 		
@@ -34,16 +35,16 @@
 
 		//length functions for general and length-whitespace
 		int Length();
-		int Length(char* c);
+		int Length(Twine c);
 		static int Length(const char* c);
 		int LengthNoSpace();
-		int LengthNoSpace(char* c);
+		int LengthNoSpace(Twine c);
 		int LengthNoSpace(const char* c);
 
 		//two copies, one is 'quick' and overwties the char* twine on the
 		//Twine object that clals it, the other can be called seperatley to
 		//an object
-		void Copy(char* newTextTwine);
+		void Copy(Twine& newTextTwine);
 		static void Copy(Twine &twineA, Twine &twineB);
 
 
@@ -59,48 +60,49 @@
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>integer to represent the index where the substring is found</returns>
-		int TFind(char* c);
+		int TFind(Twine& c);
 		int TFind(const char* c);
-		int TFind(char* c, int sIn);
+		int TFind(Twine& c, int sIn);
 		int TFind(const char* c, int sIn);
-		bool TFindOnly(char* c);
+		bool TFindOnly(Twine& c);
 		bool TFindOnly(const char* c);
-		bool TFindOnly(char* c, int sIn);
+		bool TFindOnly(Twine& c, int sIn);
 		bool TFindOnly(const char* c, int sIn);
 		bool FindInSpool(Twine tAr[], int size);
 
 		//Shifts all chars in Twine to lowercase and returns it as a NEW twine object
 		Twine ToLower();
-		Twine ToLower(char* c);
+		Twine ToLower(Twine& c);
 		Twine ToLower(const char* c);
 		//Shifts all chars in Twine to uppercase and returns it as a NEW twine object
 		Twine ToUpper();
-		Twine ToUpper(char* c);
+		Twine ToUpper(Twine& c);
 		Twine ToUpper(const char* c);
 		//Wobbles, it is destructive. It will overwrite the existing string.
-		void Wobble();
+		Twine Wobble();
 
 		//Compares two strings to see if they are the same
-		bool Compare(char* c);
 		bool Compare(Twine& c);
+		bool Compare(const char* c);
 
 
 		//Inserts char* newC at index insertIndex of twine
-		void Insert(char* c, int insertIndex);
+		void Insert(Twine& c, int insertIndex);
 		void Insert(const char* c, int insertIndex);
 
 		//erases number of chars delInt starting at startIndex, then resizes array
 		void Erase(int delInt, int startIndex);
 
 		//replaces instance of const char* current in char* sC with const char* newc and resizes the array
+		void Replace(Twine& current, Twine& newc);
 		void Replace(const char* current, const char* newc);
 
 		//adds char* c to the end of char* curC
-		void Append(char* c);
+		void Append(Twine& c);
 		void Append(const char* c);
 
 		//adds char* c to the start of char* curC
-		void Prepend(char* c);
+		void Prepend(Twine& c);
 		void Prepend(const char* c);
 
 		//OPERATORS
