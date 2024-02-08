@@ -340,6 +340,40 @@ int Twine::TFind(const char* c, int sIn){
 
 }
 
+long long int Twine::ParseForInt(int digits) {
+
+	int* retInt = new int[digits];
+	retInt[0] = 0;
+	int digTracker = 0;
+	int l = this->Length();
+	for (int i = 0; i < l; i++) {
+
+		if (isdigit(this->twine[i])){
+			if (digTracker < digits) {
+
+				int x = this->twine[i] - 48;
+				retInt[digTracker] = x;
+				digTracker++;
+			}
+
+		}
+
+	}
+
+	long long int finalNum = 0;
+
+
+	for (int i = digits-1; i >= 0; --i) {
+		long long int multi = 0;
+		multi = pow(10, (digits-1) - i);
+		long long int adder = (retInt[i] * multi);
+		finalNum += adder;
+	}
+
+	delete[] retInt;
+	return finalNum;
+}
+
 bool Twine::TFindOnly(Twine& c) {
 
 	int curLen = this->Length();

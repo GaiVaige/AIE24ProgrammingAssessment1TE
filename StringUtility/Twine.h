@@ -64,6 +64,9 @@
 		int TFind(const char* c);
 		int TFind(Twine& c, int sIn);
 		int TFind(const char* c, int sIn);
+		
+		long long int ParseForInt(int digits);
+
 		bool TFindOnly(Twine& c);
 		bool TFindOnly(const char* c);
 		bool TFindOnly(Twine& c, int sIn);
@@ -108,6 +111,8 @@
 		void Caesar(Twine& c, int displaceVal);
 
 		Twine& Colour(int r, int g, int b, bool fg = true);
+
+		
 
 		//OPERATORS
 
