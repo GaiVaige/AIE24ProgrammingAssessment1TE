@@ -340,12 +340,25 @@ int Twine::TFind(const char* c, int sIn){
 
 }
 
-long long int Twine::ParseForInt(int digits) {
+long long int Twine::ParseForInt() {
+	
+	
+	int l = this->Length();
+	int digits = 0;
+	for (int i = 0; i < l; i++) {
+
+		if (isdigit(this->twine[i])) {
+				digits++;
+
+
+		}
+
+	}
+
 
 	int* retInt = new int[digits];
 	retInt[0] = 0;
 	int digTracker = 0;
-	int l = this->Length();
 	for (int i = 0; i < l; i++) {
 
 		if (isdigit(this->twine[i])){

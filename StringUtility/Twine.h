@@ -65,7 +65,7 @@
 		int TFind(Twine& c, int sIn);
 		int TFind(const char* c, int sIn);
 		
-		long long int ParseForInt(int digits);
+		long long int ParseForInt();
 
 		bool TFindOnly(Twine& c);
 		bool TFindOnly(const char* c);

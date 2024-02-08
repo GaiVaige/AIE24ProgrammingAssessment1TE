@@ -89,9 +89,9 @@ int main() {
 	//aTwine.Replace(bTwine, cTwine);
 	//std::cout << aTwine << '\n';
 
-	Twine testTwine = "123456789123456789123456789";
+	Twine testTwine = "Hello1My2Name3Is47784847Tom5";
 
-	std::cout << testTwine.ParseForInt(29);
+	std::cout << testTwine.ParseForInt();
 	}	
 
 
