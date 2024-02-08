@@ -5,8 +5,8 @@
 #include <iostream>
 
 
-
 	class Twine {
+
 
 
 	public:
@@ -35,10 +35,10 @@
 
 		//length functions for general and length-whitespace
 		int Length();
-		int Length(Twine c);
+		int Length(Twine& c);
 		static int Length(const char* c);
 		int LengthNoSpace();
-		int LengthNoSpace(Twine c);
+		int LengthNoSpace(Twine& c);
 		int LengthNoSpace(const char* c);
 
 		//two copies, one is 'quick' and overwties the char* twine on the
@@ -104,6 +104,10 @@
 		//adds char* c to the start of char* curC
 		void Prepend(Twine& c);
 		void Prepend(const char* c);
+
+		void Caesar(Twine& c, int displaceVal);
+
+		Twine& Colour(int r, int g, int b, bool fg = true);
 
 		//OPERATORS
 

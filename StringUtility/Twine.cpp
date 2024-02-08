@@ -1,7 +1,8 @@
-#include "Twine.h"
+﻿#include "Twine.h"
 #include <iostream>
 #include <cstring>
 #include <cctype>
+#include <time.h>
 #pragma warning (push)
 #pragma warning (disable:6386)
 
@@ -25,14 +26,12 @@ Twine::Twine(char* c) {
 
 Twine::~Twine() {
 	//destroy twine when swapped
-	delete[] twine;
+	free(this->twine);
 }
 
 void Twine::SetTwine(char* c) {
 	//confirm length of char array
 	size_t l = Length(c);
-	//destroy previous twine 
-	Twine::~Twine();
 	//copy each value in array to new array
 	twine = new char[l + 1];
 	for (int i = 0; i < l; i++) {
@@ -128,7 +127,7 @@ int Twine::LengthNoSpace() {
 	return y;
 }
 
-int Twine::Length(Twine c) {
+int Twine::Length(Twine& c) {
 	for (int i = 0; ; i++) {
 		if (c[i] == '\0') {
 			return i;
@@ -136,7 +135,7 @@ int Twine::Length(Twine c) {
 	}
 }
 
-int Twine::LengthNoSpace(Twine c) {
+int Twine::LengthNoSpace(Twine& c) {
 	int i = 0;
 	for (int y = 0; ; y++){
 		if (!isspace(c[i])) {
@@ -645,32 +644,30 @@ Twine Twine::ToUpper(const char* c) {
 Twine Twine::Wobble() {
 
 	size_t l = this->Length();
+	Twine nt = new char[l + 1];
 
 	for (int i = 0; i < l; i++) {
 
-
-		if (isspace(this->twine[i])) {
-			i++;
-		}
-
 		if (!isspace(this->twine[i])) {
-			this->twine[i] = tolower(this->twine[i]);
-			i++;
+
+			srand ((time(NULL)) + (i%5) - 1);
+			if (rand() % 2 == 0) {
+				nt.twine[i] = toupper(this->twine[i]);
+			}
+			else {
+				nt.twine[i] = tolower(this->twine[i]);
+			}
 
 		}
-
-		if (isspace(this->twine[i])) {
-			i++;
-		}
-
-		if (!isspace(this->twine[i])) {
-			this->twine[i] = toupper(this->twine[i]);
+		else {
+			nt.twine[i] = ' ';
 		}
 
 
 
 	}
-
+	nt.twine[l] = '\0';
+	this->SetTwine(nt);
 	return this->twine;
 
 }
@@ -680,7 +677,6 @@ bool Twine::Compare(Twine& c) {
 
 	int i = this->Length();
 	int cI = c.Length();
-	std::cout << i << "," << cI << " are the values!" << '\n';
 
 	if (i == cI) {
 
@@ -1033,7 +1029,43 @@ void Twine::Prepend(const char* c) {
 	this->SetTwine(newC);
 	delete[] newC;
 
-}		
+}	
+
+void Twine::Caesar(Twine& c, int displaceVal) {
+
+	Twine cc = c.ToUpper();
+
+	for (int i = 0; i < c.Length(); i++) {
+		if (cc.twine[i] >= 'A' && cc.twine[i] <= 'Z') {
+			cc.twine[i] = cc.twine[i] + displaceVal % 26;
+			if (cc.twine[i] > 'Z' || cc.twine[i] < 'A') {
+				cc.twine[i] = cc.twine[i] - 'Z' + 'A' - 1;
+			}
+		}
+
+
+
+	}
+	this->SetTwine(cc);
+
+}
+
+Twine& Twine::Colour(int r, int g, int b, bool fg) {
+
+	char buff[64];
+
+	if (fg) {
+		sprintf(buff, "\x1B[38;2;%d;%d;%dm", r, g, b);
+	}
+	else {
+		sprintf(buff, "\x1B[48;2;%d;%d;%dm", r, g, b);
+	}
+
+
+	this->Prepend(buff);
+	this->Append("\x1b[0m");
+	return *this;
+}
 
 std::ostream& operator << (std::ostream &out, Twine &t) {
 
