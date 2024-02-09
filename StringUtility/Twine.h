@@ -60,6 +60,7 @@
 		/// </summary>
 		/// <param name="c"></param>
 		/// <returns>integer to represent the index where the substring is found</returns>
+		int TFind(Twine c);
 		int TFind(Twine& c);
 		int TFind(const char* c);
 		int TFind(Twine& c, int sIn);
@@ -120,6 +121,7 @@
 		friend std::istream& operator >> (std::istream& in, Twine& t);
 		Twine& operator = (const char* c);
 		Twine& operator = (Twine& t);
+		bool operator == (Twine t);
 		bool operator == (Twine& t);
 		Twine& operator += (Twine& t);
 		Twine& operator + (Twine& t);

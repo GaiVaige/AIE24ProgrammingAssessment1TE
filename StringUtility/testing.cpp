@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Twine.h"
-
+#include "Item.h"
+#include "Candle.h"
+#include "Player.h"
 
 
 int main() {
@@ -89,9 +91,29 @@ int main() {
 	//aTwine.Replace(bTwine, cTwine);
 	//std::cout << aTwine << '\n';
 
-	Twine testTwine = "Hello1My2Name3Is47784847Tom5";
+	Player p;
+	Candle c;
+	Candle testo;
+	testo.SetName("The");
+	c.SetName("Candle");
+	Twine playerTwine = "Candle";
 
-	std::cout << testTwine.ParseForInt();
+	p.AddItem(c);
+	p.AddItem(testo);
+	playerTwine.GetTwine();
+
+	p.SearchItem(playerTwine);
+	//std::cout << p.playerInventory[0].name << '\n';
+	//p.AddItem(testo);
+	//std::cout << p.playerInventory[1].name << '\n';
+	//
+	//p.SearchItem(playerTwine);
+	
+
+
+	//p.SearchItem(playerTwine);
+
+
 	}	
 
 

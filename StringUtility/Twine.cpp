@@ -26,12 +26,15 @@ Twine::Twine(char* c) {
 
 Twine::~Twine() {
 	//destroy twine when swapped
-	free(this->twine);
+	delete[] twine;
 }
 
 void Twine::SetTwine(char* c) {
 	//confirm length of char array
 	size_t l = Length(c);
+
+	delete[] this->twine;
+
 	//copy each value in array to new array
 	twine = new char[l + 1];
 	for (int i = 0; i < l; i++) {
@@ -44,7 +47,7 @@ void Twine::SetTwine(Twine& c) {
 	//confirm length of char array
 	size_t l = c.Length();
 	//destroy previous twine 
-	Twine::~Twine();
+	delete[] this->twine;
 	//copy each value in array to new array
 	twine = new char[l+1];
 	for (int i = 0; i < l; i++) {
@@ -57,7 +60,7 @@ void Twine::SetTwine(const char* c) {
 	//confirm length of char array
 	size_t l = Length(c);
 	//destroy previous twine 
-	Twine::~Twine();
+	delete[] this->twine;
 	//copy each value in array to new array
 	twine = new char[l + 1];
 	for (int i = 0; i < l; i++) {
@@ -74,7 +77,7 @@ const char* Twine::TStr() {
 
 void Twine::DisplayTwine() {
     //cleaner method of displaying twine
-	std::cout << twine;
+	std::cout << twine << '\n';
 }
 
 void Twine::GetTwine(){
@@ -195,6 +198,41 @@ int Twine::CharFind(char c) {
 
 	}
 	return -1;
+}
+
+int Twine::TFind(Twine c) {
+
+	int a = this->Length();
+	int b = c.Length();
+	int cL = 0;
+	int t = 0;
+	bool doSwap = true;
+
+	for (int i = 0; i < a; i++) {
+
+		if (this->twine[i] == c[cL]) {
+			cL++;
+			if (t == 0 && doSwap) {
+				t = i;
+				doSwap = false;
+			}
+
+			if (cL == b) {
+				return t;
+			}
+
+
+		}
+		else {
+			t = 0;
+			cL = 0;
+			doSwap = true;
+		}
+
+	}
+	t = -1;
+	return t;
+
 }
 
 int Twine::TFind(Twine& c) {
@@ -378,7 +416,7 @@ long long int Twine::ParseForInt() {
 
 	for (int i = digits-1; i >= 0; --i) {
 		long long int multi = 0;
-		multi = pow(10, (digits-1) - i);
+		multi = (long long int)pow(10, (digits-1) - i);
 		long long int adder = (retInt[i] * multi);
 		finalNum += adder;
 	}
@@ -691,30 +729,31 @@ Twine Twine::ToUpper(const char* c) {
 Twine Twine::Wobble() {
 
 	size_t l = this->Length();
-	Twine nt = new char[l + 1];
+	char* nt = new char[l + 1];
 
 	for (int i = 0; i < l; i++) {
 
 		if (!isspace(this->twine[i])) {
 
-			srand ((time(NULL)) + (i%5) - 1);
+			srand (((unsigned int)time(NULL)) + (i%5) - 1);
 			if (rand() % 2 == 0) {
-				nt.twine[i] = toupper(this->twine[i]);
+				nt[i] = toupper(this->twine[i]);
 			}
 			else {
-				nt.twine[i] = tolower(this->twine[i]);
+				nt[i] = tolower(this->twine[i]);
 			}
 
 		}
 		else {
-			nt.twine[i] = ' ';
+			nt[i] = ' ';
 		}
 
 
 
 	}
-	nt.twine[l] = '\0';
+	nt[l] = '\0';
 	this->SetTwine(nt);
+	delete[] nt;
 	return this->twine;
 
 }
@@ -1156,6 +1195,18 @@ Twine& Twine::operator = (Twine& t1) {
 	return *this;
 }
 
+bool Twine::operator == (Twine t) {
+
+	if (this->Compare(t)) {
+		return true;
+	}
+	else {
+		return false;
+	}
+
+
+}
+
 bool Twine::operator == (Twine& t) {
 
 	if (this->Compare(t)) {
@@ -1181,15 +1232,15 @@ Twine& Twine::operator += (Twine& t) {
 
 Twine& Twine::operator + (Twine& t) {
 
-	Twine* tw = new Twine;
+	Twine tw;
 	char* newTwine = new char[this->Length() + 1];
 	newTwine = this->twine;
-	tw->SetTwine(newTwine);
-	tw->Append(t.twine);
+	tw.SetTwine(newTwine);
+	tw.Append(t.twine);
 
-	
+	delete[] newTwine;
 
-	return *tw;
+	return tw;
 
 }
 
@@ -1301,7 +1352,7 @@ bool Twine::operator > (Twine& t) {
 
 	}
 
-#pragma warning (pop)
+
 }
 
-
+#pragma warning (pop)
