@@ -26,7 +26,6 @@ Twine::Twine(char* c) {
 
 Twine::~Twine() {
 	//destroy twine when swapped
-	delete[] twine;
 }
 
 void Twine::SetTwine(char* c) {
@@ -603,7 +602,7 @@ bool Twine::FindInSpool(Twine tAr[], int size) {
 	return false;
 }
 
-Twine Twine::ToLower() {
+Twine& Twine::ToLower() {
 
 	size_t l = this->Length();
 	Twine newT;
@@ -623,7 +622,7 @@ Twine Twine::ToLower() {
 	return newT;
 }
 
-Twine Twine::ToLower(Twine& c) {
+Twine& Twine::ToLower(Twine& c) {
 
 	size_t l = c.Length();
 	Twine newT;
@@ -644,7 +643,7 @@ Twine Twine::ToLower(Twine& c) {
 	
 }
 
-Twine Twine::ToLower(const char* c) {
+Twine& Twine::ToLower(const char* c) {
 
 	size_t l = Length(c);
 	Twine newT;
@@ -663,8 +662,8 @@ Twine Twine::ToLower(const char* c) {
 	delete[] newArr;
 	return newT;
 }
-
-Twine Twine::ToUpper() {
+	 
+Twine& Twine::ToUpper() {
 
 
 	size_t l = this->Length();
@@ -685,7 +684,7 @@ Twine Twine::ToUpper() {
 	return newT;
 }
 	  
-Twine Twine::ToUpper(Twine& c) {
+Twine& Twine::ToUpper(Twine& c) {
 
 	size_t l = c.Length();
 	Twine newT;
@@ -706,7 +705,7 @@ Twine Twine::ToUpper(Twine& c) {
 
 }
 	  
-Twine Twine::ToUpper(const char* c) {
+Twine& Twine::ToUpper(const char* c) {
 
 	size_t l = Length(c);
 	Twine newT;
@@ -725,7 +724,7 @@ Twine Twine::ToUpper(const char* c) {
 	delete[] newArr;
 	return newT;
 }
-
+	 
 Twine Twine::Wobble() {
 
 	size_t l = this->Length();
@@ -763,7 +762,6 @@ bool Twine::Compare(Twine& c) {
 
 	int i = this->Length();
 	int cI = c.Length();
-
 	if (i == cI) {
 
 
@@ -1195,15 +1193,14 @@ Twine& Twine::operator = (Twine& t1) {
 	return *this;
 }
 
-bool Twine::operator == (Twine t) {
+bool Twine::operator == (const char* c) {
 
-	if (this->Compare(t)) {
+	if (this->Compare(c)) {
 		return true;
 	}
 	else {
 		return false;
 	}
-
 
 }
 

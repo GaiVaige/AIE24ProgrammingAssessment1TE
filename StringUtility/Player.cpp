@@ -12,6 +12,24 @@ Player::Player() {
 
 Player::~Player() {
 	delete[] playerInventory;
+	delete[] validItemCommands;
+}
+
+void Player::CheckForValidCommand(Twine& searchT) {
+
+	for (int i = 0; i < 5; i++) {
+
+		if (searchT.ToLower().TFindOnly(validItemCommands[i].ToLower().TStr())) {
+			SearchItem(searchT);
+			return;
+		}
+
+	}
+	Twine invalidCommandTwine = "I don't understand that command...";
+	invalidCommandTwine.DisplayTwine();
+	return;
+
+
 }
 
 void Player::AddItem(Item& c) {
@@ -50,7 +68,7 @@ void Player::SearchItem(Twine& searchT) {
 	
 
 	for (int i = 0; i < this->numberOfItems; i++) {
-		if (searchT.TFind(playerInventory[i]->name.TStr()) != -1) {
+		if (searchT.TFind(playerInventory[i]->name.ToLower().TStr()) != -1) {
 			playerInventory[i]->UseItem();
 			return;
 		}

@@ -75,13 +75,13 @@
 		bool FindInSpool(Twine tAr[], int size);
 
 		//Shifts all chars in Twine to lowercase and returns it as a NEW twine object
-		Twine ToLower();
-		Twine ToLower(Twine& c);
-		Twine ToLower(const char* c);
+		Twine& ToLower();
+		Twine& ToLower(Twine& c);
+		Twine& ToLower(const char* c);
 		//Shifts all chars in Twine to uppercase and returns it as a NEW twine object
-		Twine ToUpper();
-		Twine ToUpper(Twine& c);
-		Twine ToUpper(const char* c);
+		Twine& ToUpper();
+		Twine& ToUpper(Twine& c);
+		Twine& ToUpper(const char* c);
 		//Wobbles, it is destructive. It will overwrite the existing string.
 		Twine Wobble();
 
@@ -121,7 +121,7 @@
 		friend std::istream& operator >> (std::istream& in, Twine& t);
 		Twine& operator = (const char* c);
 		Twine& operator = (Twine& t);
-		bool operator == (Twine t);
+		bool operator == (const char* c);
 		bool operator == (Twine& t);
 		Twine& operator += (Twine& t);
 		Twine& operator + (Twine& t);

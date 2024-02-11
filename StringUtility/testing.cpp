@@ -95,14 +95,29 @@ int main() {
 	Candle c;
 	Candle testo;
 	testo.SetName("The");
-	c.SetName("Candle");
-	Twine playerTwine = "Candle";
+	Twine playerTwine;
 
 	p.AddItem(c);
 	p.AddItem(testo);
-	playerTwine.GetTwine();
 
-	p.SearchItem(playerTwine);
+	bool doTesting = true;
+	std::cout << c.name << '\n';
+
+	while (doTesting) {
+
+		playerTwine.GetTwine();
+
+
+		if (playerTwine.ToLower() == "quit") {
+			std::cout << "You have now left the loop" << '\n';
+			doTesting = false;
+			std::cout << std::boolalpha << doTesting << '\n';
+		}
+
+		p.CheckForValidCommand(playerTwine);
+		//p.SearchItem(playerTwine);
+	}
+
 	//std::cout << p.playerInventory[0].name << '\n';
 	//p.AddItem(testo);
 	//std::cout << p.playerInventory[1].name << '\n';
