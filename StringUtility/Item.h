@@ -8,15 +8,13 @@
 class Item {
 public:
 	Twine name;
-	bool hasItem;
+	Twine description;
 	int itemSlot = 0;
 
 	Item();
 	~Item();
 	virtual void SetName(Twine& c);
 	virtual void SetName(const char* c);
-	virtual void GiveItem();
-	virtual void RemoveItem();
 	virtual void UseItem();
 
 

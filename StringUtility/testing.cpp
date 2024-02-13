@@ -3,6 +3,7 @@
 #include "Item.h"
 #include "Candle.h"
 #include "Player.h"
+#include "Room.h"
 
 
 int main() {
@@ -93,43 +94,30 @@ int main() {
 
 	Player p;
 	Candle c;
-	Candle testo;
-	testo.SetName("The");
 	Twine playerTwine;
-
+	c.SetName("Candle");
 	p.AddItem(c);
-	p.AddItem(testo);
+	
+	bool doGame = true;
 
-	bool doTesting = true;
-	std::cout << c.name << '\n';
-
-	while (doTesting) {
-
+	while (doGame) {
 		playerTwine.GetTwine();
 
-
-		if (playerTwine.ToLower() == "quit") {
-			std::cout << "You have now left the loop" << '\n';
-			doTesting = false;
-			std::cout << std::boolalpha << doTesting << '\n';
+		if (playerTwine == "quit game") {
+			doGame = false;
+			break;
 		}
 
 		p.CheckForValidCommand(playerTwine);
-		//p.SearchItem(playerTwine);
+
+
+
 	}
 
-	//std::cout << p.playerInventory[0].name << '\n';
-	//p.AddItem(testo);
-	//std::cout << p.playerInventory[1].name << '\n';
-	//
-	//p.SearchItem(playerTwine);
-	
 
 
-	//p.SearchItem(playerTwine);
 
-
-	}	
+}	
 
 
 

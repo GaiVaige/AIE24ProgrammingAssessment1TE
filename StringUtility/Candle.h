@@ -13,12 +13,12 @@ class Candle : public Item {
 public:
 
 	Twine candleLevels[3]{
-	"\x1B[38;2;220;120;120mbright\x1b[0m",
+	"bright",
 	"dim",
 	"dul",
 
 	};
-	Twine name = "\x1B[38;2;255;0;0mCandle\x1b[0m";
+	Twine name = "Candle";
 	bool hasItem = false;
 	int CandleTrack = 0;
 	int itemSlot = 0;
@@ -34,6 +34,7 @@ public:
 		if (CandleTrack < 2) {
 			CandleTrack++;
 		}
+		return;
 	}
 
 

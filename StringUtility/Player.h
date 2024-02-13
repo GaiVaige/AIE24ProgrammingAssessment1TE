@@ -3,7 +3,7 @@
 #define PLAYER_H
 #include "Twine.h"
 #include "Item.h"
-#include "Candle.h"
+#include "Room.h"
 
 
 class Player {
@@ -17,16 +17,36 @@ public:
 		"examine",
 		"inspect",
 	};
+
+	Twine validRoomCommands[10]{
+		"move",
+		"go",
+		"head",
+		"go to the",
+		"search",
+		"look at",
+		"open",
+		"close",
+		"go to",
+		"turn on",
+	};
+
+	Twine validSpellCommands[5]{
+		"cast",
+		"summon",
+		"look up",
+		"check",
+		"spell",
+	};
+
 	int numberOfItems = 0;
+
 	Player();
 	~Player();
 
 	void CheckForValidCommand(Twine& searchT);
 	void AddItem(Item& c);
-	void RemoveItem(Item& it);
-	void RefactorInventory(int newSize);
 	void SearchItem(Twine& searchT);
-
 
 
 };

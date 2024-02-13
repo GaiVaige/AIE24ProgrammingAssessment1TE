@@ -16,13 +16,6 @@
 	void Item::SetName(const char* c) {
 		name.SetTwine(c);
 	}
-	void Item::GiveItem() {
-		hasItem = true;
-	}
-	void Item::RemoveItem() {
-		hasItem = false;
-	}
-
 	void Item::UseItem() {
 		std::cout << this->name << '\n';
 	}

@@ -1139,10 +1139,10 @@ Twine& Twine::Colour(int r, int g, int b, bool fg) {
 	char buff[64];
 
 	if (fg) {
-		sprintf(buff, "\x1B[38;2;%d;%d;%dm", r, g, b);
+		sprintf_s(buff, "\x1B[38;2;%d;%d;%dm", r, g, b);
 	}
 	else {
-		sprintf(buff, "\x1B[48;2;%d;%d;%dm", r, g, b);
+		sprintf_s(buff, "\x1B[48;2;%d;%d;%dm", r, g, b);
 	}
 
 

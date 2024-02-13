@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "Item.h"
 #include "Twine.h"
+#include "Room.h"
 #include <iostream>
 
 
@@ -12,7 +13,6 @@ Player::Player() {
 
 Player::~Player() {
 	delete[] playerInventory;
-	delete[] validItemCommands;
 }
 
 void Player::CheckForValidCommand(Twine& searchT) {
@@ -27,14 +27,12 @@ void Player::CheckForValidCommand(Twine& searchT) {
 	}
 	Twine invalidCommandTwine = "I don't understand that command...";
 	invalidCommandTwine.DisplayTwine();
-	return;
 
 
 }
 
 void Player::AddItem(Item& c) {
 	numberOfItems++;
-	c.GiveItem();
 	Item** tempArr = new Item*[numberOfItems];
 
 	for (int i = 0; i < numberOfItems - 1; i++) {
@@ -55,14 +53,6 @@ void Player::AddItem(Item& c) {
 	
 }
 
-void Player::RemoveItem(Item& it) {
-
-}
-
-void Player::RefactorInventory(int newSize) {
-
-}
-
 void Player::SearchItem(Twine& searchT) {
 
 	
@@ -77,6 +67,6 @@ void Player::SearchItem(Twine& searchT) {
 	}
 	Twine itemFailedTwine = "I don't think I have that in my pouch...";
 	itemFailedTwine.Twine::DisplayTwine();
-	return; 
 }
+
 
