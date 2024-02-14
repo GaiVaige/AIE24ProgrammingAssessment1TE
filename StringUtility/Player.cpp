@@ -15,16 +15,27 @@ Player::~Player() {
 	delete[] playerInventory;
 }
 
-void Player::CheckForValidCommand(Twine& searchT) {
+void Player::CheckForValidCommand(Twine searchT) {
 
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 3; i++) {
 
 		if (searchT.ToLower().TFindOnly(validItemCommands[i].ToLower().TStr())) {
 			SearchItem(searchT);
-			return;
+			break;
 		}
 
 	}
+
+	for (int i = 0; i < 10; i++) {
+
+		if (searchT.ToLower().TFindOnly(validRoomCommands[i].ToLower().TStr())) {
+			currentRoom->InspectRoom(searchT);
+			break;
+		}
+
+	}
+
+
 	Twine invalidCommandTwine = "I don't understand that command...";
 	invalidCommandTwine.DisplayTwine();
 
@@ -66,7 +77,7 @@ void Player::SearchItem(Twine& searchT) {
 
 	}
 	Twine itemFailedTwine = "I don't think I have that in my pouch...";
-	itemFailedTwine.Twine::DisplayTwine();
+	itemFailedTwine.DisplayTwine();
 }
 
 

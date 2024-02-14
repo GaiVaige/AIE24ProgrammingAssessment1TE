@@ -75,15 +75,15 @@
 		bool FindInSpool(Twine tAr[], int size);
 
 		//Shifts all chars in Twine to lowercase and returns it as a NEW twine object
-		Twine& ToLower();
-		Twine& ToLower(Twine& c);
-		Twine& ToLower(const char* c);
+		Twine ToLower();
+		Twine ToLower(Twine& c);
+		Twine ToLower(const char* c);
 		//Shifts all chars in Twine to uppercase and returns it as a NEW twine object
-		Twine& ToUpper();
-		Twine& ToUpper(Twine& c);
-		Twine& ToUpper(const char* c);
+		Twine ToUpper();
+		Twine ToUpper(Twine& c);
+		Twine ToUpper(const char* c);
 		//Wobbles, it is destructive. It will overwrite the existing string.
-		Twine Wobble();
+		void Wobble();
 
 		//Compares two strings to see if they are the same
 		bool Compare(Twine& c);

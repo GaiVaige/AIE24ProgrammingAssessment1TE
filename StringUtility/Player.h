@@ -8,25 +8,24 @@
 
 class Player {
 public:
+	Room* currentRoom = nullptr;
 	Twine name;
 	Item** playerInventory;
-	Twine validItemCommands[5]{
+	Twine validItemCommands[3]{
 		"use",
 		"look",
-		"look at",
 		"examine",
-		"inspect",
 	};
 
 	Twine validRoomCommands[10]{
-		"move",
+		"move to",
 		"go",
 		"head",
 		"go to the",
 		"search",
-		"look at",
+		"inspect",
 		"open",
-		"close",
+		"investigate",
 		"go to",
 		"turn on",
 	};
@@ -44,7 +43,7 @@ public:
 	Player();
 	~Player();
 
-	void CheckForValidCommand(Twine& searchT);
+	void CheckForValidCommand(Twine searchT);
 	void AddItem(Item& c);
 	void SearchItem(Twine& searchT);
 

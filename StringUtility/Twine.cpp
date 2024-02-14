@@ -15,7 +15,7 @@ Twine::Twine() {
 }
 
 Twine::Twine(const char* c) {
-	//set twine to entered text in ide
+	
 	this->SetTwine(c);
 }
 
@@ -26,6 +26,7 @@ Twine::Twine(char* c) {
 
 Twine::~Twine() {
 	//destroy twine when swapped
+	delete[] twine;
 }
 
 void Twine::SetTwine(char* c) {
@@ -602,7 +603,7 @@ bool Twine::FindInSpool(Twine tAr[], int size) {
 	return false;
 }
 
-Twine& Twine::ToLower() {
+Twine Twine::ToLower() {
 
 	size_t l = this->Length();
 	Twine newT;
@@ -622,7 +623,7 @@ Twine& Twine::ToLower() {
 	return newT;
 }
 
-Twine& Twine::ToLower(Twine& c) {
+Twine Twine::ToLower(Twine& c) {
 
 	size_t l = c.Length();
 	Twine newT;
@@ -643,7 +644,7 @@ Twine& Twine::ToLower(Twine& c) {
 	
 }
 
-Twine& Twine::ToLower(const char* c) {
+Twine Twine::ToLower(const char* c) {
 
 	size_t l = Length(c);
 	Twine newT;
@@ -663,7 +664,7 @@ Twine& Twine::ToLower(const char* c) {
 	return newT;
 }
 	 
-Twine& Twine::ToUpper() {
+Twine Twine::ToUpper() {
 
 
 	size_t l = this->Length();
@@ -684,7 +685,7 @@ Twine& Twine::ToUpper() {
 	return newT;
 }
 	  
-Twine& Twine::ToUpper(Twine& c) {
+Twine Twine::ToUpper(Twine& c) {
 
 	size_t l = c.Length();
 	Twine newT;
@@ -705,7 +706,7 @@ Twine& Twine::ToUpper(Twine& c) {
 
 }
 	  
-Twine& Twine::ToUpper(const char* c) {
+Twine Twine::ToUpper(const char* c) {
 
 	size_t l = Length(c);
 	Twine newT;
@@ -725,7 +726,7 @@ Twine& Twine::ToUpper(const char* c) {
 	return newT;
 }
 	 
-Twine Twine::Wobble() {
+void Twine::Wobble() {
 
 	size_t l = this->Length();
 	char* nt = new char[l + 1];
@@ -753,7 +754,7 @@ Twine Twine::Wobble() {
 	nt[l] = '\0';
 	this->SetTwine(nt);
 	delete[] nt;
-	return this->twine;
+
 
 }
 
@@ -1173,24 +1174,13 @@ std::istream& operator >> (std::istream& in, Twine& t) {
 
 Twine& Twine::operator = (const char* c) {
 
-	if (this->twine == c) {
-		return *this;
-	}
-
 	this->SetTwine(c);
-
 	return *this;
 }
 
 Twine& Twine::operator = (Twine& t1) {
 
-	if (this == &t1) {
-		return *this;
-	}
-
-	this->SetTwine(t1.twine);
-
-	return *this;
+	return *new Twine(t1);
 }
 
 bool Twine::operator == (const char* c) {

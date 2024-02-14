@@ -4,6 +4,7 @@
 #include "Candle.h"
 #include "Player.h"
 #include "Room.h"
+#include "Kitchen.h"
 
 
 int main() {
@@ -58,7 +59,8 @@ int main() {
 	//
 	//std::cout << tTwine.ToLower().TStr() << '\n';
 	//std::cout << tTwine.ToUpper().TStr() << '\n';
-	//std::cout << tTwine.Wobble().TStr() << '\n';
+	//tTwine.Wobble();
+	//tTwine.DisplayTwine();
 	//
 	//
 	//std::cout << "Ok, let's take a breather. How about you choose what tTwine is: ";
@@ -91,13 +93,24 @@ int main() {
 	//std::cin >> cTwine;
 	//aTwine.Replace(bTwine, cTwine);
 	//std::cout << aTwine << '\n';
+	//
+	//while (true) {
+	//	Twine test = "testtwine";
+	//}
+
+
+
+
+
+
 
 	Player p;
 	Candle c;
 	Twine playerTwine;
+	Kitchen* k = new Kitchen;
+	p.currentRoom = k;
 	c.SetName("Candle");
 	p.AddItem(c);
-	
 	bool doGame = true;
 
 	while (doGame) {
@@ -107,7 +120,7 @@ int main() {
 			doGame = false;
 			break;
 		}
-
+		std::cout << k->DescribeRoom().TStr() << '\n';
 		p.CheckForValidCommand(playerTwine);
 
 
