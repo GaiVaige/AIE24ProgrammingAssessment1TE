@@ -12,13 +12,13 @@
 	public:
 		char* twine;
 
-
 	public:
 
 		//constructors and destructors
 		Twine();
 		Twine(const char* c);
 		Twine(char* c);
+		Twine(const Twine& c);
 		~Twine();
 
 		//get input from std::cin
@@ -34,7 +34,7 @@
 		void DisplayTwine();
 
 		//length functions for general and length-whitespace
-		int Length();
+		int Length() const;
 		int Length(Twine& c);
 		static int Length(const char* c);
 		int LengthNoSpace();

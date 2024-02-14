@@ -24,9 +24,14 @@ Twine Room::ValidInspectPrompts() {
 }
 
 
-Twine Room::DescribeRoom() {
-	return this->description;
-
+void Room::DescribeRoom() {
+	if (doDesc) {
+		std::cout << this->description << '\n';
+	}
+	else {
+		std::cout << "You are in the " << this->name << "." << '\n';
+	}
+	this->doDesc = false;
 }
 
 Twine Room::InspectRoom(Twine& t) {
@@ -35,10 +40,11 @@ Twine Room::InspectRoom(Twine& t) {
 
 		if (t.TFindOnly(this->keyWords[i]))
 		{
-			std::cout << this->extraDescriptions[i] << '\n';
 			return this->extraDescriptions[i];
 		}
 
 	}
-
+	
+	Twine failedTwine = "There's nothing like that in here...";
+	return failedTwine;
 }

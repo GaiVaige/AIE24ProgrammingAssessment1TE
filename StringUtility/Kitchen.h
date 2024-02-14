@@ -21,9 +21,7 @@ public:
 		extraDescriptions[3] = "The sink is covered in old gunk, blood... well, you hope it's just blood.";
 		extraDescriptions[4] = "Do you really want to open the fridge?";
 
-		keyWords = new Twine[5]{
-
-		};
+		KeyWords();
 		keyWords[0] = "knife";
 		keyWords[1] = "cabinet";
 		keyWords[2] = "cabinets";

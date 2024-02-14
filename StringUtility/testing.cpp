@@ -98,34 +98,37 @@ int main() {
 	//	Twine test = "testtwine";
 	//}
 
-
-
-
-
-
-
 	Player p;
 	Candle c;
 	Twine playerTwine;
 	Kitchen* k = new Kitchen;
-	p.currentRoom = k;
+	Kitchen* k2 = new Kitchen;
 	c.SetName("Candle");
 	p.AddItem(c);
+	k2->name = "Dining Room";
 	bool doGame = true;
-
-	while (doGame) {
-		playerTwine.GetTwine();
-
-		if (playerTwine == "quit game") {
-			doGame = false;
-			break;
-		}
-		std::cout << k->DescribeRoom().TStr() << '\n';
-		p.CheckForValidCommand(playerTwine);
+	p.TheHouse[0][0] = k2;
+	p.TheHouse[0][1] = k;
+	p.currentRoom = p.TheHouse[0][0];
+	std::cout << p.currentRoom->name;
+	p.MovePlayer();
+	std::cout << p.currentRoom->name;
 
 
-
-	}
+	//while (doGame) {
+	//	p.currentRoom->DescribeRoom();
+	//	playerTwine.GetTwine();
+	//
+	//	if (playerTwine.ToLower() == "quit game") {
+	//		doGame = false;
+	//		break;
+	//	}
+	//	system("CLS");
+	//	p.CheckForValidCommand(playerTwine);
+	//
+	//
+	//
+	//}
 
 
 

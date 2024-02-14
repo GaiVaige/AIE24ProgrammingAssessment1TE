@@ -1,7 +1,5 @@
 ﻿#include "Twine.h"
 #include <iostream>
-#include <cstring>
-#include <cctype>
 #include <time.h>
 #pragma warning (push)
 #pragma warning (disable:6386)
@@ -22,6 +20,11 @@ Twine::Twine(const char* c) {
 Twine::Twine(char* c) {
 	//set twine to a char array
 	this->SetTwine(c);
+}
+
+Twine::Twine(const Twine& c) {
+	twine = new char[c.Length() + 1];
+	strcpy(this->twine, c.twine);
 }
 
 Twine::~Twine() {
@@ -106,7 +109,7 @@ void Twine::GetTwine(){
 	&std::ostream::flush;
 }
 
-int Twine::Length() {
+int Twine::Length() const{
 	for (int i = 0; ; i++) {
 		//if end of string detected, return value of i
 		if (this->twine[i] == '\0') {

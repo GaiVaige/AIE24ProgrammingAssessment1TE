@@ -8,6 +8,9 @@
 
 class Player {
 public:
+	Room* TheHouse[3][3];
+	int xCord = 0;
+	int yCord = 0;
 	Room* currentRoom = nullptr;
 	Twine name;
 	Item** playerInventory;
@@ -38,14 +41,22 @@ public:
 		"spell",
 	};
 
+	Twine Directions[4]{
+		"north",
+		"east",
+		"south",
+		"west",
+	};
+
 	int numberOfItems = 0;
 
 	Player();
 	~Player();
 
-	void CheckForValidCommand(Twine searchT);
+	void CheckForValidCommand(Twine& searchT);
 	void AddItem(Item& c);
 	void SearchItem(Twine& searchT);
+	void MovePlayer();
 
 
 };

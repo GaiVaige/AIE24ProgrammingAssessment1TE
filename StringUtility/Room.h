@@ -11,6 +11,7 @@ public:
 	Twine* extraDescriptions;
 	Twine* keyWords;
 	int descLength;
+	bool doDesc = true;
 	Twine validInspectCommands;
 	Twine validInspectPrompts;
 
@@ -22,7 +23,7 @@ public:
 	virtual Twine ValidInspectCommands();
 	virtual Twine ValidInspectPrompts();
 
-	virtual Twine DescribeRoom();
+	virtual void DescribeRoom();
 	virtual Twine InspectRoom(Twine& t);
 
 
