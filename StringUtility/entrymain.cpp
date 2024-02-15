@@ -123,14 +123,7 @@ int main() {
 	"custom engine",
 	"bustom bingein",
 	"buster blader",
-
-	
-	
-	
 	};
-
-	Twine t = twAr[2];
-	t.DisplayTwine();
 
 	Spool sp = Spool(5, twAr);
 	std::cout << sp.GetAt(1).TStr() << " " << sp.GetAt(0).TStr() << " ";
