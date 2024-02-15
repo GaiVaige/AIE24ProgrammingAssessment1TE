@@ -13,18 +13,29 @@ Twine::Twine() {
 }
 
 Twine::Twine(const char* c) {
-	
-	this->SetTwine(c);
+	int cLen = strlen(c);
+	twine = new char[cLen];
+	for (int i = 0; i < cLen; i++) {
+		twine[i] = c[i];
+	}
+	twine[cLen] = '\0';
 }
 
 Twine::Twine(char* c) {
 	//set twine to a char array
-	this->SetTwine(c);
+	int cLen = strlen(c);
+	twine = new char[cLen];
+	for (int i = 0; i < cLen; i++) {
+		twine[i] = c[i];
+	}
+	twine[cLen] = '\0';
+	
 }
 
 Twine::Twine(const Twine& c) {
 	twine = new char[c.Length() + 1];
-	strcpy(this->twine, c.twine);
+	//strcpy(this->twine, c.twine);
+	this->SetTwine(c.twine);
 }
 
 Twine::~Twine() {

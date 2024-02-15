@@ -9,9 +9,12 @@ class Spool {
 public:
 	Spool();
 	~Spool();
+	
+	Spool(int twCo, Twine* tw);
 
+	void Add(Twine& t);
 
-	Wobble();
+	Twine GetAt(int index);
 
 private:
 	Twine** spool;

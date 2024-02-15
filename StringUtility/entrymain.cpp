@@ -1,9 +1,11 @@
 #include <iostream>
 #include "Game.h"
 #include "Twine.h"
+#include "Spool.h"
+#include "Player.h"
 #include "Item.h"
 #include "Candle.h"
-#include "Player.h"
+
 
 //room headers
 #include "Room.h"
@@ -102,23 +104,42 @@ int main() {
 	//	Twine test = "testtwine";
 	//}
 	
-	Game g;
-	Player* player = new Player;
-	g.p = player;
+	//Game g;
+	//Player* player = new Player;
+	//g.p = player;
+	//
+	//Kitchen* k = new Kitchen;
+	//g.Mansion[1][1] = k;
+	//
+	//Library* l = new Library;
+	//g.Mansion[2][2] = l;
+	//
+	//g.Run();
 
-	Kitchen* k = new Kitchen;
-	g.Mansion[1][1] = k;
+	//Twine twAr[5];
+	Twine* twAr = new Twine[5]{
+	"bursting bladder",
+	"Goodbye",
+	"custom engine",
+	"bustom bingein",
+	"buster blader",
 
-	Library* l = new Library;
-	g.Mansion[2][2] = l;
+	
+	
+	
+	};
 
-	g.Run();
+	Twine t = twAr[2];
+	t.DisplayTwine();
 
+	Spool sp = Spool(5, twAr);
+	std::cout << sp.GetAt(1).TStr() << " " << sp.GetAt(0).TStr() << " ";
+	std::cout << sp.GetAt(42).TStr();
 
 
 }	
 
 
 
-
+//you left it open, what did we do?
 
