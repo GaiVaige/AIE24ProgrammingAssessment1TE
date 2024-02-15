@@ -8,10 +8,10 @@
 
 class Player {
 public:
-	Room* TheHouse[3][3];
 	int xCord = 0;
 	int yCord = 0;
 	Room* currentRoom = nullptr;
+	Twine inputTwine;
 	Twine name;
 	Item** playerInventory;
 	Twine validItemCommands[3]{
@@ -20,17 +20,20 @@ public:
 		"examine",
 	};
 
-	Twine validRoomCommands[10]{
-		"move to",
-		"go",
-		"head",
-		"go to the",
+	Twine validRoomCommands[5]{
 		"search",
 		"inspect",
 		"open",
 		"investigate",
-		"go to",
 		"turn on",
+	};
+
+	Twine validMoveCommands[5]{
+		"move",
+		"go to",
+		"head",
+		"go",
+		"move to",
 	};
 
 	Twine validSpellCommands[5]{
@@ -56,7 +59,7 @@ public:
 	void CheckForValidCommand(Twine& searchT);
 	void AddItem(Item& c);
 	void SearchItem(Twine& searchT);
-	void MovePlayer();
+	void MovePlayer(int i);
 
 
 };

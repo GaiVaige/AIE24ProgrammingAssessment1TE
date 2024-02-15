@@ -129,16 +129,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Candle.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Twine.cpp" />
-    <ClCompile Include="testing.cpp" />
+    <ClCompile Include="entrymain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Candle.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Kitchen.h" />
+    <ClInclude Include="Library.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="Twine.h" />

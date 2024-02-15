@@ -16,7 +16,7 @@ Player::~Player() {
 }
 
 void Player::CheckForValidCommand(Twine& searchT) {
-
+	int moveCheck = 0;
 	for (int i = 0; i < 3; i++) {
 
 		if (searchT.ToLower().TFindOnly(validItemCommands[i].ToLower().TStr())) {
@@ -26,7 +26,7 @@ void Player::CheckForValidCommand(Twine& searchT) {
 
 	}
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 5; i++) {
 
 		if (searchT.ToLower().TFindOnly(validRoomCommands[i].ToLower().TStr())) {
 			currentRoom->InspectRoom(searchT).DisplayTwine();
@@ -35,6 +35,22 @@ void Player::CheckForValidCommand(Twine& searchT) {
 
 	}
 
+	for (int i = 0; i < 5; i++) {
+		if (searchT.ToLower().TFindOnly(validMoveCommands[i].ToLower().TStr())) {
+
+			for (int y = 0; y < 4; y++) {
+				if (searchT.ToLower().TFindOnly(Directions[y].ToLower().TStr())) {
+					MovePlayer(y);
+					moveCheck++;
+				}
+			}
+
+		}
+
+	}
+	if (moveCheck != 0) {
+		return;
+	}
 
 	Twine invalidCommandTwine = "I don't understand that command...";
 	invalidCommandTwine.DisplayTwine();
@@ -80,8 +96,34 @@ void Player::SearchItem(Twine& searchT) {
 	itemFailedTwine.DisplayTwine();
 }
 
-void Player::MovePlayer() {
-	this->currentRoom = this->TheHouse[0][+1];
+void Player::MovePlayer(int i) {
+	switch (i)
+	{
+	default:
+		break;
+	case 0:
+		if (yCord < 2) {
+			yCord++;
+		}
+		break;
+
+	case 1:
+		if (xCord < 2) {
+			xCord++;
+		}
+		break;
+	case 2:
+		if (yCord > 0) {
+			yCord--;
+		}
+		break;
+	case 3:
+		if (yCord > 0) {
+			xCord--;
+		}
+		break;
+	}
+
 }
 
 
