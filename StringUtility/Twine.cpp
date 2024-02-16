@@ -14,22 +14,11 @@ Twine::Twine() {
 
 Twine::Twine(const char* c) {
 	int cLen = strlen(c);
-	twine = new char[cLen];
+	twine = new char[cLen + 1];
 	for (int i = 0; i < cLen; i++) {
 		twine[i] = c[i];
 	}
 	twine[cLen] = '\0';
-}
-
-Twine::Twine(char* c) {
-	//set twine to a char array
-	int cLen = strlen(c);
-	twine = new char[cLen];
-	for (int i = 0; i < cLen; i++) {
-		twine[i] = c[i];
-	}
-	twine[cLen] = '\0';
-	
 }
 
 Twine::Twine(const Twine& c) {
@@ -1231,15 +1220,15 @@ Twine& Twine::operator += (Twine& t) {
 
 }
 
-Twine& Twine::operator + (Twine& t) {
+Twine Twine::operator + (Twine& t) {
 
 	Twine tw;
-	char* newTwine = new char[this->Length() + 1];
-	newTwine = this->twine;
-	tw.SetTwine(newTwine);
+	Twine* newTwine = new Twine;
+	newTwine->SetTwine(this->twine);
+	tw.SetTwine(newTwine->twine);
 	tw.Append(t.twine);
 
-	delete[] newTwine;
+	delete newTwine;
 
 	return tw;
 

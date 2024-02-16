@@ -129,10 +129,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Candle.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Room.cpp" />
+    <ClCompile Include="Spell.cpp" />
     <ClCompile Include="Spool.cpp" />
     <ClCompile Include="Twine.cpp" />
     <ClCompile Include="entrymain.cpp" />
@@ -143,8 +145,10 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="Kitchen.h" />
     <ClInclude Include="Library.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Room.h" />
+    <ClInclude Include="Spell.h" />
     <ClInclude Include="Spool.h" />
     <ClInclude Include="Twine.h" />
   </ItemGroup>

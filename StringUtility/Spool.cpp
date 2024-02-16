@@ -33,7 +33,10 @@ void Spool::Add(Twine& t) {
 	tempSp[count] = new Twine(t);
 	count += 1;
 	delete[] spool;
-	spool = tempSp;
+	spool = new Twine*[count];
+	for (int i = 0; i < count; i++) {
+		spool[i] = tempSp[i];
+	}
 	delete[] tempSp;
 }
 

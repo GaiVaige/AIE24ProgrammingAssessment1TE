@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Item.h"
 #include "Candle.h"
+#include "Spell.h"
 
 
 //room headers
@@ -116,7 +117,7 @@ int main() {
 	//
 	//g.Run();
 
-	//Twine twAr[5];
+
 	Twine* twAr = new Twine[5]{
 	"bursting bladder",
 	"Goodbye",
@@ -125,10 +126,27 @@ int main() {
 	"buster blader",
 	};
 
-	Spool sp = Spool(5, twAr);
-	std::cout << sp.GetAt(1).TStr() << " " << sp.GetAt(0).TStr() << " ";
-	std::cout << sp.GetAt(42).TStr();
 
+	Player* p = new Player;
+	Spell* fireball = new Spell;
+	fireball->name = "Fireball";
+	fireball->description = "Makes a fire ball";
+	fireball->damage = 200000;
+	p->LearnSpell(fireball);
+	Twine searchTwine = "fireball";
+	p->SpellLookUp(searchTwine);
+
+	//Spool sp = Spool(5, twAr);
+	//std::cout << sp.GetAt(1).TStr() << " " << sp.GetAt(0).TStr() << " ";
+	//std::cout << sp.GetAt(42).TStr();
+
+	Twine a = "Hello";
+	Twine b = "Goodbye";
+	Twine c = a + b;
+	//c.DisplayTwine();
+
+	delete fireball;
+	delete p;
 
 }	
 

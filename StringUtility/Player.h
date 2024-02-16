@@ -2,9 +2,10 @@
 #ifndef PLAYHER_H
 #define PLAYER_H
 #include "Twine.h"
+#include "Spool.h"
 #include "Item.h"
 #include "Room.h"
-
+#include "Spell.h"
 
 class Player {
 public:
@@ -14,6 +15,9 @@ public:
 	Twine inputTwine;
 	Twine name;
 	Item** playerInventory;
+	Spool spellBook;
+	Spell** spells;
+	int spellCount;
 	Twine validItemCommands[3]{
 		"use",
 		"look",
@@ -60,6 +64,9 @@ public:
 	void AddItem(Item& c);
 	void SearchItem(Twine& searchT);
 	void MovePlayer(int i);
+	void SpellLookUp(Twine searchT);
+	void LearnSpell(Spell* sp);
+	void CastSpell(Twine searchT);
 
 
 };

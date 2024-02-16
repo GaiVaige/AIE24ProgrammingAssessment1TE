@@ -2,6 +2,7 @@
 #ifndef ROOM_HEADER
 #define ROOM_HEADER
 #include "Twine.h"
+#include "Entity.h"
 
 class Room {
 
@@ -14,6 +15,7 @@ public:
 	bool doDesc = true;
 	Twine validInspectCommands;
 	Twine validInspectPrompts;
+	Entity** roomEntities;
 
 	virtual Twine Name();
 	virtual Twine Description();

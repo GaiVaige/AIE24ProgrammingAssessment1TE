@@ -18,7 +18,6 @@
 		//constructors and destructors
 		Twine();
 		Twine(const char* c);
-		Twine(char* c);
 		Twine(const Twine& c);
 		~Twine();
 
@@ -125,7 +124,7 @@
 		bool operator == (const char* c);
 		bool operator == (Twine& t);
 		Twine& operator += (Twine& t);
-		Twine& operator + (Twine& t);
+		Twine operator + (Twine& t);
 		char operator [] (int n);
 		bool operator < (Twine& t);
 		bool operator > (Twine& t);
