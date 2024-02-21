@@ -6,6 +6,7 @@
 #include "Item.h"
 #include "Room.h"
 #include "Spell.h"
+#include "Stats.h"
 
 class Player {
 public:
@@ -14,6 +15,8 @@ public:
 	Room* currentRoom = nullptr;
 	Twine inputTwine;
 	Twine name;
+	int health;
+	Stats s;
 	Item** playerInventory;
 	Spool spellBook;
 	Spell** spells;
@@ -55,6 +58,8 @@ public:
 		"west",
 	};
 
+	
+
 	int numberOfItems = 0;
 
 	Player();
@@ -67,6 +72,7 @@ public:
 	void SpellLookUp(Twine searchT);
 	void LearnSpell(Spell* sp);
 	void CastSpell(Twine searchT);
+	void InitPlayer();
 
 
 };

@@ -6,6 +6,7 @@
 #include "Item.h"
 #include "Candle.h"
 #include "Spell.h"
+#include "Windows.h"
 
 
 //room headers
@@ -104,27 +105,32 @@ int main() {
 	//while (true) {
 	//	Twine test = "testtwine";
 	//}
-	
-	//Game g;
-	//Player* player = new Player;
-	//g.p = player;
-	//
-	//Kitchen* k = new Kitchen;
-	//g.Mansion[1][1] = k;
-	//
-	//Library* l = new Library;
-	//g.Mansion[2][2] = l;
-	//
-	//g.Run();
+
+	DWORD mode;
+	GetConsoleMode(GetStdHandle(STD_OUTPUT_HANDLE), &mode);
+	mode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+	SetConsoleMode(GetStdHandle(STD_OUTPUT_HANDLE), mode);
+	SetConsoleTitleA("Ghost House");
 
 
-	Twine* twAr = new Twine[5]{
-	"bursting bladder",
-	"Goodbye",
-	"custom engine",
-	"bustom bingein",
-	"buster blader",
-	};
+	Game g;
+	Player* player = new Player;
+	g.p = player;
+
+	Kitchen* k = new Kitchen;
+	g.Mansion[3][4] = k;
+
+	Library* l = new Library;
+	g.Mansion[3][3] = l;
+
+
+	player->InitPlayer();
+	system("cls");
+	g.Run();
+
+
+	//Twine* twAr = new Twine[5]{
+
 
 
 	//Player* p = new Player;
@@ -141,12 +147,7 @@ int main() {
 	//std::cout << sp.GetAt(1).TStr() << " " << sp.GetAt(0).TStr() << " ";
 	//std::cout << sp.GetAt(42).TStr();
 
-	Game g;
-	g.DrawMap();
-
-}	
-
-
+}
 
 //you left it open, what did we do?
 

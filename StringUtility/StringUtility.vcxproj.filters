@@ -89,5 +89,8 @@
     <ClInclude Include="Entity.h">
       <Filter>Header Files\Rooms</Filter>
     </ClInclude>
+    <ClInclude Include="Stats.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,6 +2,8 @@
 #include "Item.h"
 #include "Twine.h"
 #include "Room.h"
+#include "Stats.h"
+#include "random"
 #include <iostream>
 
 
@@ -161,14 +163,14 @@ void Player::LearnSpell(Spell* sp) {
 	}
 	spellBook.Add(sp->name);
 	this->spellCount++;
-	Spell** tempArr = new Spell*[spellCount];
+	Spell** tempArr = new Spell * [spellCount];
 	for (int i = 0; i < spellCount - 1; i++) {
 		tempArr[i] = this->spells[i];
 	}
 
 	tempArr[spellCount - 1] = sp;
 	delete[] spells;
-	spells = new Spell*[spellCount];
+	spells = new Spell * [spellCount];
 
 	for (int i = 0; i < spellCount; i++) {
 		this->spells[i] = tempArr[i];
@@ -183,4 +185,64 @@ void Player::CastSpell(Twine searchT) {
 	std::cout << "You shouldnt be here" << '\n';
 }
 
+void Player::InitPlayer() {
+	std::cout << "Ah... yes. You're awake. Tell me...\nWhat is your name: ";
+	std::cin >> this->name;
+
+	Twine checkTwine = "";
+	int checkInt = 0;
+	std::cout << "Well... how has your experience in life been?\nAre you " << Twine("Social").Colour(0, 0, 255, true) << ", " << Twine("Strong").Colour(255, 0, 0, true) << ", or " << Twine("Smart").Colour(0, 255, 0, true) << "?\n";
+
+
+	while (true) {
+		checkTwine.GetTwine();
+		if (checkTwine.ToLower() == Twine("Strong").ToLower()) {
+			checkInt = 1;
+			break;
+		}
+		else if (checkTwine.ToLower() == Twine("Social").ToLower()) {
+			checkInt = 2;
+			break;
+		}
+		else if (checkTwine.ToLower() == Twine("Smart").ToLower()) {
+			checkInt = 3;
+			break;
+		}
+		else {
+			std::cout << "That... is not what I expected. I do not understand. Please, speak again.\n";
+		}
+	}
+
+	switch (checkInt) {
+	default:
+		std::cout << "THIS SHOULDNT HAPPENT";
+	case 1:
+		s.InitStats(16, 12, 14, 8, 10, 8);
+		break;
+	case 2:
+		s.InitStats(8, 12, 8, 16, 14, 10);
+		break;
+	case 3:
+		s.InitStats(8, 8, 12, 10, 14, 16);
+		break;
+
+	}
+
+	this->health = s.Constitution;
+
+	std::cout << "Wonderful... now... open your eyes...\n";
+
+	checkTwine = "";
+	while (true) {
+		checkTwine.GetTwine();
+
+		if (checkTwine.ToLower().TFind("open") != -1){
+			break;
+		}
+		else {
+			std::cout << "I said, " << Twine("OPEN").Colour(100, 100, 100) << " your eyes." << '\n';
+		}
+	}
+
+}
 

@@ -11,7 +11,7 @@
 class Candle : public Item {
 
 public:
-
+	Game* g;
 	Twine candleLevels[3]{
 	"bright",
 	"dim",
@@ -26,7 +26,7 @@ public:
 
 public:
 	Candle() {
-
+		g = nullptr;
 	}
 
 	void UseItem() override {
@@ -34,6 +34,13 @@ public:
 		if (CandleTrack < 2) {
 			CandleTrack++;
 		}
+
+		if (g->p->currentRoom->name == "Kitchen") {
+			std::cout << "The lamp lights up the benches." << '\n';
+			g->flags[0] = true;
+		}
+
+
 		return;
 	}
 
