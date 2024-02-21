@@ -5,8 +5,8 @@
 
 class Entity {
 public:
-	Twine name = "Gorilla2";
-	Twine description = "This is the 2nd Gorilla";
+	Twine name;
+	Twine description;
 	int hp;
 
 

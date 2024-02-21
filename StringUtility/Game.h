@@ -7,14 +7,18 @@
 class Game {
 
 public:
-	Room* Mansion[3][3];
+	bool flags[10];
+	int maxFlagID = 10;
+    Room* Mansion[5][5];
+	int roomXDim = 5;
+	int roomYDim = 5;
 	Player* p;
 	bool doGame = true;
 
 	Game();
 	~Game() = default;
-
-
+	void SetFlag(int boolID, bool stateID);
+	void DrawMap();
 	void Run();
 
 

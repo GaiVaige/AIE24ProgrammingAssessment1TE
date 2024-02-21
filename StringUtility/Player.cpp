@@ -38,6 +38,15 @@ void Player::CheckForValidCommand(Twine& searchT) {
 		}
 
 	}
+	for (int i = 0; i < 5; i++) {
+
+		if (searchT.ToLower().TFindOnly(validSpellCommands[i].ToLower().TStr())) {
+			this->SpellLookUp(searchT);
+			return;
+		}
+
+	}
+
 
 	for (int i = 0; i < 5; i++) {
 		if (searchT.ToLower().TFindOnly(validMoveCommands[i].ToLower().TStr())) {
@@ -106,13 +115,13 @@ void Player::MovePlayer(int i) {
 	default:
 		break;
 	case 0:
-		if (yCord < 2) {
+		if (yCord < 4) {
 			yCord++;
 		}
 		break;
 
 	case 1:
-		if (xCord < 2) {
+		if (xCord < 4) {
 			xCord++;
 		}
 		break;
@@ -133,7 +142,7 @@ void Player::MovePlayer(int i) {
 
 void Player::SpellLookUp(Twine searchT) {
 	for (int i = 0; i < this->spellCount; i++) {
-		spells[i]->name;
+
 		if (searchT.ToLower().TFindOnly((spells[i]->name.ToLower().TStr()))) {
 			std::cout << "Name: " << spells[i]->name << '\n';
 			std::cout << "Description: " << spells[i]->description << '\n';

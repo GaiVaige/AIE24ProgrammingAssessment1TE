@@ -7,11 +7,12 @@
 
 	class Twine {
 
-		operator const char* () { return twine; };
-		operator char* () const { return twine; };
 
 	public:
 		char* twine;
+		
+		operator const char* () { return twine; };
+		operator char* () const { return twine; };
 
 	public:
 

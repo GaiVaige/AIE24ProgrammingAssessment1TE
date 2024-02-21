@@ -127,26 +127,22 @@ int main() {
 	};
 
 
-	Player* p = new Player;
-	Spell* fireball = new Spell;
-	fireball->name = "Fireball";
-	fireball->description = "Makes a fire ball";
-	fireball->damage = 200000;
-	p->LearnSpell(fireball);
-	Twine searchTwine = "fireball";
-	p->SpellLookUp(searchTwine);
-
+	//Player* p = new Player;
+	//Spell* fireball = new Spell;
+	//fireball->name = "Fireball";
+	//fireball->description = "Makes a fire ball";
+	//fireball->damage = 200000;
+	//p->LearnSpell(fireball);
+	//Twine pTwine;
+	//pTwine.GetTwine();
+	//p->CheckForValidCommand(pTwine);
+	//
 	//Spool sp = Spool(5, twAr);
 	//std::cout << sp.GetAt(1).TStr() << " " << sp.GetAt(0).TStr() << " ";
 	//std::cout << sp.GetAt(42).TStr();
 
-	Twine a = "Hello";
-	Twine b = "Goodbye";
-	Twine c = a + b;
-	//c.DisplayTwine();
-
-	delete fireball;
-	delete p;
+	Game g;
+	g.DrawMap();
 
 }	
 
