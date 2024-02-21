@@ -7,7 +7,7 @@
 #include "Candle.h"
 #include "Spell.h"
 #include "Windows.h"
-
+#include "Entity.h"
 
 //room headers
 #include "Room.h"
@@ -122,6 +122,9 @@ int main() {
 
 	Library* l = new Library;
 	g.Mansion[3][3] = l;
+
+
+	Entity* testE = new Entity(Twine("Gary"), Twine("A cool guy"), 10);
 
 
 	player->InitPlayer();

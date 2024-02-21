@@ -3,14 +3,20 @@
 Entity::Entity() {
 	hp = 0;
 	maxHP = 0;
+	s.InitStats(0, 0, 0, 0, 0, 0);
+	alive = true;
+	currentRoom = nullptr;
 }
 
 Entity::~Entity() {
 }
 
-Entity::Entity(Twine t, Twine t2, int mHP) {
+Entity::Entity(Twine t, Twine t2, int conScore) {
+	alive = true;
 	this->name.SetTwine(t);
 	this->description.SetTwine(t2);
-	this->maxHP = mHP;
+	s.InitStats(0, 0, conScore, 0, 0, 0);
+	this->maxHP = s.Constitution;
 	this->hp = maxHP;
+	currentRoom = nullptr;
 }
