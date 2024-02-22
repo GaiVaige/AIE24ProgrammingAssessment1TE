@@ -16,7 +16,7 @@ public:
 	bool doGame = true;
 
 	Game();
-	~Game() = default;
+	~Game();
 	void SetFlag(int boolID, bool stateID);
 	void DrawMap();
 	void Run();

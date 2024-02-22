@@ -13,12 +13,12 @@ Player::Player() {
 	playerInventory = new Item*[0];
 	spells = new Spell*[0];
 	spellCount = 0;
+	InitPlayer();
 }
 
 Player::~Player() {
 	delete[] playerInventory;
 	delete[] spells;
-	delete currentRoom;
 }
 
 void Player::CheckForValidCommand(Twine& searchT) {
@@ -40,10 +40,36 @@ void Player::CheckForValidCommand(Twine& searchT) {
 		}
 
 	}
+	for (int i = 0; i < 4; i++) {
+		if (searchT.ToLower().TFindOnly(validDialougeCommands[i].ToLower())) {
+			currentRoom->CheckForDialogue(searchT).DisplayTwine();
+			return;
+		}
+	}
+
 	for (int i = 0; i < 5; i++) {
 
 		if (searchT.ToLower().TFindOnly(validSpellCommands[i].ToLower().TStr())) {
-			this->SpellLookUp(searchT);
+
+			switch (i) {
+			case 0:
+				Twine("Not here!").DisplayTwine();
+				break;
+			case 1:
+				Twine("Not here!").DisplayTwine();
+				break;
+			case 2:
+				this->SpellLookUp(searchT);
+				break;
+			case 3:
+				this->SpellLookUp(searchT);
+				break;
+			case 4:
+				this->SpellLookUp(searchT);
+				break;
+
+			}
+
 			return;
 		}
 
@@ -133,7 +159,7 @@ void Player::MovePlayer(int i) {
 		}
 		break;
 	case 3:
-		if (yCord > 0) {
+		if (xCord > 0) {
 			xCord--;
 		}
 		break;
@@ -186,8 +212,11 @@ void Player::CastSpell(Twine searchT) {
 }
 
 void Player::InitPlayer() {
-	std::cout << "Ah... yes. You're awake. Tell me...\nWhat is your name: ";
+
+
+	std::cout << "Ah... yes. You're coming to. Tell me...\nWhat is your name: ";
 	std::cin >> this->name;
+	this->name = name.Capital();
 
 	Twine checkTwine = "";
 	int checkInt = 0;
@@ -196,16 +225,20 @@ void Player::InitPlayer() {
 
 	while (true) {
 		checkTwine.GetTwine();
-		if (checkTwine.ToLower() == Twine("Strong").ToLower()) {
+		if (checkTwine.ToLower().TFind(Twine("Strong").ToLower()) != -1) {
 			checkInt = 1;
 			break;
 		}
-		else if (checkTwine.ToLower() == Twine("Social").ToLower()) {
+		else if (checkTwine.ToLower().TFind(Twine("Social").ToLower()) != -1) {
 			checkInt = 2;
 			break;
 		}
-		else if (checkTwine.ToLower() == Twine("Smart").ToLower()) {
+		else if (checkTwine.ToLower().TFind(Twine("Smart").ToLower()) != -1) {
 			checkInt = 3;
+			break;
+		}
+		else if (checkTwine.ToLower().TFind(Twine("None").ToLower()) != -1) {
+			checkInt = 4;
 			break;
 		}
 		else {
@@ -225,12 +258,15 @@ void Player::InitPlayer() {
 	case 3:
 		s.InitStats(8, 8, 12, 10, 14, 16);
 		break;
+	case 4:
+		s.InitStats(4, 4, 4, 4, 4, 4);
+		std::cout << Twine("Oh my... well, if you truly are that pitiable...\n");
 
 	}
 
 	this->health = s.Constitution;
 
-	std::cout << "Wonderful... now... open your eyes...\n";
+	std::cout << "Now... open your eyes...\n";
 
 	checkTwine = "";
 	while (true) {

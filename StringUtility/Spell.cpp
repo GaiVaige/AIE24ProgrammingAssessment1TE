@@ -10,7 +10,7 @@ Spell::~Spell() {
 
 
 Spell::Spell(Twine n, Twine de, int da) {
-	this->name = n;
+	this->name.SetTwine(n);
 	this->description = de;
 	this->damage = da;
 }

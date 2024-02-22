@@ -13,7 +13,7 @@ Twine::Twine() {
 }
 
 Twine::Twine(const char* c) {
-	int cLen = strlen(c);
+	size_t cLen = strlen(c);
 	twine = new char[cLen + 1];
 	for (int i = 0; i < cLen; i++) {
 		twine[i] = c[i];
@@ -606,6 +606,13 @@ bool Twine::FindInSpool(Twine tAr[], int size) {
 	return false;
 }
 
+Twine Twine::Capital() {
+	if (isalpha(this->twine[0])) {
+		this->twine[0] = toupper(this->twine[0]);
+	}
+	return *this;
+}
+
 Twine Twine::ToLower() {
 
 	size_t l = this->Length();
@@ -764,8 +771,8 @@ void Twine::Wobble() {
 bool Twine::Compare(Twine& c) {
 
 
-	int i = this->Length();
-	int cI = c.Length();
+	int i = this->LengthNoSpace();
+	int cI = c.LengthNoSpace();
 	if (i == cI) {
 
 
@@ -1183,7 +1190,12 @@ Twine& Twine::operator = (const char* c) {
 
 Twine& Twine::operator = (Twine& t1) {
 
-	return *new Twine(t1);
+	if (this == &t1) {
+		return *this;
+	}
+
+	this->SetTwine(t1);
+	return *this;
 }
 
 bool Twine::operator == (const char* c) {
@@ -1207,6 +1219,24 @@ bool Twine::operator == (Twine& t) {
 	}
 
 
+}
+
+bool Twine::operator != (const char* c) {
+	if (this->Compare(c)) {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+
+bool Twine::operator != (Twine& t) {
+	if (this->Compare(t)) {
+		return false;
+	}
+	else {
+		return true;
+	}
 }
 
 Twine& Twine::operator += (Twine& t) {
@@ -1236,7 +1266,7 @@ Twine Twine::operator + (Twine& t) {
 
 char Twine::operator [] (int i) {
 
-	return this->CharAt(i);
+	return this->twine[i];
 
 }
 

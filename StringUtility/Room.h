@@ -16,17 +16,15 @@ public:
 	Twine validInspectCommands;
 	Twine validInspectPrompts;
 	Entity** roomEntities;
+	int entityNum;
+	Twine mapChar;
 
-	virtual Twine Name();
-	virtual Twine Description();
-	virtual Twine* ExtraDescriptions();
-	virtual Twine* KeyWords();
-	virtual int DescLength();
-	virtual Twine ValidInspectCommands();
-	virtual Twine ValidInspectPrompts();
+	Room();
+	~Room();
 
 	virtual void DescribeRoom();
 	virtual Twine InspectRoom(Twine& t);
+	virtual Twine CheckForDialogue(Twine& t);
 
 
 

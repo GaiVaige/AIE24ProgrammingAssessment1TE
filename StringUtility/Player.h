@@ -21,6 +21,7 @@ public:
 	Spool spellBook;
 	Spell** spells;
 	int spellCount;
+
 	Twine validItemCommands[3]{
 		"use",
 		"look",
@@ -46,9 +47,16 @@ public:
 	Twine validSpellCommands[5]{
 		"cast",
 		"summon",
-		"look up",
+		"search",
 		"check",
 		"spell",
+	};
+
+	Twine validDialougeCommands[4]{
+		"talk",
+		"speak",
+		"talk to",
+		"speak to",
 	};
 
 	Twine Directions[4]{

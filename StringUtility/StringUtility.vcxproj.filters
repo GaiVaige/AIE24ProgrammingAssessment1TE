@@ -22,6 +22,9 @@
     <Filter Include="Header Files\Rooms">
       <UniqueIdentifier>{63515075-5c34-4099-91c5-3b4c23caa1ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Rooms\Entities">
+      <UniqueIdentifier>{67e67643-83c3-4274-a837-65a54554468f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Twine.cpp">
@@ -86,11 +89,14 @@
     <ClInclude Include="Library.h">
       <Filter>Header Files\Rooms</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files\Rooms</Filter>
-    </ClInclude>
     <ClInclude Include="Stats.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Altar.h">
+      <Filter>Header Files\Rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\Rooms\Entities</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,26 +1,12 @@
 #include "Room.h"
 
 
-Twine Room::Name() {
-	return this->name;
+Room::Room() {
+
 }
-Twine Room::Description() {
-	return this->description;
-}
-Twine* Room::ExtraDescriptions() {
-	return this->extraDescriptions;
-}
-Twine* Room::KeyWords() {
-	return this->keyWords;
-}
-int Room::DescLength() {
-	return this->descLength;
-}
-Twine Room::ValidInspectCommands() {
-	return this->validInspectCommands;
-}
-Twine Room::ValidInspectPrompts() {
-	return this->validInspectPrompts;
+
+Room::~Room() {
+
 }
 
 
@@ -38,13 +24,32 @@ Twine Room::InspectRoom(Twine& t) {
 
 	for (int i = 0; i < this->descLength; i++) {
 
-		if (t.TFindOnly(this->keyWords[i]))
+		if (t.ToLower().TFindOnly(this->keyWords[i].ToLower()))
 		{
 			return this->extraDescriptions[i];
 		}
 
 	}
+
+	for (int i = 0; i < this->entityNum; i++) {
+		if (t.ToLower().TFindOnly(this->roomEntities[i]->name.ToLower())) {
+			return this->roomEntities[i]->description;
+		}
+	}
 	
 	Twine failedTwine = "There's nothing like that in here...";
 	return failedTwine;
+}
+
+Twine Room::CheckForDialogue(Twine& t) {
+	for (int i = 0; i < this->entityNum; i++) {
+		if (t.ToLower().TFindOnly(this->roomEntities[i]->name.ToLower())) {
+			if (this->roomEntities[i]->Dialogue != nullptr) {
+				return *this->roomEntities[i]->Dialogue;
+			}
+		}
+	}
+
+	Twine fail = "Doesn't seem to want to talk...";
+	return fail;
 }

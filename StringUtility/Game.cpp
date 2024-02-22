@@ -3,12 +3,57 @@
 #include "Candle.h"
 #include "Windows.h"
 
+//room includes
+#include "Room.h"
+#include "Kitchen.h"
+#include "Library.h"
 
 
 Game::Game() {
+	p = new Player;
+	Spell* fireball = new Spell(Twine("Fireball"), Twine("Make fireball!"), 20000);
+	p->LearnSpell(fireball);
+	Mansion[0][0] = new Kitchen;
+	Mansion[0][1] = new Kitchen;
+	Mansion[0][2] = new Kitchen;
+	Mansion[0][3] = new Kitchen;
+	Mansion[0][4] = new Kitchen;
+	Mansion[1][0] = new Kitchen;
+	Mansion[1][1] = new Kitchen;
+	Mansion[1][2] = new Kitchen;
+	Mansion[1][3] = new Kitchen;
+	Mansion[1][4] = new Kitchen;
+	Mansion[2][0] = new Kitchen;
+	Mansion[2][1] = new Kitchen;
+	Mansion[2][2] = new Kitchen;
+	Mansion[2][3] = new Kitchen;
+	Mansion[2][4] = new Kitchen;
+	Mansion[3][0] = new Kitchen;
+	Mansion[3][1] = new Kitchen;
+	Mansion[3][2] = new Kitchen;
+	Mansion[3][3] = new Kitchen;
+	Mansion[3][4] = new Kitchen;
+	Mansion[4][0] = new Kitchen;
+	Mansion[4][1] = new Kitchen;
+	Mansion[4][2] = new Kitchen;
+	Mansion[4][3] = new Kitchen;
+	Mansion[4][4] = new Kitchen;
 	for (int i = 0; i < 10; i++) {
 		flags[i] = false;
 	}
+}
+
+Game::~Game() {
+
+	delete p;
+	for (int y = 0; y < 5; y++) {
+		for (int x = 0; x < 5; x++) {
+			delete Mansion[x][y];
+		}
+	}
+
+
+
 }
 
 void Game::Run() {
@@ -68,13 +113,30 @@ void Game::DrawMap() {
 				std::cout << Twine("{");
 			}
 
-			if (x + 1 == pPos.X && (5 - cursorPos.Y) + 1 == pPos.Y) {
-				Twine p = " # ";
-				p.Colour(255, 20, 50, true);
+			if (x == pPos.X && (5 - yPos) == pPos.Y) {
+				Twine p = " & ";
+				p.Colour(255, 0, 0, true);
 				std::cout << p;
 			}
 			else {
-				std::cout << Twine(" X ");
+
+				if (Mansion[x][(5-cursorPos.Y)] != nullptr) {
+					
+					Twine t = Mansion[x][(5-cursorPos.Y)]->mapChar;
+
+					if (Mansion[x][(5-cursorPos.Y)]->doDesc) {
+						std::cout << " " << t.Colour(0, 0, 0, true) << " ";
+					}
+					else {
+						std::cout << " " << t.Colour(255, 255, 255, true) << " ";
+					}
+					
+				}
+				else {
+
+					std::cout << Twine(" X ");
+				}
+
 			}
 
 		}

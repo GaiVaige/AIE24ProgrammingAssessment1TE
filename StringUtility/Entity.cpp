@@ -4,6 +4,7 @@ Entity::Entity() {
 	hp = 0;
 	maxHP = 0;
 	s.InitStats(0, 0, 0, 0, 0, 0);
+	Dialogue = nullptr;
 	alive = true;
 	currentRoom = nullptr;
 }

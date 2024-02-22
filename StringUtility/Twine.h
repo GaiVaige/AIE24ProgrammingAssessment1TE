@@ -56,11 +56,6 @@
 		//TFind OL 1 returns the index of SubTwine start point sIn, and distance from sIn
 		char CharAt(int i);
 		int CharFind(char c);
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="c"></param>
-		/// <returns>integer to represent the index where the substring is found</returns>
 		int TFind(Twine c);
 		int TFind(Twine& c);
 		int TFind(const char* c);
@@ -74,6 +69,9 @@
 		bool TFindOnly(Twine& c, int sIn);
 		bool TFindOnly(const char* c, int sIn);
 		bool FindInSpool(Twine tAr[], int size);
+
+
+		Twine Capital();
 
 		//Shifts all chars in Twine to lowercase and returns it as a NEW twine object
 		Twine ToLower();
@@ -124,6 +122,8 @@
 		Twine& operator = (Twine& t);
 		bool operator == (const char* c);
 		bool operator == (Twine& t);
+		bool operator != (const char* c);
+		bool operator != (Twine& t);
 		Twine& operator += (Twine& t);
 		Twine operator + (Twine& t);
 		char operator [] (int n);

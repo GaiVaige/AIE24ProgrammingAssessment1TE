@@ -9,6 +9,7 @@ class Entity {
 public:
 	Twine name;
 	Twine description;
+	Twine* Dialogue;
 	Stats s;
 	int hp;
 	bool alive;
