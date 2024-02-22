@@ -25,6 +25,7 @@ public:
 	virtual void DescribeRoom();
 	virtual Twine InspectRoom(Twine& t);
 	virtual Twine CheckForDialogue(Twine& t);
+	Entity* CheckEntityNames(Twine& searchT);
 
 
 

@@ -50,13 +50,13 @@ void Player::CheckForValidCommand(Twine& searchT) {
 	for (int i = 0; i < 5; i++) {
 
 		if (searchT.ToLower().TFindOnly(validSpellCommands[i].ToLower().TStr())) {
-
+			
 			switch (i) {
 			case 0:
-				Twine("Not here!").DisplayTwine();
+				CastSpell(searchT);
 				break;
 			case 1:
-				Twine("Not here!").DisplayTwine();
+				CastSpell(searchT);
 				break;
 			case 2:
 				this->SpellLookUp(searchT);
@@ -208,7 +208,19 @@ void Player::LearnSpell(Spell* sp) {
 }
 
 void Player::CastSpell(Twine searchT) {
-	std::cout << "You shouldnt be here" << '\n';
+	for (int i = 0; i < this->spellCount; i++) {
+
+		if (searchT.ToLower().TFindOnly((spells[i]->name.ToLower().TStr()))) {
+			Entity* e = currentRoom->CheckEntityNames(searchT);
+			if (e != nullptr) {
+				spells[i]->Cast(e);
+				return;
+			}
+			return;
+		}
+	}
+	std::cout << "Not here..." << '\n';
+	return;
 }
 
 void Player::InitPlayer() {

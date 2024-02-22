@@ -53,3 +53,12 @@ Twine Room::CheckForDialogue(Twine& t) {
 	Twine fail = "Doesn't seem to want to talk...";
 	return fail;
 }
+
+Entity* Room::CheckEntityNames(Twine& searchT) {
+	for (int i = 0; i < entityNum; i++) {
+		if (searchT.ToLower().TFindOnly(roomEntities[i]->name.ToLower())) {
+			return roomEntities[i];
+		}
+	}
+	return nullptr;
+}
