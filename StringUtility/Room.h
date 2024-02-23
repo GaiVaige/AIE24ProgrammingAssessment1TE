@@ -16,7 +16,6 @@ protected:
 	int descLength;
 	Twine validInspectCommands;
 	Twine validInspectPrompts;
-	Entity** roomEntities;
 	int entityNum;
 
 
@@ -25,6 +24,7 @@ public:
 	~Room();
 	Twine name;
 	Twine mapChar;
+	Entity** roomEntities;
 	bool doDesc = true;
 	virtual void DescribeRoom();
 	virtual Twine InspectRoom(Twine& t);

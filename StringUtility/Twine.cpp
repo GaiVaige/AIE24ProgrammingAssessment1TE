@@ -72,13 +72,13 @@ void Twine::SetTwine(const char* c) {
 	twine[l] = '\0';
 }
 
-const char* Twine::TStr() {
+const char* Twine::TStr() const {
 	//returns twine for use with std::Cout<<
 	//redundant as operator overloaded
 	return this->twine;
 }
 
-void Twine::DisplayTwine() {
+void Twine::DisplayTwine()  const {
     //cleaner method of displaying twine
 	std::cout << twine << '\n';
 }
@@ -118,7 +118,7 @@ int Twine::Length() const{
 	}
 }
 
-int Twine::LengthNoSpace() {
+int Twine::LengthNoSpace()  const {
 	int y = 0;
 	for (int i = 0; ; i++) {
 		//only increments return value y if there is no space
@@ -133,7 +133,7 @@ int Twine::LengthNoSpace() {
 	return y;
 }
 
-int Twine::Length(Twine& c) {
+int Twine::Length(Twine& c)  const {
 	for (int i = 0; ; i++) {
 		if (c[i] == '\0') {
 			return i;
@@ -141,7 +141,7 @@ int Twine::Length(Twine& c) {
 	}
 }
 
-int Twine::LengthNoSpace(Twine& c) {
+int Twine::LengthNoSpace(Twine& c)  const {
 	int i = 0;
 	for (int y = 0; ; y++){
 		if (!isspace(c[i])) {
@@ -161,7 +161,7 @@ int Twine::Length(const char* c) {
 	}
 }
 
-int Twine::LengthNoSpace(const char* c) {
+int Twine::LengthNoSpace(const char* c)  const {
 	int i = 0;
 	for (int y = 0; ; y++) {
 		if (!isspace(c[i])) {

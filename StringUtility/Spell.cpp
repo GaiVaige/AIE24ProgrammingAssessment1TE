@@ -10,15 +10,13 @@ Spell::~Spell() {
 
 
 
-Spell::Spell(Twine n, Twine de, int dAm, int dMax) {
+Spell::Spell(Twine n, Twine de) {
 	this->name.SetTwine(n);
 	this->description = de;
 	this->damage = 0;
-	this->dFace = dMax;
-	this->dAmnt = dAm;
 }
 
-Spell::Spell(Twine n, Twine de, int dAm, int dMax, bool hasTarget) {
+Spell::Spell(Twine n, Twine de, int dAm, int dMax, bool hasTarget, DamageType dm) {
 	this->name.SetTwine(n);
 	this->description = de;
 	this->hasTarget = hasTarget;
@@ -65,12 +63,12 @@ void Spell::ApplyDamage(Entity* target) {
 		if (target->hp <= 0) {
 			target->hp = 0;
 			target->alive = false;
+			std::cout << target->name << " has been defeated!" << '\n';
 		}
-		std::cout << target->hp << '\n';
 		return;
 	}
 	else {
-		std::cout << "STOP! He's already dead..." << '\n';
+		std::cout << target->deadDesc << '\n';
 	}
 	return;
 

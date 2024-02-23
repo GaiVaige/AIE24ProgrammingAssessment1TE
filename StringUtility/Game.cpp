@@ -11,13 +11,13 @@
 
 Game::Game() {
 	p = new Player;
-	Spell* fireball = new Spell(Twine("Fireball"), Twine("Make fireball!"), 4, 8, true);
+	Spell* fireball = new Spell(Twine("Fireball"), Twine("Make fireball!"), 8, 6, true, Spell::FIRE);
 	p->LearnSpell(fireball);
-	Spell* test = new Spell(Twine("Test1"), Twine("Test"), 5, 5);
+	Spell* test = new Spell(Twine("Test1"), Twine("Test"));
 	p->LearnSpell(test);
-	Spell* test2 = new Spell(Twine("Test2"), Twine("Test"), 5, 5);
+	Spell* test2 = new Spell(Twine("Test2"), Twine("Test"));
 	p->LearnSpell(test2);
-	Spell* dance = new Spell(Twine("Dance Macabre"), Twine("Make em dance till they're dead!"), 50, 6);
+	Spell* dance = new Spell(Twine("Dance Macabre"), Twine("Make em dance till they're dead!"));
 	p->LearnSpell(dance);
 	p->SpellSort();
 	Mansion[0][0] = new Library;
@@ -69,9 +69,13 @@ void Game::Run() {
 	p->currentRoom = Mansion[3][3];
 	p->xCord = 3;
 	p->yCord = 3;
-	std::cout << p->name << ": " << p->health << "HP" << Twine("     DEBUG: ").Colour(255, 0, 0) << p->xCord << ", " << p->yCord << '\n';
+	std::cout << p->name << ": " << p->health << "HP" << '\n';
 	while (doGame) {
-
+		//std::cout << "{";
+		//for (int i = 0; i < 10; i++) {
+		//	std::cout << p->flags[i];
+		//}
+		//std::cout << "}";
 		this->DrawMap();
 		for (int i = 0; i < p->displaceVal; i++) {
 			std::cout << '\n';
@@ -87,9 +91,11 @@ void Game::Run() {
 			break;
 		}
 		system("CLS");
-		std::cout << p->name << ": " << p->health << "HP" << Twine("     DEBUG: ").Colour(255, 0, 0) << p->xCord << ", " << p->yCord << '\n';
+		
+		std::cout << p->name << ": " << p->health << "HP" << '\n';
 		p->CheckForValidCommand(p->inputTwine);
 		p->currentRoom = Mansion[p->xCord][p->yCord];
+		
 	}
 }
 
@@ -132,7 +138,7 @@ void Game::DrawMap() {
 					Twine t = Mansion[x][(5-cursorPos.Y)]->mapChar;
 
 					if (Mansion[x][(5-cursorPos.Y)]->doDesc) {
-						std::cout << " " << t.Colour(0, 0, 0, true) << " ";
+						std::cout << " " << Twine("#").Colour(0, 255, 0, true) << " ";
 					}
 					else {
 						std::cout << " " << t.Colour(255, 255, 255, true) << " ";

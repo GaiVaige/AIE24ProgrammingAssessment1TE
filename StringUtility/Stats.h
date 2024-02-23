@@ -17,6 +17,7 @@ struct Stats {
 		Charisma = Cha;
 	}
 
+
 	void UpdateStat(int ID, int addVal) {
 		switch (ID) {
 		default:

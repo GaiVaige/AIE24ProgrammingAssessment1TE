@@ -31,16 +31,16 @@
 		void SetTwine(const char* c);
 		
 		//std::cout functions
-		const char* TStr();
-		void DisplayTwine();
+		const char* TStr() const;
+		void DisplayTwine() const;
 
 		//length functions for general and length-whitespace
 		int Length() const;
-		int Length(Twine& c);
+		int Length(Twine& c) const;
 		static int Length(const char* c);
-		int LengthNoSpace();
-		int LengthNoSpace(Twine& c);
-		int LengthNoSpace(const char* c);
+		int LengthNoSpace() const;
+		int LengthNoSpace(Twine& c) const;
+		int LengthNoSpace(const char* c) const;
 
 		//two copies, one is 'quick' and overwties the char* twine on the
 		//Twine object that clals it, the other can be called seperatley to

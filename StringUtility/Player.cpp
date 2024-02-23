@@ -78,13 +78,13 @@ void Player::CheckForValidCommand(Twine& searchT) {
 
 	}
 
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 3; i++) {
 
 		if (searchT.ToLower().TFindOnly(validUtilityCommands[i].ToLower().TStr())) {
 
 			switch (i) {
 			case 0:
-				std::cout << "You called for " << validUtilityCommands[i] << " it is not functioning yet.";
+				CommandOutput();
 				break;
 			case 1:
 				PlayerStats();
@@ -93,9 +93,6 @@ void Player::CheckForValidCommand(Twine& searchT) {
 			case 2:
 				FullSpellList();
 				displaceVal = spellCount + 1;
-				break;
-			case 3:
-				std::cout << "You called for " << validUtilityCommands[i] << " it is not functioning yet.";
 				break;
 
 			}
@@ -377,5 +374,41 @@ void Player::SpellSort() {
 	}
 
 
+}
+
+void Player::CommandOutput() {
+
+	std::cout << "Utility commands:\n";
+	for (int i = 0; i < 3; i++) {
+		validDialougeCommands[i].DisplayTwine();
+	}
+	std::cout << '\n';
+	std::cout << "Item commands:\n";
+	for (int i = 0; i < 3; i++) {
+		validItemCommands[i].DisplayTwine();
+	}
+	std::cout << '\n';
+	std::cout << "Room commands:\n";
+	for (int i = 0; i < 5; i++) {
+		validRoomCommands[i].DisplayTwine();
+	}
+	std::cout << '\n';
+	std::cout << "Move commands:\n";
+	for (int i = 0; i < 5; i++) {
+		validMoveCommands[i].DisplayTwine();
+	}
+	std::cout << '\n';
+	std::cout << "Spell commands:\n";
+	for (int i = 0; i < 4; i++) {
+		validSpellCommands[i].DisplayTwine();
+	}
+	std::cout << '\n';
+	std::cout << "Dialogue commands:\n";
+	for (int i = 0; i < 4; i++) {
+		validDialougeCommands[i].DisplayTwine();
+	}
+	std::cout << '\n';
+
+	displaceVal = 37;
 }
 

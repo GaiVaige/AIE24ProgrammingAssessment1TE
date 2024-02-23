@@ -22,12 +22,22 @@ public:
 	Spool spellBook;
 	Spell** spells;
 	int spellCount;
-	bool flags[10];
-	Twine validUtilityCommands[4]{
+	bool flags[10]{
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	};
+	Twine validUtilityCommands[3]{
 		"help",
 		"stats",
 		"list",
-		"save",
 	};
 
 	Twine validItemCommands[3]{
@@ -54,7 +64,6 @@ public:
 
 	Twine validSpellCommands[5]{
 		"cast",
-		"summon",
 		"search",
 		"check",
 		"spell",
@@ -74,7 +83,7 @@ public:
 		"west",
 	};
 
-	
+
 
 	int numberOfItems = 0;
 	
@@ -92,6 +101,7 @@ public:
 	void FullSpellList();
 	void PlayerStats();
 	void SpellSort();
+	void CommandOutput();
 
 };
 

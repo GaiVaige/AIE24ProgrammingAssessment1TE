@@ -10,7 +10,8 @@ class Entity {
 public:
 	Twine name;
 	Twine description;
-	Twine* Dialogue;
+	Twine deadDesc;
+	Twine Dialogue;
 	Stats s;
 	int hp;
 	bool alive;
@@ -21,7 +22,7 @@ public:
 
 	Entity();
 	~Entity();
-	Entity(Twine t, Twine t2, int conScore);
+	Entity(Twine t, Twine t2, Twine dia, Twine deadD, int statBon, bool doesSetFlag, int flagToSet);
 	virtual void Interact(Player* p);
 
 private:

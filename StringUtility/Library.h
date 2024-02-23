@@ -30,20 +30,20 @@ public:
 
 		};
 		delete[] this->roomEntities;
-		this->roomEntities = new Entity*[2];
+
+		Entity* John = new Entity(Twine("John"), Twine("A guy named John."), Twine("Hi! I'm John!"), Twine("You killed John! You monster!"), 4, true, 0);
+		Entity* Jack = new Entity(Twine("Jack"), Twine("A guy named Jack."), Twine("Fuck you! I'm Jack!"), Twine("You killed Jack! You monster!"), 2, false, 0);
+
+
+
+		this->roomEntities = new Entity*[2] {
+			John,
+				Jack,
+			};
+
 		this->entityNum = 2;
 		descLength = 5;
-		Entity* Ee = new Entity(Twine("John"), Twine("This is a guy named John"), 20);
-		Ee->Dialogue = new Twine("I AM SO FUCKING DUMB AHHHHHHHHHH");
-		Ee->setsFlag = true;
-		Ee->flagToSet = 0;
-		this->roomEntities[0] = Ee;
-
-		Entity* Book = new Entity(Twine("Bookshelf"), Twine("A dusty bookshelf"), 5);
-		Book->Dialogue = nullptr;
-		Book->setsFlag = false;
-		this->roomEntities[1] = Book;
-
+	
 	}
 
 	~Library() {

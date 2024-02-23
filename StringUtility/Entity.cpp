@@ -13,24 +13,32 @@ Entity::Entity() {
 Entity::~Entity() {
 }
 
-Entity::Entity(Twine t, Twine t2, int conScore) {
+Entity::Entity(Twine t, Twine t2, Twine dia, Twine deadD, int statBon, bool doesSetFlag, int flagToSet) {
 	alive = true;
-	setsFlag = false;
+	setsFlag = doesSetFlag;
+	this->flagToSet = flagToSet;
+	this->s.InitStats(10 + statBon, 10 + statBon, 10 + statBon, 10 + statBon, 10 + statBon, 10 + statBon);
 	this->name.SetTwine(t);
 	this->description.SetTwine(t2);
-	this->Dialogue = nullptr;
-	s.InitStats(0, 0, conScore, 0, 0, 0);
-	this->maxHP = s.Constitution;
+	this->Dialogue.SetTwine(dia);
+	this->deadDesc.SetTwine(deadD);
+	this->maxHP = this->s.Constitution;
 	this->hp = maxHP;
 	currentRoom = nullptr;
 }
 
 void Entity::Interact(Player* p) {
-	Dialogue->DisplayTwine();
-	if (setsFlag) {
-		std::cout << std::boolalpha << p->flags[flagToSet];
-		p->flags[flagToSet] = true;
-		std::cout << std::boolalpha << p->flags[flagToSet];
+
+	if (this->alive) {
+		this->Dialogue.DisplayTwine();
+		if (this->setsFlag) {
+			p->flags[flagToSet] = true;
+		}
 	}
+	else {
+		this->deadDesc.DisplayTwine();
+	}
+
+
 
 }
