@@ -7,9 +7,6 @@
 #include "random"
 #include <iostream>
 
-
-
-
 Player::Player() {
 	playerInventory = new Item*[0];
 	spells = new Spell*[0];

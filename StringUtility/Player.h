@@ -10,30 +10,7 @@
 
 class Player {
 public:
-	int displaceVal;
-	int xCord = 0;
-	int yCord = 0;
-	Room* currentRoom = nullptr;
-	Twine inputTwine;
-	Twine name;
-	int health;
-	Stats s;
-	Item** playerInventory;
-	Spool spellBook;
-	Spell** spells;
-	int spellCount;
-	bool flags[10]{
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-	};
+
 	Twine validUtilityCommands[3]{
 		"help",
 		"stats",
@@ -86,7 +63,37 @@ public:
 
 
 
+
+
+
+	Room* currentRoom = nullptr;
+	Stats s;
+	Item** playerInventory;
+	Spell** spells;
+	Spool spellBook;
+	Twine inputTwine;
+	Twine name;
+	int spellCount;
+	int displaceVal;
+	int xCord = 0;
+	int yCord = 0;
 	int numberOfItems = 0;
+	int health;
+	bool flags[10]{
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	};
+
+
+
 	
 	Player();
 	~Player();
