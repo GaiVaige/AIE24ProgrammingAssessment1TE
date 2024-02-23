@@ -31,7 +31,7 @@ public:
 		};
 		delete[] this->roomEntities;
 
-		Entity* John = new Entity(Twine("John"), Twine("A guy named John."), Twine("Hi! I'm John!"), Twine("You killed John! You monster!"), 4, true, 0);
+		Entity* John = new Entity(Twine("John"), Twine("A guy named John."), Twine("Hi! I'm John!"), Twine("You killed John! You monster!"), 6, true, 0);
 		Entity* Jack = new Entity(Twine("Jack"), Twine("A guy named Jack."), Twine("Fuck you! I'm Jack!"), Twine("You killed Jack! You monster!"), 2, false, 0);
 
 

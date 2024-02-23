@@ -14,7 +14,6 @@ struct Roll {
 			srand((unsigned int)time(NULL) + (i * maxFace-amnt));
 			retVal += rand() % (maxFace) + 1;
 		}
-		std::cout << "Rolled " << amnt << "d" << maxFace << " for " << retVal << " damage!" << '\n';
 		return retVal;
 
 		

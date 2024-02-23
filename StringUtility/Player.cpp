@@ -3,6 +3,7 @@
 #include "Twine.h"
 #include "Room.h"
 #include "Stats.h"
+#include "Roll.h"
 #include "random"
 #include <iostream>
 
@@ -52,7 +53,7 @@ void Player::CheckForValidCommand(Twine& searchT) {
 
 	for (int i = 0; i < 5; i++) {
 
-		if (searchT.ToLower().TFindOnly(validSpellCommands[i].ToLower().TStr())) {
+		if (searchT.ToLower().TFindOnly(validCombatCommands[i].ToLower().TStr())) {
 			
 			switch (i) {
 			case 0:
@@ -68,7 +69,7 @@ void Player::CheckForValidCommand(Twine& searchT) {
 				this->SpellLookUp(searchT);
 				break;
 			case 4:
-				this->SpellLookUp(searchT);
+				this->Attack(searchT);
 				break;
 
 			}
@@ -398,9 +399,9 @@ void Player::CommandOutput() {
 		validMoveCommands[i].DisplayTwine();
 	}
 	std::cout << '\n';
-	std::cout << "Spell commands:\n";
+	std::cout << "Combat commands:\n";
 	for (int i = 0; i < 4; i++) {
-		validSpellCommands[i].DisplayTwine();
+		validCombatCommands[i].DisplayTwine();
 	}
 	std::cout << '\n';
 	std::cout << "Dialogue commands:\n";
@@ -411,4 +412,37 @@ void Player::CommandOutput() {
 
 	displaceVal = 37;
 }
+
+void Player::Attack(Twine searchT) {
+	Entity* e = currentRoom->CheckEntityNames(searchT);
+	if (e != nullptr) {
+		int x = Roll::RollDice(1, 20);
+		x += ((this->s.Strength - 10) / 2);
+		std::cout << Twine("Rolled ") << x << "!";
+		x -= e->ac;
+		if (x > -1){
+			if (e->alive) {
+				ApplyDam(e);
+				if (e->hp <= 0) {
+					e->hp = 0;
+					e->alive = false;
+					std::cout << e->name << " has been defeated!" << '\n';
+				}
+			}
+			else {
+				std::cout << e->deadDesc << '\n';
+			}
+		}
+		return;
+	}
+	else {
+		std::cout << "Not a valid target!" << '\n';
+		return;
+	}
+}
+void Player::ApplyDam(Entity* e) {
+	std::cout << Twine(" That's a hit! Dealt ") << (5 + ((this->s.Strength - 10) / 2)) << " damage!" << '\n';
+	e->hp -= 5 + ((this->s.Strength - 10)/2);
+}
+
 

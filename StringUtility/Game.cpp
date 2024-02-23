@@ -71,11 +71,6 @@ void Game::Run() {
 	p->yCord = 3;
 	std::cout << p->name << ": " << p->health << "HP" << '\n';
 	while (doGame) {
-		//std::cout << "{";
-		//for (int i = 0; i < 10; i++) {
-		//	std::cout << p->flags[i];
-		//}
-		//std::cout << "}";
 		this->DrawMap();
 		for (int i = 0; i < p->displaceVal; i++) {
 			std::cout << '\n';

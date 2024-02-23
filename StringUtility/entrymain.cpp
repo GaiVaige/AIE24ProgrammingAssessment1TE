@@ -12,14 +12,17 @@ int main() {
 	mode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
 	SetConsoleMode(GetStdHandle(STD_OUTPUT_HANDLE), mode);
 	SetConsoleTitleA(Twine("Ghost House"));
-
-
-
+	
+	
+	
 	Game g;
 	
 	system("cls");
 	g.Run();
 	
+
+
+
 }
 
 

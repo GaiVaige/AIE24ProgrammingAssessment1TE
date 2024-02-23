@@ -14,10 +14,10 @@ public:
 	Twine Dialogue;
 	Stats s;
 	int hp;
+	int ac;
 	bool alive;
 	bool setsFlag;
 	int flagToSet;
-	Room* currentRoom;
 
 
 	Entity();

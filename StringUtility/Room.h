@@ -13,19 +13,19 @@ protected:
 	Twine description;
 	Twine* extraDescriptions;
 	Twine* keyWords;
-	int descLength;
 	Twine validInspectCommands;
 	Twine validInspectPrompts;
+	Entity** roomEntities;
 	int entityNum;
+	int descLength;
 
 
 public:
-	Room();
-	~Room();
 	Twine name;
 	Twine mapChar;
-	Entity** roomEntities;
 	bool doDesc = true;
+	Room();
+	~Room();
 	virtual void DescribeRoom();
 	virtual Twine InspectRoom(Twine& t);
 	virtual void CheckForDialogue(Twine& t, Player* p);

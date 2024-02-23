@@ -62,11 +62,12 @@ public:
 		"move to",
 	};
 
-	Twine validSpellCommands[5]{
+	Twine validCombatCommands[5]{
 		"cast",
 		"search",
 		"check",
 		"spell",
+		"attack",
 	};
 
 	Twine validDialougeCommands[4]{
@@ -96,6 +97,8 @@ public:
 	void MovePlayer(int i);
 	void SpellLookUp(Twine searchT);
 	void LearnSpell(Spell* sp);
+	void Attack(Twine searchT);
+	void ApplyDam(Entity* e);
 	void CastSpell(Twine searchT);
 	void InitPlayer();
 	void FullSpellList();

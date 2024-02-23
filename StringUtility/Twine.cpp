@@ -133,42 +133,10 @@ int Twine::LengthNoSpace()  const {
 	return y;
 }
 
-int Twine::Length(Twine& c)  const {
-	for (int i = 0; ; i++) {
-		if (c[i] == '\0') {
-			return i;
-		}
-	}
-}
-
-int Twine::LengthNoSpace(Twine& c)  const {
-	int i = 0;
-	for (int y = 0; ; y++){
-		if (!isspace(c[i])) {
-			if (c[i] == '\0') {
-				return i;
-			}
-			i++;
-		}
-	}
-}
-
 int Twine::Length(const char* c) {
 	for (int i = 0; ; i++) {
 		if (c[i] == '\0') {
 			return i;
-		}
-	}
-}
-
-int Twine::LengthNoSpace(const char* c)  const {
-	int i = 0;
-	for (int y = 0; ; y++) {
-		if (!isspace(c[i])) {
-			if (c[i] == '\0') {
-				return i;
-			}
-			i++;
 		}
 	}
 }
@@ -914,58 +882,38 @@ void Twine::Erase(int delInt, int startIndex) {
 }
 
 void Twine::Replace(Twine& current, Twine& newc) {
-
 	int replaceStringPos = this->TFind(current.twine);
-
 	if (replaceStringPos == -1) {
 		std::cout << "No replacements found for " << current.twine << ", check your spelling!" << '\n';
-
 	}
-
-
 	while (replaceStringPos != -1) {
-
 		int curLen = Length(this->twine);
 		int replaceStringLen = current.Length();
 		int newStringLen = newc.Length();
 		int i = 0;
 		int returnStringLen = (newStringLen - replaceStringLen) + curLen;
 		char* newT = new char[returnStringLen + 1];
-
-
 		int newCTracker = 0;
 		int finalTracker = 0;
 		int checkTrack = 0;
-
-
 		for (i; i < replaceStringPos; i++) {
 
 			newT[i] = this->twine[i];
 		}
-
-
-
 		for (i; i < replaceStringPos + newStringLen; i++) {
-
 			newT[i] = newc[newCTracker];
 			newCTracker++;
 			checkTrack = i;
 		}
-
 		for (; i < Length(newT); i++) {
-
 			int j = replaceStringPos + replaceStringLen + finalTracker;
 			newT[i] = this->twine[j];
 			finalTracker++;
 		}
-
 		this->SetTwine(newT);
 		replaceStringPos = this->TFind(current.twine, checkTrack);
 		delete[] newT;
-
-
 	}
-
 }
 
 void Twine::Replace(const char* current, const char* newc) {
