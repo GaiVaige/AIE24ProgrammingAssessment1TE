@@ -10,6 +10,7 @@
 
 class Player {
 public:
+	int displaceVal;
 	int xCord = 0;
 	int yCord = 0;
 	Room* currentRoom = nullptr;
@@ -21,6 +22,13 @@ public:
 	Spool spellBook;
 	Spell** spells;
 	int spellCount;
+	bool flags[10];
+	Twine validUtilityCommands[4]{
+		"help",
+		"stats",
+		"list",
+		"save",
+	};
 
 	Twine validItemCommands[3]{
 		"use",
@@ -69,7 +77,7 @@ public:
 	
 
 	int numberOfItems = 0;
-
+	
 	Player();
 	~Player();
 
@@ -81,7 +89,9 @@ public:
 	void LearnSpell(Spell* sp);
 	void CastSpell(Twine searchT);
 	void InitPlayer();
-
+	void FullSpellList();
+	void PlayerStats();
+	void SpellSort();
 
 };
 

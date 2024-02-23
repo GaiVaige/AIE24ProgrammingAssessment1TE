@@ -6,8 +6,6 @@
 #include "Entity.h"
 
 
-
-
 class Library : public Room {
 
 public:
@@ -32,12 +30,19 @@ public:
 
 		};
 		delete[] this->roomEntities;
-		this->roomEntities = new Entity*[1];
-		this->entityNum = 1;
+		this->roomEntities = new Entity*[2];
+		this->entityNum = 2;
 		descLength = 5;
 		Entity* Ee = new Entity(Twine("John"), Twine("This is a guy named John"), 20);
 		Ee->Dialogue = new Twine("I AM SO FUCKING DUMB AHHHHHHHHHH");
-		roomEntities[0] = Ee;
+		Ee->setsFlag = true;
+		Ee->flagToSet = 0;
+		this->roomEntities[0] = Ee;
+
+		Entity* Book = new Entity(Twine("Bookshelf"), Twine("A dusty bookshelf"), 5);
+		Book->Dialogue = nullptr;
+		Book->setsFlag = false;
+		this->roomEntities[1] = Book;
 
 	}
 

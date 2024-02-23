@@ -11,8 +11,15 @@
 
 Game::Game() {
 	p = new Player;
-	Spell* fireball = new Spell(Twine("Fireball"), Twine("Make fireball!"), 20000);
+	Spell* fireball = new Spell(Twine("Fireball"), Twine("Make fireball!"), 4, 8, true);
 	p->LearnSpell(fireball);
+	Spell* test = new Spell(Twine("Test1"), Twine("Test"), 5, 5);
+	p->LearnSpell(test);
+	Spell* test2 = new Spell(Twine("Test2"), Twine("Test"), 5, 5);
+	p->LearnSpell(test2);
+	Spell* dance = new Spell(Twine("Dance Macabre"), Twine("Make em dance till they're dead!"), 50, 6);
+	p->LearnSpell(dance);
+	p->SpellSort();
 	Mansion[0][0] = new Library;
 	Mansion[0][1] = new Library;
 	Mansion[0][2] = new Library;
@@ -38,9 +45,6 @@ Game::Game() {
 	Mansion[4][2] = new Library;
 	Mansion[4][3] = new Library;
 	Mansion[4][4] = new Library;
-	for (int i = 0; i < 10; i++) {
-		flags[i] = false;
-	}
 }
 
 Game::~Game() {
@@ -65,12 +69,15 @@ void Game::Run() {
 	p->currentRoom = Mansion[3][3];
 	p->xCord = 3;
 	p->yCord = 3;
-
-	std::cout << p->name << ": " << p->health << "HP" << '\n';
+	std::cout << p->name << ": " << p->health << "HP" << Twine("     DEBUG: ").Colour(255, 0, 0) << p->xCord << ", " << p->yCord << '\n';
 	while (doGame) {
 
 		this->DrawMap();
-		std::cout << '\n';
+		for (int i = 0; i < p->displaceVal; i++) {
+			std::cout << '\n';
+		}
+		p->displaceVal = 0;
+
 		p->currentRoom->DescribeRoom();
 		p->inputTwine.GetTwine();
 		if (p->inputTwine.ToLower() == "quit game") {
@@ -80,7 +87,7 @@ void Game::Run() {
 			break;
 		}
 		system("CLS");
-		std::cout << p->name << ": " << p->health << "HP" << '\n';
+		std::cout << p->name << ": " << p->health << "HP" << Twine("     DEBUG: ").Colour(255, 0, 0) << p->xCord << ", " << p->yCord << '\n';
 		p->CheckForValidCommand(p->inputTwine);
 		p->currentRoom = Mansion[p->xCord][p->yCord];
 	}
@@ -89,7 +96,7 @@ void Game::Run() {
 void Game::SetFlag(int boolID, bool stateID) {
 
 	if (boolID < maxFlagID && boolID > 0) {
-		flags[boolID] = stateID;
+		p->flags[boolID] = stateID;
 
 	}
 

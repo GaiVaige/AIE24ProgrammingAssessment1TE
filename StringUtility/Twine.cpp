@@ -1282,8 +1282,6 @@ bool Twine::operator < (Twine& t) {
 
 		char cA = this->twine[i];
 		char cB = t.twine[i];
-		std::cout << cA << '\n';
-		std::cout << cB << '\n';
 
 
 

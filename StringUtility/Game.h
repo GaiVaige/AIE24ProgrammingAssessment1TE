@@ -7,7 +7,6 @@
 class Game {
 
 public:
-	bool flags[10];
 	int maxFlagID = 10;
     Room* Mansion[5][5];
 	int roomXDim = 5;

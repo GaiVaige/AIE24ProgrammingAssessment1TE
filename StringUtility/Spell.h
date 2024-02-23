@@ -1,30 +1,29 @@
 #pragma once
-#ifndef CUSTOM_SPELL_H
-#define CUSTOM_SPELL_H
 #include "Twine.h"
 #include "Entity.h"
 
 class Spell {
 
+protected:
+	int damage;
+	int dFace;
+	int dAmnt;
+
 public:
-
-
 	Twine name;
 	Twine description;
-	int damage;
 	bool hasTarget;
-
-
 	Spell();
 	~Spell();
-	Spell(Twine n, Twine de, int da);
-	Spell(Twine n, Twine de, int da, bool hasTarget);
+	Spell(Twine n, Twine de, int dAm, int dMax);
+	Spell(Twine n, Twine de, int dAm, int dMax, bool hasTarget);
 	virtual void Cast();
 	virtual void Cast(Entity* target);
+	static bool SpellEqualTo(Spell a, Spell b);
 	static bool Compare(Spell a, Spell b);
 	void ApplyDamage(Entity* target);
 };
 
 
 
-#endif // !CUSTOM_SPELL_H
+

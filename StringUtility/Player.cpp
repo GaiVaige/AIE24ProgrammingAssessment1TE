@@ -13,6 +13,9 @@ Player::Player() {
 	playerInventory = new Item*[0];
 	spells = new Spell*[0];
 	spellCount = 0;
+	for (int i = 0; i < 10; i++) {
+		flags[i] = false;
+	}
 	InitPlayer();
 }
 
@@ -42,7 +45,7 @@ void Player::CheckForValidCommand(Twine& searchT) {
 	}
 	for (int i = 0; i < 4; i++) {
 		if (searchT.ToLower().TFindOnly(validDialougeCommands[i].ToLower())) {
-			currentRoom->CheckForDialogue(searchT).DisplayTwine();
+			currentRoom->CheckForDialogue(searchT, this);
 			return;
 		}
 	}
@@ -66,6 +69,33 @@ void Player::CheckForValidCommand(Twine& searchT) {
 				break;
 			case 4:
 				this->SpellLookUp(searchT);
+				break;
+
+			}
+
+			return;
+		}
+
+	}
+
+	for (int i = 0; i < 4; i++) {
+
+		if (searchT.ToLower().TFindOnly(validUtilityCommands[i].ToLower().TStr())) {
+
+			switch (i) {
+			case 0:
+				std::cout << "You called for " << validUtilityCommands[i] << " it is not functioning yet.";
+				break;
+			case 1:
+				PlayerStats();
+				displaceVal = 2;
+				break;
+			case 2:
+				FullSpellList();
+				displaceVal = spellCount + 1;
+				break;
+			case 3:
+				std::cout << "You called for " << validUtilityCommands[i] << " it is not functioning yet.";
 				break;
 
 			}
@@ -183,20 +213,20 @@ void Player::SpellLookUp(Twine searchT) {
 
 void Player::LearnSpell(Spell* sp) {
 	for (int i = 0; i < this->spellCount; i++) {
-		if (sp->Compare(*sp, *spells[i])) {
+		if (sp->SpellEqualTo(*sp, *spells[i])) {
 			std::cout << "I already know this spell!" << '\n';
 		}
 	}
 	spellBook.Add(sp->name);
 	this->spellCount++;
-	Spell** tempArr = new Spell * [spellCount];
+	Spell** tempArr = new Spell*[spellCount];
 	for (int i = 0; i < spellCount - 1; i++) {
 		tempArr[i] = this->spells[i];
 	}
 
 	tempArr[spellCount - 1] = sp;
 	delete[] spells;
-	spells = new Spell * [spellCount];
+	spells = new Spell*[spellCount];
 
 	for (int i = 0; i < spellCount; i++) {
 		this->spells[i] = tempArr[i];
@@ -207,16 +237,37 @@ void Player::LearnSpell(Spell* sp) {
 
 }
 
+void Player::FullSpellList() {
+
+	std::cout << Twine("I currently know: ") << '\n';
+
+	for (int i = 0; i < spellCount; i++) {
+		Twine t = spells[i]->name;
+		std::cout << "\t" << t.Colour(255,0,255,true) << '\n';
+	}
+}
+
 void Player::CastSpell(Twine searchT) {
 	for (int i = 0; i < this->spellCount; i++) {
 
 		if (searchT.ToLower().TFindOnly((spells[i]->name.ToLower().TStr()))) {
-			Entity* e = currentRoom->CheckEntityNames(searchT);
-			if (e != nullptr) {
-				spells[i]->Cast(e);
+			if (spells[i]->hasTarget) {
+				Entity* e = currentRoom->CheckEntityNames(searchT);
+				if (e != nullptr) {
+					spells[i]->Cast(e);
+					return;
+				}
+				else {
+					std::cout << "Not a valid target!" << '\n';
+					return;
+				}
+			}
+			else {
+				spells[i]->Cast();
 				return;
 			}
-			return;
+
+
 		}
 	}
 	std::cout << "Not here..." << '\n';
@@ -291,6 +342,40 @@ void Player::InitPlayer() {
 			std::cout << "I said, " << Twine("OPEN").Colour(100, 100, 100) << " your eyes." << '\n';
 		}
 	}
+
+}
+
+void Player::PlayerStats() {
+
+	std::cout << Twine("\tStr: ").Colour(255, 0, 0) << s.Strength;
+	std::cout << Twine("\tDex: ").Colour(0, 255, 255) << s.Dexterity;
+	std::cout << Twine("\tCon: ").Colour(255, 255, 0) << s.Constitution << '\n';
+	std::cout << Twine("\tInt: ").Colour(0, 0, 255) << s.Intelligence;
+	std::cout << Twine("\tWis: ").Colour(0, 255, 0) << s.Wisdom;
+	std::cout << Twine("\tCha: ").Colour(255, 0, 255) << s.Charisma;
+
+
+}
+
+void Player::SpellSort() {
+	bool swapped = false;
+
+	for (int i = 0; i < spellCount - 1; i++) {
+		swapped = false;
+
+		for (int y = 0; y < spellCount - i - 1; y++) {
+			if (Spell::Compare(*spells[y], *spells[y + 1])) {
+				std::swap(this->spells[y], this->spells[y + 1]);
+				swapped = true;
+			}
+		}
+
+		if (swapped == false) {
+			break;
+		}
+
+	}
+
 
 }
 

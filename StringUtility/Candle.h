@@ -37,7 +37,7 @@ public:
 
 		if (g->p->currentRoom->name == "Kitchen") {
 			std::cout << "The lamp lights up the benches." << '\n';
-			g->flags[0] = true;
+			g->p->flags[0] = true;
 		}
 
 

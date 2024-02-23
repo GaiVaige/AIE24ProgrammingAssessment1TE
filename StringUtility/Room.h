@@ -3,28 +3,32 @@
 #define ROOM_HEADER
 #include "Twine.h"
 #include "Entity.h"
+class Player;
+
 
 class Room {
 
-public:
-	Twine name;
+protected:
+
 	Twine description;
 	Twine* extraDescriptions;
 	Twine* keyWords;
 	int descLength;
-	bool doDesc = true;
 	Twine validInspectCommands;
 	Twine validInspectPrompts;
 	Entity** roomEntities;
 	int entityNum;
-	Twine mapChar;
 
+
+public:
 	Room();
 	~Room();
-
+	Twine name;
+	Twine mapChar;
+	bool doDesc = true;
 	virtual void DescribeRoom();
 	virtual Twine InspectRoom(Twine& t);
-	virtual Twine CheckForDialogue(Twine& t);
+	virtual void CheckForDialogue(Twine& t, Player* p);
 	Entity* CheckEntityNames(Twine& searchT);
 
 

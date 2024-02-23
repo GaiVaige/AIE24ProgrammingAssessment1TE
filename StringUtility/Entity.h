@@ -4,6 +4,7 @@
 #include "Twine.h"
 #include "Stats.h"
 class Room;
+class Player;
 
 class Entity {
 public:
@@ -13,12 +14,15 @@ public:
 	Stats s;
 	int hp;
 	bool alive;
+	bool setsFlag;
+	int flagToSet;
 	Room* currentRoom;
 
 
 	Entity();
 	~Entity();
 	Entity(Twine t, Twine t2, int conScore);
+	virtual void Interact(Player* p);
 
 private:
 	int maxHP;

@@ -1,5 +1,5 @@
 #include "Room.h"
-
+class Player;
 
 Room::Room() {
 
@@ -41,17 +41,16 @@ Twine Room::InspectRoom(Twine& t) {
 	return failedTwine;
 }
 
-Twine Room::CheckForDialogue(Twine& t) {
+void Room::CheckForDialogue(Twine& t, Player* p) {
 	for (int i = 0; i < this->entityNum; i++) {
 		if (t.ToLower().TFindOnly(this->roomEntities[i]->name.ToLower())) {
-			if (this->roomEntities[i]->Dialogue != nullptr) {
-				return *this->roomEntities[i]->Dialogue;
-			}
+			roomEntities[i]->Interact(p);
+			return;
 		}
 	}
 
 	Twine fail = "Doesn't seem to want to talk...";
-	return fail;
+	fail.DisplayTwine();
 }
 
 Entity* Room::CheckEntityNames(Twine& searchT) {

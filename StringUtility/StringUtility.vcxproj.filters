@@ -98,5 +98,8 @@
     <ClInclude Include="Entity.h">
       <Filter>Header Files\Rooms\Entities</Filter>
     </ClInclude>
+    <ClInclude Include="Roll.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

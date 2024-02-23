@@ -148,6 +148,7 @@
     <ClInclude Include="Library.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Roll.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="Spell.h" />
     <ClInclude Include="Spool.h" />

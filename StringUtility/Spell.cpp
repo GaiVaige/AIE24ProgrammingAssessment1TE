@@ -1,4 +1,5 @@
 #include "Spell.h"
+#include "Roll.h"
 
 Spell::Spell() {
 
@@ -9,17 +10,21 @@ Spell::~Spell() {
 
 
 
-Spell::Spell(Twine n, Twine de, int da) {
+Spell::Spell(Twine n, Twine de, int dAm, int dMax) {
 	this->name.SetTwine(n);
 	this->description = de;
-	this->damage = da;
+	this->damage = 0;
+	this->dFace = dMax;
+	this->dAmnt = dAm;
 }
 
-Spell::Spell(Twine n, Twine de, int da, bool hasTarget) {
+Spell::Spell(Twine n, Twine de, int dAm, int dMax, bool hasTarget) {
 	this->name.SetTwine(n);
 	this->description = de;
 	this->hasTarget = hasTarget;
-	this->damage = da;
+	this->damage = 0;
+	this->dFace = dMax;
+	this->dAmnt = dAm;
 }
 
 void Spell::Cast() {
@@ -32,8 +37,17 @@ void Spell::Cast(Entity* target) {
 	}
 }
 
-bool Spell::Compare(Spell a, Spell b) {
+bool Spell::SpellEqualTo(Spell a, Spell b) {
 	if (a.name == b.name) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool Spell::Compare(Spell a, Spell b) {
+	if (a.name > b.name) {
 		return true;
 	}
 	else {
@@ -45,7 +59,9 @@ void Spell::ApplyDamage(Entity* target) {
 
 
 	if (target->alive) {
+		this->damage = Roll::RollDice(this->dAmnt, this->dFace);
 		target->hp -= this->damage;
+		this->damage = 0;
 		if (target->hp <= 0) {
 			target->hp = 0;
 			target->alive = false;
