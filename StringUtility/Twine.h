@@ -51,13 +51,12 @@
 		//CharFind returns the first index of the requested char.
 		//TFind returns the index of the requested SubTwine in the Twin
 		//TFind OL 1 returns the index of SubTwine start point sIn, and distance from sIn
-		char CharAt(int i);
-		int CharFind(char c);
-		int TFind(Twine c);
-		int TFind(Twine& c);
-		int TFind(const char* c);
-		int TFind(Twine& c, int sIn);
-		int TFind(const char* c, int sIn);
+		char CharAt(int i) const;
+		int CharFind(char c) const;
+		int TFind(Twine& c) const;
+		int TFind(const char* c) const;
+		int TFind(Twine& c, int sIn) const;
+		int TFind(const char* c, int sIn) const;
 		
 		long long int ParseForInt();
 
@@ -82,8 +81,8 @@
 		void Wobble();
 
 		//Compares two strings to see if they are the same
-		bool Compare(Twine& c);
-		bool Compare(const char* c);
+		bool Compare(Twine& c) const;
+		bool Compare(const char* c) const;
 
 
 		//Inserts char* newC at index insertIndex of twine
@@ -105,7 +104,7 @@
 		void Prepend(Twine& c);
 		void Prepend(const char* c);
 
-		void Caesar(Twine& c, int displaceVal);
+		void Caesar(int displaceVal);
 
 		Twine& Colour(int r, int g, int b, bool fg = true);
 
@@ -117,10 +116,10 @@
 		friend std::istream& operator >> (std::istream& in, Twine& t);
 		Twine& operator = (const char* c);
 		Twine& operator = (Twine& t);
-		bool operator == (const char* c);
-		bool operator == (Twine& t);
-		bool operator != (const char* c);
-		bool operator != (Twine& t);
+		bool operator == (const char* c) const;
+		bool operator == (Twine& t) const;
+		bool operator != (const char* c) const;
+		bool operator != (Twine& t) const;
 		Twine& operator += (Twine& t);
 		Twine operator + (Twine& t);
 		char operator [] (int n);

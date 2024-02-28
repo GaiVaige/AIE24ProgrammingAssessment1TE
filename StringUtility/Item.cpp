@@ -3,19 +3,14 @@
 #include "Item.h"
 #include "Player.h"
 
-
-	Item::Item() {
+	Twine Item::Name() {
+		return "Missingna";
 	}
 
-	Item::~Item() {
+	Twine Item::Desc() {
+		return "Desc";
 	}
 
-	void Item::SetName(Twine& c) {
-		name.SetTwine(c);
-	}
-	void Item::SetName(const char* c) {
-		name.SetTwine(c);
-	}
-	void Item::UseItem() {
-		std::cout << this->name << '\n';
+	Twine Item::Use() {
+		return "Missing use case";
 	}

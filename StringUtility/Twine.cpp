@@ -149,7 +149,7 @@ void Twine::Copy(Twine& twineA, Twine& twineB) {
 	twineA.SetTwine(twineB.twine);
 }
 
-char Twine::CharAt(int i) {
+char Twine::CharAt(int i) const {
 	if (this->twine[i] == '\0' || i > this->Length() || i < 0) {
 		return '\0';
 	}
@@ -158,7 +158,7 @@ char Twine::CharAt(int i) {
 	}
 }
 
-int Twine::CharFind(char c) {
+int Twine::CharFind(char c) const {
 	
 	for (int i = 0; i < this->Length(); i++) {
 
@@ -171,7 +171,7 @@ int Twine::CharFind(char c) {
 	return -1;
 }
 
-int Twine::TFind(Twine c) {
+int Twine::TFind(Twine& c) const {
 
 	int a = this->Length();
 	int b = c.Length();
@@ -182,22 +182,60 @@ int Twine::TFind(Twine c) {
 	for (int i = 0; i < a; i++) {
 
 		if (this->twine[i] == c[cL]) {
-			cL++;
-			if (t == 0 && doSwap) {
-				t = i;
-				doSwap = false;
-			}
 
-			if (cL == b) {
-				return t;
+			for (int j = 0; j < b; j++) {
+
+				if (i + j > a) {
+					return -1;
+				}
+
+				if (this->twine[i + j] != c[j]) {
+					break;
+				}
+
+				if (j == b - 1) {
+					return i;
+				}
 			}
 
 
 		}
-		else {
-			t = 0;
-			cL = 0;
-			doSwap = true;
+
+	}
+	t = -1;
+	return t;
+
+
+}
+
+int Twine::TFind(const char* c) const {
+
+	int a = this->Length();
+	int b = Length(c);
+	int cL = 0;
+	int t = 0;
+	bool doSwap = true;
+
+	for (int i = 0; i < a; i++) {
+
+		if (this->twine[i] == c[cL]) {
+
+			for (int j = 0; j < b; j++) {
+
+				if (i + j > a) {
+					return -1;
+				}
+
+				if (this->twine[i + j] != c[j]) {
+					break;
+				}
+
+				if (j == b - 1) {
+					return i;
+				}
+			}
+
+
 		}
 
 	}
@@ -206,7 +244,7 @@ int Twine::TFind(Twine c) {
 
 }
 
-int Twine::TFind(Twine& c) {
+int Twine::TFind(Twine& c, int sIn) const {
 
 	int a = this->Length();
 	int b = c.Length();
@@ -214,72 +252,34 @@ int Twine::TFind(Twine& c) {
 	int t = 0;
 	bool doSwap = true;
 
-	for (int i = 0; i < a; i++) {
+	for (int i = sIn; i < a; i++) {
 
 		if (this->twine[i] == c[cL]) {
-			cL++;
-			if (t == 0 && doSwap) {
-				t = i;
-				doSwap = false;
+
+			for (int j = 0; j < b; j++) {
+
+				if (i + j > a) {
+					return -1;
+				}
+
+				if (this->twine[i + j] != c[j]) {
+					break;
+				}
+
+				if (j == b - 1) {
+					return i;
+				}
 			}
 
-			if (cL == b) {
-				return t;
-			}
 
-
-		}
-		else {
-			t = 0;
-			cL = 0;
-			doSwap = true;
 		}
 
 	}
 	t = -1;
 	return t;
-
 }
 
-int Twine::TFind(const char* c) {
-
-	int a = this->Length();
-	int b = Length(c);
-	int cL = 0;
-	int t = 0;
-	bool doSwap = true;
-
-	for (int i = 0; i < a; i++) {
-
-		if (this->twine[i] == c[cL]) {
-			cL++;
-			
-			
-			if (t == 0 && doSwap) {
-				t = i;
-				doSwap = false;
-			}
-
-			if (cL == b) {
-				return t;
-			}
-
-
-
-		}
-		else {
-			t = 0;
-			cL = 0;
-			doSwap = true;
-		}
-
-	}
-	t = -1;
-	return t;
-
-}
-
-int Twine::TFind(Twine& c, int sIn) {
+int Twine::TFind(const char* c, int sIn) const{
 
 	int a = this->Length();
 	int b = Length(c);
@@ -290,57 +290,23 @@ int Twine::TFind(Twine& c, int sIn) {
 	for (int i = sIn; i < a; i++) {
 
 		if (this->twine[i] == c[cL]) {
-			cL++;
-			if (t == 0 && doSwap) {
-				t = i;
-				doSwap = false;
+
+			for (int j = 0; j < b; j++) {
+
+				if (i + j > a) {
+					return -1;
+				}
+
+				if (this->twine[i + j] != c[j]) {
+					break;
+				}
+
+				if (j == b - 1) {
+					return i;
+				}
 			}
 
 
-			if (cL == b) {
-				return t;
-			}
-
-		}
-		else {
-			t = 0;
-			cL = 0;
-			doSwap = true;
-		}
-
-	}
-	t = -1;
-	return t;
-}
-
-int Twine::TFind(const char* c, int sIn){
-
-	int a = this->Length();
-	int b = Length(c);
-	int cL = 0;
-	int t = 0;
-	bool doSwap = true;
-
-	for (int i = sIn; i < a; i++) {
-
-		if (this->twine[i] == c[cL]) {
-			cL++;
-			if (t == 0 && doSwap) {
-				t = i;
-				doSwap = false;
-			}
-
-
-			if (cL == b) {
-
-				return t;
-			}
-
-		}
-		else {
-			t = 0;
-			cL = 0;
-			doSwap = true;
 		}
 
 	}
@@ -736,7 +702,7 @@ void Twine::Wobble() {
 
 }
 
-bool Twine::Compare(Twine& c) {
+bool Twine::Compare(Twine& c) const{
 
 
 	int i = this->LengthNoSpace();
@@ -760,7 +726,7 @@ bool Twine::Compare(Twine& c) {
 	}
 }
 
-bool Twine::Compare(const char* c) {
+bool Twine::Compare(const char* c) const {
 
 
 	int i = this->Length();
@@ -884,7 +850,7 @@ void Twine::Erase(int delInt, int startIndex) {
 void Twine::Replace(Twine& current, Twine& newc) {
 	int replaceStringPos = this->TFind(current.twine);
 	if (replaceStringPos == -1) {
-		std::cout << "No replacements found for " << current.twine << ", check your spelling!" << '\n';
+		return;
 	}
 	while (replaceStringPos != -1) {
 		int curLen = Length(this->twine);
@@ -1074,11 +1040,11 @@ void Twine::Prepend(const char* c) {
 
 }	
 
-void Twine::Caesar(Twine& c, int displaceVal) {
+void Twine::Caesar(int displaceVal) {
 
-	Twine cc = c.ToUpper();
+	Twine cc = this->ToUpper();
 
-	for (int i = 0; i < c.Length(); i++) {
+	for (int i = 0; i < this->Length(); i++) {
 		if (cc.twine[i] >= 'A' && cc.twine[i] <= 'Z') {
 			cc.twine[i] = cc.twine[i] + displaceVal % 26;
 			if (cc.twine[i] > 'Z' || cc.twine[i] < 'A') {
@@ -1146,7 +1112,7 @@ Twine& Twine::operator = (Twine& t1) {
 	return *this;
 }
 
-bool Twine::operator == (const char* c) {
+bool Twine::operator == (const char* c) const{
 
 	if (this->Compare(c)) {
 		return true;
@@ -1157,7 +1123,7 @@ bool Twine::operator == (const char* c) {
 
 }
 
-bool Twine::operator == (Twine& t) {
+bool Twine::operator == (Twine& t) const {
 
 	if (this->Compare(t)) {
 		return true;
@@ -1169,7 +1135,7 @@ bool Twine::operator == (Twine& t) {
 
 }
 
-bool Twine::operator != (const char* c) {
+bool Twine::operator != (const char* c) const {
 	if (this->Compare(c)) {
 		return false;
 	}
@@ -1178,7 +1144,7 @@ bool Twine::operator != (const char* c) {
 	}
 }
 
-bool Twine::operator != (Twine& t) {
+bool Twine::operator != (Twine& t) const{
 	if (this->Compare(t)) {
 		return false;
 	}

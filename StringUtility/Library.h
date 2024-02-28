@@ -12,7 +12,18 @@ public:
 	Library() {
 		mapChar = "L";
 		name = "Library";
-		description = "This is a library, there are books and stuff.";
+		ASCII = 
+" =============================\n\
+               >>0<<           \n\
+ __________________     <>%    \n\
+ I[[[[[[[[[[[[[[[[I     %<>    \n\
+ I[[[[[[[[[[[[[[[[I      |     \n\
+ I[[[[[[[[[[[[[[[[I    __O___  \n\
+ I[[[[[[[[[[[[[[[[I     |  |   \n\
+ ------------------------------\n";
+		description = "This is the library.\n\n\
+Atop a small table rests a small candle, it's smoke puffing in the air.\n\n\
+The bookshelves to the left are packed full.\n";
 		extraDescriptions = new Twine[5]{
 			"Gun! Bang! Dead!",
 			"Oh lol this is just smut...",

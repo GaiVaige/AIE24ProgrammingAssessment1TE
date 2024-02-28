@@ -4,13 +4,15 @@
 #include "Room.h"
 #include "Player.h"
 
+
+static int maxFlagID = 10;
+static int roomXDim = 5;
+static int roomYDim = 5;
+
 class Game {
 
 public:
-	int maxFlagID = 10;
-    Room* Mansion[5][5];
-	int roomXDim = 5;
-	int roomYDim = 5;
+	Room* Mansion[5][5];
 	Player* p;
 	bool doGame = true;
 

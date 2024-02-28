@@ -27,7 +27,7 @@ void Player::CheckForValidCommand(Twine& searchT) {
 	for (int i = 0; i < 3; i++) {
 
 		if (searchT.ToLower().TFindOnly(validItemCommands[i].ToLower().TStr())) {
-			SearchItem(searchT);
+			SearchItem(searchT).DisplayTwine();
 			return;
 		}
 
@@ -146,20 +146,19 @@ void Player::AddItem(Item& c) {
 	
 }
 
-void Player::SearchItem(Twine& searchT) {
+Twine Player::SearchItem(Twine& searchT) {
 
 	
 
 	for (int i = 0; i < this->numberOfItems; i++) {
-		if (searchT.ToLower().TFind(playerInventory[i]->name.ToLower().TStr()) != -1) {
-			playerInventory[i]->UseItem();
-			return;
+		if (searchT.ToLower().TFind(playerInventory[i]->Name().ToLower().TStr()) != -1) {
+			return playerInventory[i]->Use();
 		}
 
 
 	}
 	Twine itemFailedTwine = "I don't think I have that in my pouch...";
-	itemFailedTwine.DisplayTwine();
+	return itemFailedTwine;
 }
 
 void Player::MovePlayer(int i) {

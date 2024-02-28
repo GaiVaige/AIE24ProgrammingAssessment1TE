@@ -29,19 +29,32 @@ public:
 		g = nullptr;
 	}
 
-	void UseItem() override {
-		std::cout << "The candle in your hand burns " << candleLevels[CandleTrack] << "ly." << '\n';
+	Twine Name() override {
+		return "Candle";
+	}
+
+	Twine Desc() override {
+		return "A nice candle.";
+	}
+
+
+	Twine Use() override {
+		Twine candle = "The candle in your hand burns ";
+		Twine level = candleLevels[CandleTrack];
+		candle.Append(level);
+		candle.Append("ly.\n");
 		if (CandleTrack < 2) {
 			CandleTrack++;
 		}
 
 		if (g->p->currentRoom->name == "Kitchen") {
-			std::cout << "The lamp lights up the benches." << '\n';
+			candle.Append("The lamp lights up the benches.\n");
 			g->p->flags[0] = true;
+			return candle;
 		}
 
 
-		return;
+		return candle;
 	}
 
 

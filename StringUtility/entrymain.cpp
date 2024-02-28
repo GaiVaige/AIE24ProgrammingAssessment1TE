@@ -19,9 +19,6 @@ int main() {
 	
 	system("cls");
 	g.Run();
-	
-
-
 
 }
 

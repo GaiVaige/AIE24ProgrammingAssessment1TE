@@ -7,17 +7,14 @@
 
 class Item {
 public:
-	Twine name;
-	Twine description;
-	int itemSlot = 0;
+	Item() = default;
+	virtual ~Item() = default;
 
-	Item();
-	~Item();
-	virtual void SetName(Twine& c);
-	virtual void SetName(const char* c);
-	virtual void UseItem();
+	virtual Twine Name();
 
+	virtual Twine Desc();
 
+	virtual Twine Use();
 
 
 };

@@ -7,6 +7,8 @@
 #include "Room.h"
 #include "Kitchen.h"
 #include "Library.h"
+#include "Dining1.h"
+#include "Dining2.h"
 
 
 Game::Game() {
@@ -21,29 +23,29 @@ Game::Game() {
 	p->LearnSpell(dance);
 	p->SpellSort();
 	Mansion[0][0] = new Library;
-	Mansion[0][1] = new Library;
+	Mansion[0][1] = new Kitchen;
 	Mansion[0][2] = new Library;
-	Mansion[0][3] = new Library;
-	Mansion[0][4] = new Library;
-	Mansion[1][0] = new Library;
+	Mansion[0][3] = new Kitchen;
+	Mansion[0][4] = new Dining1;
+	Mansion[1][0] = new Kitchen;
 	Mansion[1][1] = new Library;
-	Mansion[1][2] = new Library;
+	Mansion[1][2] = new Kitchen;
 	Mansion[1][3] = new Library;
-	Mansion[1][4] = new Library;
+	Mansion[1][4] = new Dining2;
 	Mansion[2][0] = new Library;
-	Mansion[2][1] = new Library;
+	Mansion[2][1] = new Kitchen;
 	Mansion[2][2] = new Library;
-	Mansion[2][3] = new Library;
+	Mansion[2][3] = new Kitchen;
 	Mansion[2][4] = new Library;
-	Mansion[3][0] = new Library;
+	Mansion[3][0] = new Kitchen;
 	Mansion[3][1] = new Library;
-	Mansion[3][2] = new Library;
+	Mansion[3][2] = new Kitchen;
 	Mansion[3][3] = new Library;
-	Mansion[3][4] = new Library;
+	Mansion[3][4] = new Kitchen;
 	Mansion[4][0] = new Library;
-	Mansion[4][1] = new Library;
+	Mansion[4][1] = new Kitchen;
 	Mansion[4][2] = new Library;
-	Mansion[4][3] = new Library;
+	Mansion[4][3] = new Kitchen;
 	Mansion[4][4] = new Library;
 }
 
@@ -62,7 +64,6 @@ Game::~Game() {
 
 void Game::Run() {
 	Candle* c = new Candle;
-	c->SetName("Candle");
 	c->g = this;
 	p->AddItem(*c);
 

@@ -13,6 +13,15 @@ public:
 	
 	Kitchen() {
 		mapChar = "K";
+		ASCII = 
+" =============================\n\
+                           |   \n\
+                           |   \n\
+                        ___|_  \n\
+                       |     | \n\
+ ____~o6____           |    9| \n\
+ |   [|]   |           |  % &| \n\
+ |__[|][|]_|______~o6__|__%&_|_\n";
 		name = "Kitchen";
 		description = "Well, this is strange...\n\nThis kitchen is covered from head to toe in disgusting, old blood...\nThough evidence of prepared food remains on its counters.\nPeople seem to only care about bloodshed, when it's their blood...\nin their shed...";
 

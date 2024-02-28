@@ -8,63 +8,61 @@
 #include "Spell.h"
 #include "Stats.h"
 
-class Player {
-public:
-
-	Twine validUtilityCommands[3]{
+static Twine validUtilityCommands[3]{
 		"help",
 		"stats",
 		"list",
-	};
+};
 
-	Twine validItemCommands[3]{
-		"use",
-		"look",
-		"examine",
-	};
+static Twine validItemCommands[3]{
+	"use",
+	"look",
+	"examine",
+};
 
-	Twine validRoomCommands[5]{
-		"search",
-		"inspect",
-		"open",
-		"investigate",
-		"turn on",
-	};
+static Twine validRoomCommands[5]{
+	"search",
+	"inspect",
+	"open",
+	"investigate",
+	"turn on",
+};
 
-	Twine validMoveCommands[5]{
-		"move",
-		"go to",
-		"head",
-		"go",
-		"move to",
-	};
+static Twine validMoveCommands[5]{
+	"move",
+	"go to",
+	"head",
+	"go",
+	"move to",
+};
 
-	Twine validCombatCommands[5]{
-		"cast",
-		"search",
-		"check",
-		"spell",
-		"attack",
-	};
+static Twine validCombatCommands[5]{
+	"cast",
+	"search",
+	"check",
+	"spell",
+	"attack",
+};
 
-	Twine validDialougeCommands[4]{
-		"talk",
-		"speak",
-		"talk to",
-		"speak to",
-	};
+static Twine validDialougeCommands[4]{
+	"talk",
+	"speak",
+	"talk to",
+	"speak to",
+};
 
-	Twine Directions[4]{
-		"north",
-		"east",
-		"south",
-		"west",
-	};
-
-
+static Twine Directions[4]{
+	"north",
+	"east",
+	"south",
+	"west",
+};
 
 
 
+
+class Player {
+public:
 
 	Room* currentRoom = nullptr;
 	Stats s;
@@ -100,7 +98,7 @@ public:
 
 	void CheckForValidCommand(Twine& searchT);
 	void AddItem(Item& c);
-	void SearchItem(Twine& searchT);
+	Twine SearchItem(Twine& searchT);
 	void MovePlayer(int i);
 	void SpellLookUp(Twine searchT);
 	void LearnSpell(Spell* sp);

@@ -11,6 +11,8 @@ Room::~Room() {
 
 
 void Room::DescribeRoom() {
+	std::cout << ASCII << '\n';
+
 	if (doDesc) {
 		std::cout << this->description << '\n';
 	}

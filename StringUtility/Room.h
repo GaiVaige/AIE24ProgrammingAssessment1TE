@@ -11,6 +11,7 @@ class Room {
 protected:
 
 	Twine description;
+	Twine ASCII;
 	Twine* extraDescriptions;
 	Twine* keyWords;
 	Twine validInspectCommands;
