@@ -19,6 +19,9 @@ int main() {
 	g.Run();
 
 
+	//system("start https://aie.edu.au/course_category/programming/");
+
+
 }
 
 
