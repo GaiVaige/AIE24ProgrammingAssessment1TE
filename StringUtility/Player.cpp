@@ -6,6 +6,7 @@
 #include "Roll.h"
 #include "random"
 #include <iostream>
+#include "Windows.h"
 
 
 Player::Player() {
@@ -170,6 +171,7 @@ void Player::MovePlayer(int i) {
 	case 0:
 		if (yCord < 4) {
 			yCord++;
+
 		}
 		break;
 
@@ -189,6 +191,16 @@ void Player::MovePlayer(int i) {
 		}
 		break;
 	}
+	CreateThread(NULL, NULL, [](LPVOID lpThreadParameter){
+		Beep(100, 200);
+		Beep(50, 200);
+		Beep(100, 200);
+		Beep(50, 200);
+		return (DWORD)TRUE;
+		
+		}, NULL, NULL, NULL);
+
+
 
 
 }

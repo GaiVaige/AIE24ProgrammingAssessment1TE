@@ -21,7 +21,7 @@ public:
 Atop a small table rests a small candle, it's smoke puffing in the air.\n\n\
 The bookshelves to the left are packed full.\n";
 		extraDescriptions = new Twine[5]{
-			"Gun! Bang! Dead!",
+			"A piano, chords are playing without anyone sitting there... \7",
 			"Oh lol this is just smut...",
 			"The fuck is a pizza oven doing in this thing",
 			"WHY IS THERE A GODDAMN GORILLA IN HERE",
@@ -29,7 +29,7 @@ The bookshelves to the left are packed full.\n";
 		};
 
 		keyWords = new Twine[5]{
-			"gun",
+			"piano",
 			"book",
 			"pizza",
 			"gorilla",

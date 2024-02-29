@@ -5,6 +5,7 @@
 #include "Roll.h"
 int main() {
 
+
 	DWORD mode;
 	GetConsoleMode(GetStdHandle(STD_OUTPUT_HANDLE), &mode);
 	mode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
