@@ -7,6 +7,7 @@
 #include "random"
 #include <iostream>
 
+
 Player::Player() {
 	playerInventory = new Item*[0];
 	spells = new Spell*[0];
@@ -412,13 +413,23 @@ void Player::CommandOutput() {
 void Player::Attack(Twine searchT) {
 	Entity* e = currentRoom->CheckEntityNames(searchT);
 	if (e != nullptr) {
-		int x = Roll::RollDice(1, 20);
-		x += ((this->s.Strength - 10) / 2);
-		std::cout << Twine("Rolled ") << x << "!";
-		x -= e->ac;
-		if (x > -1){
+		bool crit = false;;
+		int roll = Roll::RollDice(1, 20);
+		if (roll == 20) {
+			crit = true;
+			std::cout << Twine("CRITICAL HIT!! ");
+		}
+
+		roll += ((this->s.Strength - 10) / 2);
+		std::cout << Twine("Rolled ") << roll << "! ";
+		if (!crit) {
+			roll -= e->ac;
+		}
+
+		if (roll > -1){
 			if (e->alive) {
-				ApplyDam(e);
+				ApplyDam(e, crit);
+				
 				if (e->hp <= 0) {
 					e->hp = 0;
 					e->alive = false;
@@ -436,9 +447,20 @@ void Player::Attack(Twine searchT) {
 		return;
 	}
 }
-void Player::ApplyDam(Entity* e) {
-	std::cout << Twine(" That's a hit! Dealt ") << (5 + ((this->s.Strength - 10) / 2)) << " damage!" << '\n';
-	e->hp -= 5 + ((this->s.Strength - 10)/2);
+void Player::ApplyDam(Entity* e, bool crit) {
+
+	if (crit) {
+		std::cout << Twine("That's a hit! Dealt ") << (5 + ((this->s.Strength - 10))) << " damage!" << '\n';
+		e->hp -= 5 + ((this->s.Strength - 10));
+		return;
+	}
+	else {
+		std::cout << Twine("That's a hit! Dealt ") << (5 + ((this->s.Strength - 10) / 2)) << " damage!" << '\n';
+		e->hp -= 5 + ((this->s.Strength - 10) / 2);
+		return;
+	}
+
+
 }
 
 

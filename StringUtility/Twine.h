@@ -35,9 +35,9 @@
 		void DisplayTwine() const;
 
 		//length functions for general and length-whitespace
-		int Length() const;
-		static int Length(const char* c);
-		int LengthNoSpace() const;
+		size_t Length() const;
+		static size_t Length(const char* c);
+		size_t LengthNoSpace() const;
 
 		//two copies, one is 'quick' and overwties the char* twine on the
 		//Twine object that clals it, the other can be called seperatley to
@@ -52,13 +52,13 @@
 		//TFind returns the index of the requested SubTwine in the Twin
 		//TFind OL 1 returns the index of SubTwine start point sIn, and distance from sIn
 		char CharAt(int i) const;
-		int CharFind(char c) const;
-		int TFind(Twine& c) const;
-		int TFind(const char* c) const;
-		int TFind(Twine& c, int sIn) const;
-		int TFind(const char* c, int sIn) const;
+		size_t CharFind(char c) const;
+		size_t TFind(Twine& c) const;
+		size_t TFind(const char* c) const;
+		size_t TFind(Twine& c, int sIn) const;
+		size_t TFind(const char* c, int sIn) const;
 		
-		long long int ParseForInt();
+		size_t ParseForInt();
 
 		bool TFindOnly(Twine& c);
 		bool TFindOnly(const char* c);

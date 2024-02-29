@@ -22,9 +22,9 @@ protected:
 
 
 public:
+	bool doDesc = true;
 	Twine name;
 	Twine mapChar;
-	bool doDesc = true;
 	Room();
 	~Room();
 	virtual void DescribeRoom();

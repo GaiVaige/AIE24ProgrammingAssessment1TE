@@ -1,26 +1,22 @@
 #pragma once
-#ifndef LIB_HEADER
-#define LIB_HEADER
 #include "Room.h"
-#include "Twine.h"
-#include "Entity.h"
 
+class Piano : public Room {
 
-class Library : public Room {
 
 public:
-	Library() {
-		mapChar = "L";
-		name = "Library";
-		ASCII = 
+	Piano() {
+		mapChar = "P";
+		name = "Piano";
+		ASCII =
 " =============================\n\
-               >>0<<           \n\
- __________________     <>%    \n\
- I[[[[[[[[[[[[[[[[I     %<>    \n\
- I[[[[[[[[[[[[[[[[I      |     \n\
- I[[[[[[[[[[[[[[[[I    __O___  \n\
- I[[[[[[[[[[[[[[[[I     |  |   \n\
- ------------------------------\n";
+                               \n\
+                   §           \n\
+              §                \n\
+                 §             \n\
+      _---------               \n\
+     ===========               \n\
+ ----|--L-Ll---|---------------\n";
 		description = "This is the library.\n\n\
 Atop a small table rests a small candle, it's smoke puffing in the air.\n\n\
 The bookshelves to the left are packed full.\n";
@@ -47,21 +43,19 @@ The bookshelves to the left are packed full.\n";
 
 
 
-		this->roomEntities = new Entity*[2] {
+		this->roomEntities = new Entity * [2] {
 			John,
 				Jack,
 			};
 
 		this->entityNum = 2;
 		descLength = 5;
-	
+
 	}
 
-	~Library() {
+	~Piano() {
 	}
+
+
 
 };
-
-
-
-#endif // !LIB_HEADER

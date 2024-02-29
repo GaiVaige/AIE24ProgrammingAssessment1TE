@@ -8,13 +8,13 @@ public:
 		mapChar = "D";
 		ASCII =
 " =============================\n\
-                           |   \n\
-                           |   \n\
-         DINING2        ___|_  \n\
-                       |     | \n\
- ____~o6____           |    9| \n\
- |   [|]   |           |  % &| \n\
- |__[|][|]_|______~o6__|__%&_|_\n";
+      |                        \n\
+    _[0]_                      \n\
+     / \\                       \n\
+                               \n\
+ ___u_____u_____u____          \n\
+                    |          \n\
+ ___________________|__________\n";
 		name = "Foot of the Dining Room";
 		description = "Ooooooooooo spooky. Monkey?";
 		keyWords = new Twine[3]{

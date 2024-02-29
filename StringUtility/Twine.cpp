@@ -86,11 +86,12 @@ void Twine::DisplayTwine()  const {
 void Twine::GetTwine(){
 	//initalise a single char to be referenced for taking in characters from input
 	char c;
+
 	//place characters immediately into input buffer
+
 	std::cin.get(c);
 	std::cin.putback(c);
-
-
+	
 	//std::cin stops when enter is pressed
 	//check size of buffer when enter is pressed (cin halts at this point)
 	//this is used as a reference to create the new array to ensure that nothing beyond
@@ -109,7 +110,7 @@ void Twine::GetTwine(){
 	&std::ostream::flush;
 }
 
-int Twine::Length() const{
+size_t Twine::Length() const{
 	for (int i = 0; ; i++) {
 		//if end of string detected, return value of i
 		if (this->twine[i] == '\0') {
@@ -118,7 +119,7 @@ int Twine::Length() const{
 	}
 }
 
-int Twine::LengthNoSpace()  const {
+size_t Twine::LengthNoSpace()  const {
 	int y = 0;
 	for (int i = 0; ; i++) {
 		//only increments return value y if there is no space
@@ -133,7 +134,7 @@ int Twine::LengthNoSpace()  const {
 	return y;
 }
 
-int Twine::Length(const char* c) {
+size_t Twine::Length(const char* c) {
 	for (int i = 0; ; i++) {
 		if (c[i] == '\0') {
 			return i;
@@ -158,7 +159,7 @@ char Twine::CharAt(int i) const {
 	}
 }
 
-int Twine::CharFind(char c) const {
+size_t Twine::CharFind(char c) const {
 	
 	for (int i = 0; i < this->Length(); i++) {
 
@@ -171,10 +172,10 @@ int Twine::CharFind(char c) const {
 	return -1;
 }
 
-int Twine::TFind(Twine& c) const {
+size_t Twine::TFind(Twine& c) const {
 
-	int a = this->Length();
-	int b = c.Length();
+	size_t a = this->Length();
+	size_t b = c.Length();
 	int cL = 0;
 	int t = 0;
 	bool doSwap = true;
@@ -208,10 +209,10 @@ int Twine::TFind(Twine& c) const {
 
 }
 
-int Twine::TFind(const char* c) const {
+size_t Twine::TFind(const char* c) const {
 
-	int a = this->Length();
-	int b = Length(c);
+	size_t a = this->Length();
+	size_t b = Length(c);
 	int cL = 0;
 	int t = 0;
 	bool doSwap = true;
@@ -244,10 +245,10 @@ int Twine::TFind(const char* c) const {
 
 }
 
-int Twine::TFind(Twine& c, int sIn) const {
+size_t Twine::TFind(Twine& c, int sIn) const {
 
-	int a = this->Length();
-	int b = c.Length();
+	size_t a = this->Length();
+	size_t b = c.Length();
 	int cL = 0;
 	int t = 0;
 	bool doSwap = true;
@@ -279,10 +280,10 @@ int Twine::TFind(Twine& c, int sIn) const {
 	return t;
 }
 
-int Twine::TFind(const char* c, int sIn) const{
+size_t Twine::TFind(const char* c, int sIn) const{
 
-	int a = this->Length();
-	int b = Length(c);
+	size_t a = this->Length();
+	size_t b = Length(c);
 	int cL = 0;
 	int t = 0;
 	bool doSwap = true;
@@ -315,10 +316,10 @@ int Twine::TFind(const char* c, int sIn) const{
 
 }
 
-long long int Twine::ParseForInt() {
+size_t Twine::ParseForInt() {
 	
 	
-	int l = this->Length();
+	size_t l = this->Length();
 	int digits = 0;
 	for (int i = 0; i < l; i++) {
 
@@ -364,8 +365,8 @@ long long int Twine::ParseForInt() {
 
 bool Twine::TFindOnly(Twine& c) {
 
-	int curLen = this->Length();
-	int checkLen = Length(c);
+	size_t curLen = this->Length();
+	size_t checkLen = Length(c);
 	int searchIndex = 0;
 	int previousWordSpot = 0;
 
@@ -406,8 +407,8 @@ bool Twine::TFindOnly(Twine& c) {
 
 bool Twine::TFindOnly(const char* c) {
 
-	int curLen = this->Length();
-	int checkLen = Length(c);
+	size_t curLen = this->Length();
+	size_t checkLen = Length(c);
 	int searchIndex = 0;
 	int previousWordSpot = 0;
 
@@ -448,8 +449,8 @@ bool Twine::TFindOnly(const char* c) {
 
 bool Twine::TFindOnly(Twine& c, int sIn) {
 
-	int curLen = this->Length();
-	int checkLen = Length(c);
+	size_t curLen = this->Length();
+	size_t checkLen = Length(c);
 	int searchIndex = 0;
 	int previousWordSpot = 0;
 
@@ -489,8 +490,8 @@ bool Twine::TFindOnly(Twine& c, int sIn) {
 
 bool Twine::TFindOnly(const char* c, int sIn) {
 
-	int curLen = this->Length();
-	int checkLen = Length(c);
+	size_t curLen = this->Length();
+	size_t checkLen = Length(c);
 	int searchIndex = 0;
 	int previousWordSpot = 0;
 
@@ -705,8 +706,8 @@ void Twine::Wobble() {
 bool Twine::Compare(Twine& c) const{
 
 
-	int i = this->LengthNoSpace();
-	int cI = c.LengthNoSpace();
+	size_t i = this->LengthNoSpace();
+	size_t cI = c.LengthNoSpace();
 	if (i == cI) {
 
 
@@ -729,8 +730,8 @@ bool Twine::Compare(Twine& c) const{
 bool Twine::Compare(const char* c) const {
 
 
-	int i = this->Length();
-	int cI = Length(c);
+	size_t i = this->Length();
+	size_t cI = Length(c);
 
 	if (i == cI) {
 
@@ -756,9 +757,9 @@ bool Twine::Compare(const char* c) const {
 
 void Twine::Insert(Twine& c, int insertIndex) {
 
-	int curLen = this->Length();
-	int newLen = c.Length();
-	int newSize = curLen + newLen;
+	size_t curLen = this->Length();
+	size_t newLen = c.Length();
+	size_t newSize = curLen + newLen;
 
 
 	int i = 0; //tracker for for loops
@@ -789,9 +790,9 @@ void Twine::Insert(Twine& c, int insertIndex) {
 
 void Twine::Insert(const char* c, int insertIndex) {
 
-	int curLen = this->Length();
-	int newLen = Length(c);
-	int newSize = curLen + newLen;
+	size_t curLen = this->Length();
+	size_t newLen = Length(c);
+	size_t newSize = curLen + newLen;
 
 
 	int i = 0; //tracker for for loops
@@ -828,7 +829,7 @@ void Twine::Erase(int delInt, int startIndex) {
 	if (startIndex < 0) {
 		startIndex = 0;
 	}
-	int newsize = this->Length() - delInt;
+	size_t newsize = this->Length() - delInt;
 	char* newTwine = new char[newsize + 1];
 
 	int i = 0; //tracker for for loops
@@ -847,20 +848,19 @@ void Twine::Erase(int delInt, int startIndex) {
 
 }
 
-void Twine::Replace(Twine& current, Twine& newc) {
-	int replaceStringPos = this->TFind(current.twine);
+void Twine::Replace(Twine& find, Twine& newc) {
+	size_t replaceStringPos = this->TFind(find.twine);
 	if (replaceStringPos == -1) {
 		return;
 	}
 	while (replaceStringPos != -1) {
-		int curLen = Length(this->twine);
-		int replaceStringLen = current.Length();
-		int newStringLen = newc.Length();
+		size_t findLength = find.Length();
+		size_t newStringLen = newc.Length();
 		int i = 0;
-		int returnStringLen = (newStringLen - replaceStringLen) + curLen;
+		size_t returnStringLen = (newStringLen - findLength) + Length(this->twine);
 		char* newT = new char[returnStringLen + 1];
+		newT[Length(newT)] = '\0';
 		int newCTracker = 0;
-		int finalTracker = 0;
 		int checkTrack = 0;
 		for (i; i < replaceStringPos; i++) {
 
@@ -871,82 +871,56 @@ void Twine::Replace(Twine& current, Twine& newc) {
 			newCTracker++;
 			checkTrack = i;
 		}
-		for (; i < Length(newT); i++) {
-			int j = replaceStringPos + replaceStringLen + finalTracker;
+		for (int finalTracker = 0; i < Length(newT); i++) {
+			size_t j = replaceStringPos + findLength + finalTracker;
 			newT[i] = this->twine[j];
 			finalTracker++;
 		}
 		this->SetTwine(newT);
-		replaceStringPos = this->TFind(current.twine, checkTrack);
+		replaceStringPos = this->TFind(find.twine, checkTrack);
 		delete[] newT;
 	}
 }
 
-void Twine::Replace(const char* current, const char* newc) {
-
-
-	int replaceStringPos = this->TFind(current);
-
+void Twine::Replace(const char* find, const char* newc) {
+	size_t replaceStringPos = this->TFind(find);
 	if (replaceStringPos == -1) {
-		std::cout << "No replacements found for " << current << ", check your spelling!" << '\n';
-
+		return;
 	}
-
-
 	while (replaceStringPos != -1) {
-
-	    int curLen = Length(this->twine);
-	    int replaceStringLen = Length(current);
-	    int newStringLen = Length(newc);
-	    int i = 0;
-	    int returnStringLen = (newStringLen - replaceStringLen) + curLen;
-	    char* newT = new char[returnStringLen + 1];
-	    
-	    
-	    int newCTracker = 0;
-	    int finalTracker = 0;
+		size_t findLength = Length(find);
+		size_t newStringLen = Length(newc);
+		int i = 0;
+		size_t returnStringLen = (newStringLen - findLength) + Length(this->twine);
+		char* newT = new char[returnStringLen + 1];
+		newT[Length(newT)] = '\0';
+		int newCTracker = 0;
 		int checkTrack = 0;
+		for (i; i < replaceStringPos; i++) {
 
-
-			for (i; i < replaceStringPos; i++) {
-
-				newT[i] = this->twine[i];
-			}
-
-
-
+			newT[i] = this->twine[i];
+		}
 		for (i; i < replaceStringPos + newStringLen; i++) {
-
 			newT[i] = newc[newCTracker];
 			newCTracker++;
 			checkTrack = i;
 		}
-		
-		for (; i < Length(newT); i++) {
-
-			int j = replaceStringPos + replaceStringLen + finalTracker;
+		for (int finalTracker = 0; i < Length(newT); i++) {
+			size_t j = replaceStringPos + findLength + finalTracker;
 			newT[i] = this->twine[j];
 			finalTracker++;
 		}
-
 		this->SetTwine(newT);
-		replaceStringPos = this->TFind(current, checkTrack);
+		replaceStringPos = this->TFind(find, checkTrack);
 		delete[] newT;
-
-		
 	}
-
-
-
-
-
 }
 
 void Twine::Append(Twine& c) {
 
-	int curCSize = this->Length();
-	int cSize = c.Length();
-	int newSize = cSize + curCSize;
+	size_t curCSize = this->Length();
+	size_t cSize = c.Length();
+	size_t newSize = cSize + curCSize;
 	char* newC = new char[newSize + 1];
 
 	for (int i = 0; i < curCSize; i++) {
@@ -968,9 +942,9 @@ void Twine::Append(Twine& c) {
 
 void Twine::Append(const char* c) {
 
-	int curCSize = this->Length();
-	int cSize = Length(c);
-	int newSize = cSize + curCSize;
+	size_t curCSize = this->Length();
+	size_t cSize = Length(c);
+	size_t newSize = cSize + curCSize;
 	char* newC = new char[newSize + 1];
 
 	for (int i = 0; i < curCSize; i++) {
@@ -992,9 +966,9 @@ void Twine::Append(const char* c) {
 
 void Twine::Prepend(Twine& c) {
 
-	int curCSize = this->Length();
-	int cSize = c.Length();
-	int newSize = cSize + curCSize;
+	size_t curCSize = this->Length();
+	size_t cSize = c.Length();
+	size_t newSize = cSize + curCSize;
 	char* newC = new char[newSize + 1];
 
 	for (int i = 0; i < cSize; i++) {
@@ -1018,9 +992,9 @@ void Twine::Prepend(Twine& c) {
 			
 void Twine::Prepend(const char* c) {
 
-	int curCSize = this->Length();
-	int cSize = Length(c);
-	int newSize = cSize + curCSize;
+	size_t curCSize = this->Length();
+	size_t cSize = Length(c);
+	size_t newSize = cSize + curCSize;
 	char* newC = new char[newSize + 1];
 
 	for (int i = 0; i < cSize; i++) {

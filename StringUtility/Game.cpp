@@ -9,6 +9,8 @@
 #include "Library.h"
 #include "Dining1.h"
 #include "Dining2.h"
+#include "Hallway.h"
+#include "Piano.h"
 
 
 Game::Game() {
@@ -22,30 +24,30 @@ Game::Game() {
 	Spell* dance = new Spell(Twine("Dance Macabre"), Twine("Make em dance till they're dead!"));
 	p->LearnSpell(dance);
 	p->SpellSort();
-	Mansion[0][0] = new Library;
-	Mansion[0][1] = new Kitchen;
-	Mansion[0][2] = new Library;
+	Mansion[0][0] = new Hallway;
+	Mansion[0][1] = new Hallway;
+	Mansion[0][2] = new Hallway;
 	Mansion[0][3] = new Kitchen;
 	Mansion[0][4] = new Dining1;
-	Mansion[1][0] = new Kitchen;
+	Mansion[1][0] = new Hallway;
 	Mansion[1][1] = new Library;
 	Mansion[1][2] = new Kitchen;
-	Mansion[1][3] = new Library;
+	Mansion[1][3] = new Hallway;
 	Mansion[1][4] = new Dining2;
 	Mansion[2][0] = new Library;
-	Mansion[2][1] = new Kitchen;
-	Mansion[2][2] = new Library;
-	Mansion[2][3] = new Kitchen;
-	Mansion[2][4] = new Library;
+	Mansion[2][1] = new Hallway;
+	Mansion[2][2] = new Hallway;
+	Mansion[2][3] = new Library;
+	Mansion[2][4] = new Hallway;
 	Mansion[3][0] = new Kitchen;
 	Mansion[3][1] = new Library;
 	Mansion[3][2] = new Kitchen;
-	Mansion[3][3] = new Library;
-	Mansion[3][4] = new Kitchen;
+	Mansion[3][3] = new Piano;
+	Mansion[3][4] = new Hallway;
 	Mansion[4][0] = new Library;
-	Mansion[4][1] = new Kitchen;
+	Mansion[4][1] = new Hallway;
 	Mansion[4][2] = new Library;
-	Mansion[4][3] = new Kitchen;
+	Mansion[4][3] = new Hallway;
 	Mansion[4][4] = new Library;
 }
 
@@ -67,9 +69,9 @@ void Game::Run() {
 	c->g = this;
 	p->AddItem(*c);
 
-	p->currentRoom = Mansion[3][3];
-	p->xCord = 3;
-	p->yCord = 3;
+	p->currentRoom = Mansion[2][0];
+	p->xCord = 2;
+	p->yCord = 0;
 	std::cout << p->name << ": " << p->health << "HP" << '\n';
 	while (doGame) {
 		this->DrawMap();
@@ -77,7 +79,7 @@ void Game::Run() {
 			std::cout << '\n';
 		}
 		p->displaceVal = 0;
-
+		
 		p->currentRoom->DescribeRoom();
 		p->inputTwine.GetTwine();
 		if (p->inputTwine.ToLower() == "quit game") {

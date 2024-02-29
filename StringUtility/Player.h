@@ -103,7 +103,7 @@ public:
 	void SpellLookUp(Twine searchT);
 	void LearnSpell(Spell* sp);
 	void Attack(Twine searchT);
-	void ApplyDam(Entity* e);
+	void ApplyDam(Entity* e, bool crit);
 	void CastSpell(Twine searchT);
 	void InitPlayer();
 	void FullSpellList();

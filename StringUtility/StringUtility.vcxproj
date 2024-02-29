@@ -144,10 +144,12 @@
     <ClInclude Include="Candle.h" />
     <ClInclude Include="Dining2.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Hallway.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Kitchen.h" />
     <ClInclude Include="Library.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Piano.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Roll.h" />
     <ClInclude Include="Room.h" />

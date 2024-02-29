@@ -23,6 +23,7 @@ public:
 	Entity();
 	~Entity();
 	Entity(Twine t, Twine t2, Twine dia, Twine deadD, int statBon, bool doesSetFlag, int flagToSet);
+	void ApplyDam(Player* p, bool crit);
 	virtual void Interact(Player* p);
 
 private:

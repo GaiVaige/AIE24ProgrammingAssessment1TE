@@ -1,26 +1,19 @@
 #pragma once
-#ifndef LIB_HEADER
-#define LIB_HEADER
 #include "Room.h"
-#include "Twine.h"
-#include "Entity.h"
-
-
-class Library : public Room {
-
+class Hallway : public Room {
 public:
-	Library() {
-		mapChar = "L";
-		name = "Library";
-		ASCII = 
+	Hallway() {
+		mapChar = "H";
+		name = "Hallway";
+		ASCII =
 " =============================\n\
-               >>0<<           \n\
- __________________     <>%    \n\
- I[[[[[[[[[[[[[[[[I     %<>    \n\
- I[[[[[[[[[[[[[[[[I      |     \n\
- I[[[[[[[[[[[[[[[[I    __O___  \n\
- I[[[[[[[[[[[[[[[[I     |  |   \n\
- ------------------------------\n";
+ |                            |\n\
+ ||                          ||\n\
+ ||                          ||\n\
+ |9          }o{             p|\n\
+ ||       ____u______        ||\n\
+ ||       |         |        ||\n\
+ ||-------|---------|--------||\n";
 		description = "This is the library.\n\n\
 Atop a small table rests a small candle, it's smoke puffing in the air.\n\n\
 The bookshelves to the left are packed full.\n";
@@ -47,21 +40,20 @@ The bookshelves to the left are packed full.\n";
 
 
 
-		this->roomEntities = new Entity*[2] {
+		this->roomEntities = new Entity * [2] {
 			John,
 				Jack,
 			};
 
 		this->entityNum = 2;
 		descLength = 5;
-	
+
 	}
 
-	~Library() {
+	~Hallway() {
 	}
+
+
+
 
 };
-
-
-
-#endif // !LIB_HEADER

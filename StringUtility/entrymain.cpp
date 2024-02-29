@@ -2,9 +2,7 @@
 #include "Game.h"
 #include "Twine.h"
 #include "Windows.h"
-
-
-
+#include "Roll.h"
 int main() {
 
 	DWORD mode;
@@ -19,6 +17,7 @@ int main() {
 	
 	system("cls");
 	g.Run();
+
 
 }
 

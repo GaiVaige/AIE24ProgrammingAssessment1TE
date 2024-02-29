@@ -104,5 +104,11 @@
     <ClInclude Include="Dining2.h">
       <Filter>Header Files\Rooms</Filter>
     </ClInclude>
+    <ClInclude Include="Hallway.h">
+      <Filter>Header Files\Rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="Piano.h">
+      <Filter>Header Files\Rooms</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
