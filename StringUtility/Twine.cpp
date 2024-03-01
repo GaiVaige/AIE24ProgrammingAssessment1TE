@@ -169,7 +169,7 @@ size_t Twine::CharFind(char c) const {
 		}
 
 	}
-	return -1;
+	return (size_t)-1;
 }
 
 size_t Twine::TFind(Twine& c) const {
@@ -178,7 +178,6 @@ size_t Twine::TFind(Twine& c) const {
 	size_t b = c.Length();
 	int cL = 0;
 	int t = 0;
-	bool doSwap = true;
 
 	for (int i = 0; i < a; i++) {
 
@@ -187,7 +186,7 @@ size_t Twine::TFind(Twine& c) const {
 			for (int j = 0; j < b; j++) {
 
 				if (i + j > a) {
-					return -1;
+					return (size_t)-1;
 				}
 
 				if (this->twine[i + j] != c[j]) {
@@ -215,7 +214,7 @@ size_t Twine::TFind(const char* c) const {
 	size_t b = Length(c);
 	int cL = 0;
 	int t = 0;
-	bool doSwap = true;
+
 
 	for (int i = 0; i < a; i++) {
 
@@ -224,7 +223,7 @@ size_t Twine::TFind(const char* c) const {
 			for (int j = 0; j < b; j++) {
 
 				if (i + j > a) {
-					return -1;
+					return (size_t)-1;
 				}
 
 				if (this->twine[i + j] != c[j]) {
@@ -251,7 +250,7 @@ size_t Twine::TFind(Twine& c, int sIn) const {
 	size_t b = c.Length();
 	int cL = 0;
 	int t = 0;
-	bool doSwap = true;
+
 
 	for (int i = sIn; i < a; i++) {
 
@@ -260,7 +259,7 @@ size_t Twine::TFind(Twine& c, int sIn) const {
 			for (int j = 0; j < b; j++) {
 
 				if (i + j > a) {
-					return -1;
+					return (size_t)- 1;
 				}
 
 				if (this->twine[i + j] != c[j]) {
@@ -286,7 +285,7 @@ size_t Twine::TFind(const char* c, int sIn) const{
 	size_t b = Length(c);
 	int cL = 0;
 	int t = 0;
-	bool doSwap = true;
+
 
 	for (int i = sIn; i < a; i++) {
 
@@ -295,7 +294,7 @@ size_t Twine::TFind(const char* c, int sIn) const{
 			for (int j = 0; j < b; j++) {
 
 				if (i + j > a) {
-					return -1;
+					return (size_t)- 1;
 				}
 
 				if (this->twine[i + j] != c[j]) {
@@ -366,7 +365,7 @@ size_t Twine::ParseForInt() {
 bool Twine::TFindOnly(Twine& c) {
 
 	size_t curLen = this->Length();
-	size_t checkLen = Length(c);
+	size_t checkLen = Length(c.TStr());
 	int searchIndex = 0;
 	int previousWordSpot = 0;
 
@@ -450,7 +449,7 @@ bool Twine::TFindOnly(const char* c) {
 bool Twine::TFindOnly(Twine& c, int sIn) {
 
 	size_t curLen = this->Length();
-	size_t checkLen = Length(c);
+	size_t checkLen = Length(c.TStr());
 	int searchIndex = 0;
 	int previousWordSpot = 0;
 
@@ -543,12 +542,12 @@ bool Twine::FindInSpool(Twine tAr[], int size) {
 
 Twine Twine::Capital() {
 	if (isalpha(this->twine[0])) {
-		this->twine[0] = toupper(this->twine[0]);
+		this->twine[0] = (char)toupper(this->twine[0]);
 	}
 	return *this;
 }
 
-Twine Twine::ToLower() {
+Twine Twine::ToLower() const{
 
 	size_t l = this->Length();
 	Twine newT;
@@ -557,7 +556,7 @@ Twine Twine::ToLower() {
 	for (int i = 0; i < l; i++) {
 
 
-		newArr[i] = tolower(this->twine[i]);
+		newArr[i] = (char)tolower(this->twine[i]);
 
 
 	}
@@ -568,7 +567,7 @@ Twine Twine::ToLower() {
 	return newT;
 }
 
-Twine Twine::ToLower(Twine& c) {
+Twine Twine::ToLower(Twine& c) const {
 
 	size_t l = c.Length();
 	Twine newT;
@@ -577,7 +576,7 @@ Twine Twine::ToLower(Twine& c) {
 	for (int i = 0; i < l; i++) {
 
 
-		newArr[i] = tolower(c[i]);
+		newArr[i] = (char)tolower(c[i]);
 
 
 	}
@@ -589,7 +588,7 @@ Twine Twine::ToLower(Twine& c) {
 	
 }
 
-Twine Twine::ToLower(const char* c) {
+Twine Twine::ToLower(const char* c) const {
 
 	size_t l = Length(c);
 	Twine newT;
@@ -598,7 +597,7 @@ Twine Twine::ToLower(const char* c) {
 	for (int i = 0; i < l; i++) {
 
 
-		newArr[i] = tolower(c[i]);
+		newArr[i] = (char)tolower(c[i]);
 
 
 	}
@@ -619,7 +618,7 @@ Twine Twine::ToUpper() {
 	for (int i = 0; i < l; i++) {
 
 
-		newArr[i] = toupper(this->twine[i]);
+		newArr[i] = (char)toupper(this->twine[i]);
 
 
 	}
@@ -639,7 +638,7 @@ Twine Twine::ToUpper(Twine& c) {
 	for (int i = 0; i < l; i++) {
 
 
-		newArr[i] = toupper(c[i]);
+		newArr[i] = (char)toupper(c[i]);
 
 
 	}
@@ -660,7 +659,7 @@ Twine Twine::ToUpper(const char* c) {
 	for (int i = 0; i < l; i++) {
 
 
-		newArr[i] = toupper(c[i]);
+		newArr[i] = (char)toupper(c[i]);
 
 
 	}
@@ -682,10 +681,10 @@ void Twine::Wobble() {
 
 			srand (((unsigned int)time(NULL)) + (i%5) - 1);
 			if (rand() % 2 == 0) {
-				nt[i] = toupper(this->twine[i]);
+				nt[i] = (char)toupper(this->twine[i]);
 			}
 			else {
-				nt[i] = tolower(this->twine[i]);
+				nt[i] = (char)tolower(this->twine[i]);
 			}
 
 		}
@@ -703,7 +702,7 @@ void Twine::Wobble() {
 
 }
 
-bool Twine::Compare(Twine& c) const{
+bool Twine::Compare(const Twine& c) const{
 
 
 	size_t i = this->LengthNoSpace();
@@ -713,7 +712,7 @@ bool Twine::Compare(Twine& c) const{
 
 		for (int a = 0; a < i; a++) {
 
-			if (this->twine[a] == c.twine[a]) {
+			if (this->ToLower().twine[a] == c.ToLower().twine[a]) {
 			}
 			else {
 				return false;
@@ -738,7 +737,7 @@ bool Twine::Compare(const char* c) const {
 
 		for (int a = 0; a < i; a++) {
 
-			if (this->twine[a] == c[a]) {
+			if (this->ToLower().twine[a] == ToLower(c)[a]) {
 
 				a++;
 			}
@@ -823,12 +822,14 @@ void Twine::Insert(const char* c, int insertIndex) {
 
 void Twine::Erase(int delInt, int startIndex) {
 
-
-	startIndex--;
-
 	if (startIndex < 0) {
 		startIndex = 0;
 	}
+
+	if (startIndex >= this->Length()) {
+		return;
+	}
+
 	size_t newsize = this->Length() - delInt;
 	char* newTwine = new char[newsize + 1];
 
@@ -1097,7 +1098,7 @@ bool Twine::operator == (const char* c) const{
 
 }
 
-bool Twine::operator == (Twine& t) const {
+bool Twine::operator == (const Twine& t) const {
 
 	if (this->Compare(t)) {
 		return true;
@@ -1118,7 +1119,7 @@ bool Twine::operator != (const char* c) const {
 	}
 }
 
-bool Twine::operator != (Twine& t) const{
+bool Twine::operator != (const Twine& t) const{
 	if (this->Compare(t)) {
 		return false;
 	}
@@ -1158,21 +1159,18 @@ char Twine::operator [] (int i) {
 
 }
 
-bool Twine::operator < (Twine& t) {
+bool Twine::operator < (const Twine& t) const {
 
-	this->ToLower();
-	t.ToLower();
+	Twine t1 = t.ToLower();
+	Twine t2 = this->ToLower();
 
-	char cA = this->twine[0];
-	char cB = t.twine[0];
+	char cA = t1.twine[0];
+	char cB = t2.twine[0];
 
 	for (int i = 0; ; i++) {
 
-		char cA = this->twine[i];
-		char cB = t.twine[i];
-
-
-
+		cA = t1.twine[i];
+		cB = t2.twine[i];
 
 		if (isspace(cA)) {
 			return true;
@@ -1182,11 +1180,10 @@ bool Twine::operator < (Twine& t) {
 		}
 		else if (cA < cB) {
 
-			if (this->twine[i+1] == '\0') {
-
+			if (t1.twine[i + 1] == '\0') {
 				return true;
 			}
-			else if (t.twine[i + 1] == '\0') {
+			else if (t2.twine[i + 1] == '\0') {
 
 				return false;
 			}
@@ -1195,33 +1192,33 @@ bool Twine::operator < (Twine& t) {
 		}
 		else if (cB < cA) {
 
-			if (this->twine[i + 1] == '\0') {
+			if (t1.twine[i + 1] == '\0') {
 
 				return true;
 			}
-			else if (t.twine[i + 1] == '\0') {
+			else if (t2.twine[i + 1] == '\0') {
 
 				return false;
 			}
 			return false;
 		}
-
+		return false;
 
 	}
 }
 
-bool Twine::operator > (Twine& t) {
+bool Twine::operator > (const Twine& t) const{
 
-	this->ToLower();
-	t.ToLower();
+	Twine t1 = t.ToLower();
+	Twine t2 = this->ToLower();
 
-	char cA = this->twine[0];
-	char cB = t.twine[0];
+	char cA = t1.twine[0];
+	char cB = t2.twine[0];
 
 	for (int i = 0; ; i++) {
 
-		char cA = this->twine[i];
-		char cB = t.twine[i];
+		cA = t1.twine[i];
+		cB = t2.twine[i];
 
 		if (isspace(cA)) {
 			return false;
@@ -1231,11 +1228,10 @@ bool Twine::operator > (Twine& t) {
 		}
 		else if (cA < cB) {
 
-			if (this->twine[i + 1] == '\0') {
-
+			if (t1.twine[i + 1] == '\0') {
 				return false;
 			}
-			else if (t.twine[i + 1] == '\0') {
+			else if (t2.twine[i + 1] == '\0') {
 
 				return true;
 			}
@@ -1244,20 +1240,19 @@ bool Twine::operator > (Twine& t) {
 		}
 		else if (cB < cA) {
 
-			if (this->twine[i + 1] == '\0') {
+			if (t1.twine[i + 1] == '\0') {
 
 				return false;
 			}
-			else if (t.twine[i + 1] == '\0') {
+			else if (t2.twine[i + 1] == '\0') {
 
 				return true;
 			}
 			return true;
 		}
-
+		return false;
 
 	}
-
 
 }
 

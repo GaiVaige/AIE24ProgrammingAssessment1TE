@@ -8,11 +8,8 @@
 	class Twine {
 
 
-	public:
+	protected:
 		char* twine;
-		
-		operator const char* () { return twine; };
-		operator char* () const { return twine; };
 
 	public:
 
@@ -70,9 +67,9 @@
 		Twine Capital();
 
 		//Shifts all chars in Twine to lowercase and returns it as a NEW twine object
-		Twine ToLower();
-		Twine ToLower(Twine& c);
-		Twine ToLower(const char* c);
+		Twine ToLower() const;
+		Twine ToLower(Twine& c) const;
+		Twine ToLower(const char* c) const;
 		//Shifts all chars in Twine to uppercase and returns it as a NEW twine object
 		Twine ToUpper();
 		Twine ToUpper(Twine& c);
@@ -81,7 +78,7 @@
 		void Wobble();
 
 		//Compares two strings to see if they are the same
-		bool Compare(Twine& c) const;
+		bool Compare(const Twine& c) const;
 		bool Compare(const char* c) const;
 
 
@@ -117,14 +114,14 @@
 		Twine& operator = (const char* c);
 		Twine& operator = (Twine& t);
 		bool operator == (const char* c) const;
-		bool operator == (Twine& t) const;
+		bool operator == (const Twine& t) const;
 		bool operator != (const char* c) const;
-		bool operator != (Twine& t) const;
+		bool operator != (const Twine& t) const;
 		Twine& operator += (Twine& t);
 		Twine operator + (Twine& t);
 		char operator [] (int n);
-		bool operator < (Twine& t);
-		bool operator > (Twine& t);
+		bool operator < (const Twine& t) const;
+		bool operator > (const Twine& t) const;
 
 
 	};

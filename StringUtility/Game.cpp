@@ -24,7 +24,7 @@ Game::Game() {
 	p->LearnSpell(fireball);
 	Spell* test = new Spell(Twine("Test1"), Twine("Test"));
 	p->LearnSpell(test);
-	Spell* test2 = new Spell(Twine("Test2"), Twine("Test"));
+	Spell* test2 = new Spell(Twine("Test1"), Twine("Test"));
 	p->LearnSpell(test2);
 	Spell* dance = new Spell(Twine("Dance Macabre"), Twine("Make em dance till they're dead!"));
 	p->LearnSpell(dance);
@@ -256,7 +256,7 @@ void Game::DrawMap() {
 
 
 			if (x == 0) {
-				std::cout << Twine("{");
+				std::cout << Twine("{").TStr();
 			}
 
 			if (x == pPos.X && (5 - yPos) == pPos.Y) {
@@ -280,7 +280,7 @@ void Game::DrawMap() {
 				}
 				else {
 
-					std::cout << Twine(" X ");
+					std::cout << Twine(" X ").TStr();
 				}
 
 			}

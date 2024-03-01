@@ -44,7 +44,7 @@ void Player::CheckForValidCommand(Twine& searchT) {
 
 	}
 	for (int i = 0; i < 4; i++) {
-		if (searchT.ToLower().TFindOnly(validDialougeCommands[i].ToLower())) {
+		if (searchT.ToLower().TFindOnly(validDialougeCommands[i].ToLower().TStr())) {
 			currentRoom->CheckForDialogue(searchT, this);
 			return;
 		}
@@ -71,7 +71,6 @@ void Player::CheckForValidCommand(Twine& searchT) {
 				break;
 
 			}
-
 			return;
 		}
 
@@ -204,42 +203,36 @@ void Player::MovePlayer(int i) {
 
 void Player::SpellLookUp(Twine searchT) {
 
-	int search = (int)spellCount / 2;
-	int prevSearch = spellCount;
-	bool spellFound = false;
+	int search = spellCount/ 2;
+	size_t highest = spellCount;
+	size_t lowest = 0;
 	searchT.Replace("search ", "");
 	searchT.Replace("spell ", "");
 
-	if (searchT.twine[searchT.Length() - 1] == ' ') {
-		searchT.Erase(1, searchT.Length() - 1);
-	}
-	while (!spellFound) {
-		if (spellCount < 1) {
-			break;
-		}
-
-		if(spells[search]->name.ToLower() != searchT.ToLower()){
-			if (spells[search]->name.ToLower() < searchT.ToLower().TStr()) {
-				search = search / 2;
-				continue;
-			}
-
-			if (spells[search]->name.ToLower() > searchT.ToLower().TStr()) {
-				search += (prevSearch-search) /2;
-				continue;
-			}
-		}
-		else {
-			spellFound = true;
-			std::cout << "Name: " << spells[search]->name << '\n';
-			std::cout << "Description: " << spells[search]->description << '\n';
-			return;
+	if (searchT[searchT.Length() - 1] == ' ') {
+		for (int i = searchT.Length() - 1; searchT[i] == ' '; i--) {
+			searchT.Erase(1, i);
 		}
 	}
 
+	while (lowest != highest) {
 
+				if (spells[search]->name.ToLower() < searchT.ToLower()) {
 
+					lowest = search + 1;
 
+				}
+				else{
+					highest = search;
+				}
+				search = lowest + ((highest - lowest) / 2);		
+	}
+
+	if (spells[search]->name.ToLower() == searchT.ToLower()) {
+		std::cout << "Name: " << spells[search]->name << '\n';
+		std::cout << "Description: " << spells[search]->description << '\n';
+		return;
+	}
 
 	std::cout << "I don't know that spell..." << '\n';
 	return;
@@ -273,7 +266,7 @@ void Player::LearnSpell(Spell* sp) {
 
 void Player::FullSpellList() {
 
-	std::cout << Twine("I currently know: ") << '\n';
+	std::cout << Twine("I currently know: ").TStr() << '\n';
 
 	for (int i = 0; i < spellCount; i++) {
 		Twine t = spells[i]->name;
@@ -313,7 +306,7 @@ void Player::InitPlayer() {
 
 	std::cout << "Ah... yes. You're coming to. Tell me...\nWhat is your name: ";
 	std::cin >> this->name;
-	this->name = name.Capital();
+	this->name = name.Capital().TStr();
 
 	Twine checkTwine = "";
 	int checkInt = 0;
@@ -322,19 +315,19 @@ void Player::InitPlayer() {
 
 	while (true) {
 		checkTwine.GetTwine();
-		if (checkTwine.ToLower().TFind(Twine("Strong").ToLower()) != -1) {
+		if (checkTwine.ToLower().TFind(Twine("Strong").ToLower().TStr()) != -1) {
 			checkInt = 1;
 			break;
 		}
-		else if (checkTwine.ToLower().TFind(Twine("Social").ToLower()) != -1) {
+		else if (checkTwine.ToLower().TFind(Twine("Social").ToLower().TStr()) != -1) {
 			checkInt = 2;
 			break;
 		}
-		else if (checkTwine.ToLower().TFind(Twine("Smart").ToLower()) != -1) {
+		else if (checkTwine.ToLower().TFind(Twine("Smart").ToLower().TStr()) != -1) {
 			checkInt = 3;
 			break;
 		}
-		else if (checkTwine.ToLower().TFind(Twine("None").ToLower()) != -1) {
+		else if (checkTwine.ToLower().TFind(Twine("None").ToLower().TStr()) != -1) {
 			checkInt = 4;
 			break;
 		}
@@ -357,7 +350,7 @@ void Player::InitPlayer() {
 		break;
 	case 4:
 		s.InitStats(4, 4, 4, 4, 4, 4);
-		std::cout << Twine("Oh my... well, if you truly are that pitiable...\n");
+		std::cout << Twine("Oh my... well, if you truly are that pitiable...\n").TStr();
 
 	}
 
@@ -398,6 +391,7 @@ void Player::SpellSort() {
 		swapped = false;
 
 		for (int y = 0; y < spellCount - i - 1; y++) {
+
 			if (Spell::Compare(*spells[y], *spells[y + 1])) {
 				std::swap(this->spells[y], this->spells[y + 1]);
 				swapped = true;
@@ -456,11 +450,11 @@ void Player::Attack(Twine searchT) {
 		int roll = Roll::RollDice(1, 20);
 		if (roll == 20) {
 			crit = true;
-			std::cout << Twine("CRITICAL HIT!! ");
+			std::cout << Twine("CRITICAL HIT!! ").TStr();
 		}
 
 		roll += ((this->s.Strength - 10) / 2);
-		std::cout << Twine("Rolled ") << roll << "! ";
+		std::cout << Twine("Rolled ").TStr() << roll << "! ";
 		if (!crit) {
 			roll -= e->ac;
 		}
@@ -489,12 +483,12 @@ void Player::Attack(Twine searchT) {
 void Player::ApplyDam(Entity* e, bool crit) {
 
 	if (crit) {
-		std::cout << Twine("That's a hit! Dealt ") << (5 + ((this->s.Strength - 10))) << " damage!" << '\n';
+		std::cout << Twine("That's a hit! Dealt ").TStr() << (5 + ((this->s.Strength - 10))) << " damage!" << '\n';
 		e->hp -= 5 + ((this->s.Strength - 10));
 		return;
 	}
 	else {
-		std::cout << Twine("That's a hit! Dealt ") << (5 + ((this->s.Strength - 10) / 2)) << " damage!" << '\n';
+		std::cout << Twine("That's a hit! Dealt ").TStr() << (5 + ((this->s.Strength - 10) / 2)) << " damage!" << '\n';
 		e->hp -= 5 + ((this->s.Strength - 10) / 2);
 		return;
 	}

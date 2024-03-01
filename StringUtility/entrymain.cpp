@@ -10,7 +10,7 @@ int main() {
 	GetConsoleMode(GetStdHandle(STD_OUTPUT_HANDLE), &mode);
 	mode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
 	SetConsoleMode(GetStdHandle(STD_OUTPUT_HANDLE), mode);
-	SetConsoleTitleA(Twine("Ghost House"));
+	SetConsoleTitleA(Twine("Ghost House").TStr());
 	
 	
 	
@@ -18,9 +18,9 @@ int main() {
 	
 	system("cls");
 	g.Run();
-
-
-	//system("start https://aie.edu.au/course_category/programming/");
+	
+	
+	////system("start https://aie.edu.au/course_category/programming/");
 
 
 }

@@ -26,7 +26,7 @@ Twine Room::InspectRoom(Twine& t) {
 
 	for (int i = 0; i < this->descLength; i++) {
 
-		if (t.ToLower().TFindOnly(this->keyWords[i].ToLower()))
+		if (t.ToLower().TFindOnly(this->keyWords[i].ToLower().TStr()))
 		{
 			return this->extraDescriptions[i];
 		}
@@ -34,7 +34,7 @@ Twine Room::InspectRoom(Twine& t) {
 	}
 
 	for (int i = 0; i < this->entityNum; i++) {
-		if (t.ToLower().TFindOnly(this->roomEntities[i]->name.ToLower())) {
+		if (t.ToLower().TFindOnly(this->roomEntities[i]->name.ToLower().TStr())) {
 			return this->roomEntities[i]->description;
 		}
 	}
@@ -45,7 +45,7 @@ Twine Room::InspectRoom(Twine& t) {
 
 void Room::CheckForDialogue(Twine& t, Player* p) {
 	for (int i = 0; i < this->entityNum; i++) {
-		if (t.ToLower().TFindOnly(this->roomEntities[i]->name.ToLower())) {
+		if (t.ToLower().TFindOnly(this->roomEntities[i]->name.ToLower().TStr())) {
 			roomEntities[i]->Interact(p);
 			return;
 		}
@@ -57,7 +57,7 @@ void Room::CheckForDialogue(Twine& t, Player* p) {
 
 Entity* Room::CheckEntityNames(Twine& searchT) {
 	for (int i = 0; i < entityNum; i++) {
-		if (searchT.ToLower().TFindOnly(roomEntities[i]->name.ToLower())) {
+		if (searchT.ToLower().TFindOnly(roomEntities[i]->name.ToLower().TStr())) {
 			return roomEntities[i];
 		}
 	}
