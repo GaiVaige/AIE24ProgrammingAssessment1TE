@@ -36,10 +36,9 @@ static Twine validMoveCommands[5]{
 	"move to",
 };
 
-static Twine validCombatCommands[5]{
+static Twine validCombatCommands[4]{
 	"cast",
 	"search",
-	"check",
 	"spell",
 	"attack",
 };
@@ -77,6 +76,7 @@ public:
 	int yCord = 0;
 	int numberOfItems = 0;
 	int health;
+	bool isMoving;
 	bool flags[10]{
 	false,
 	false,

@@ -50,7 +50,7 @@ void Player::CheckForValidCommand(Twine& searchT) {
 		}
 	}
 
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < 4; i++) {
 
 		if (searchT.ToLower().TFindOnly(validCombatCommands[i].ToLower().TStr())) {
 			
@@ -59,15 +59,14 @@ void Player::CheckForValidCommand(Twine& searchT) {
 				CastSpell(searchT);
 				break;
 			case 1:
-				CastSpell(searchT);
+				this->SpellLookUp(searchT);
+				displaceVal = 1;
 				break;
 			case 2:
 				this->SpellLookUp(searchT);
+				displaceVal = 1;
 				break;
 			case 3:
-				this->SpellLookUp(searchT);
-				break;
-			case 4:
 				this->Attack(searchT);
 				break;
 
@@ -191,6 +190,7 @@ void Player::MovePlayer(int i) {
 		}
 		break;
 	}
+	isMoving = true;
 	CreateThread(NULL, NULL, [](LPVOID lpThreadParameter){
 		Beep(100, 200);
 		Beep(50, 200);
@@ -200,20 +200,47 @@ void Player::MovePlayer(int i) {
 		
 		}, NULL, NULL, NULL);
 
-
-
-
 }
 
 void Player::SpellLookUp(Twine searchT) {
-	for (int i = 0; i < this->spellCount; i++) {
 
-		if (searchT.ToLower().TFindOnly((spells[i]->name.ToLower().TStr()))) {
-			std::cout << "Name: " << spells[i]->name << '\n';
-			std::cout << "Description: " << spells[i]->description << '\n';
+	int search = (int)spellCount / 2;
+	int prevSearch = spellCount;
+	bool spellFound = false;
+	searchT.Replace("search ", "");
+	searchT.Replace("spell ", "");
+
+	if (searchT.twine[searchT.Length() - 1] == ' ') {
+		searchT.Erase(1, searchT.Length() - 1);
+	}
+	while (!spellFound) {
+		if (spellCount < 1) {
+			break;
+		}
+
+		if(spells[search]->name.ToLower() != searchT.ToLower()){
+			if (spells[search]->name.ToLower() < searchT.ToLower().TStr()) {
+				search = search / 2;
+				continue;
+			}
+
+			if (spells[search]->name.ToLower() > searchT.ToLower().TStr()) {
+				search += (prevSearch-search) /2;
+				continue;
+			}
+		}
+		else {
+			spellFound = true;
+			std::cout << "Name: " << spells[search]->name << '\n';
+			std::cout << "Description: " << spells[search]->description << '\n';
 			return;
 		}
 	}
+
+
+
+
+
 	std::cout << "I don't know that spell..." << '\n';
 	return;
 }
