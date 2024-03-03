@@ -95,7 +95,7 @@ int main() {
 			tFile << "Test 5: CharAt Failed!" << '\n';
 		}
 	
-		if (test.Compare("Test")) {
+		if (test.EqualTo("Test")) {
 			tFile << "Test 6: Compare Successful!" << '\n';
 			testPass++;
 		}
@@ -105,7 +105,7 @@ int main() {
 	
 		test.Append("HI");
 	
-		if (test.Compare("TestHI")) {
+		if (test.EqualTo("TestHI")) {
 			tFile << "Test 7: Append Successful!" << '\n';
 			testPass++;
 		}
@@ -115,7 +115,7 @@ int main() {
 	
 		test.Prepend("HI");
 	
-		if (test.Compare("HITestHI")) {
+		if (test.EqualTo("HITestHI")) {
 			tFile << "Test 8: Prepend Successful!" << '\n';
 			testPass++;
 		}
@@ -139,7 +139,7 @@ int main() {
 			tFile << "Test 10: To Lower Failed!" << '\n';
 		}
 	
-		if (test.TFind("Test") == 2) {
+		if (test.Find("Test") == 2) {
 			tFile << "Test 11: Find Successful!" << '\n';
 			testPass++;
 		}
@@ -147,7 +147,7 @@ int main() {
 			tFile << "Test 11: Find Failed!" << '\n';
 		}
 	
-		if (test.TFind("Test", 4) == -1) {
+		if (test.Find("Test", 4) == -1) {
 			tFile << "Test 12: Find From Index Successful!" << '\n';
 			testPass++;
 		}

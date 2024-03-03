@@ -172,7 +172,7 @@ size_t Twine::CharFind(char c) const {
 	return (size_t)-1;
 }
 
-size_t Twine::TFind(Twine& c) const {
+size_t Twine::Find(Twine& c) const {
 
 	size_t a = this->Length();
 	size_t b = c.Length();
@@ -208,7 +208,7 @@ size_t Twine::TFind(Twine& c) const {
 
 }
 
-size_t Twine::TFind(const char* c) const {
+size_t Twine::Find(const char* c) const {
 
 	size_t a = this->Length();
 	size_t b = Length(c);
@@ -244,7 +244,7 @@ size_t Twine::TFind(const char* c) const {
 
 }
 
-size_t Twine::TFind(Twine& c, int sIn) const {
+size_t Twine::Find(Twine& c, int sIn) const {
 
 	size_t a = this->Length();
 	size_t b = c.Length();
@@ -279,7 +279,7 @@ size_t Twine::TFind(Twine& c, int sIn) const {
 	return t;
 }
 
-size_t Twine::TFind(const char* c, int sIn) const{
+size_t Twine::Find(const char* c, int sIn) const{
 
 	size_t a = this->Length();
 	size_t b = Length(c);
@@ -362,7 +362,7 @@ size_t Twine::ParseForInt() {
 	return finalNum;
 }
 
-bool Twine::TFindOnly(Twine& c) {
+bool Twine::FindExclusive(Twine& c) {
 
 	size_t curLen = this->Length();
 	size_t checkLen = Length(c.TStr());
@@ -404,7 +404,7 @@ bool Twine::TFindOnly(Twine& c) {
 
 }
 
-bool Twine::TFindOnly(const char* c) {
+bool Twine::FindExclusive(const char* c) {
 
 	size_t curLen = this->Length();
 	size_t checkLen = Length(c);
@@ -446,7 +446,7 @@ bool Twine::TFindOnly(const char* c) {
 
 }
 
-bool Twine::TFindOnly(Twine& c, int sIn) {
+bool Twine::FindExclusive(Twine& c, int sIn) {
 
 	size_t curLen = this->Length();
 	size_t checkLen = Length(c.TStr());
@@ -487,7 +487,7 @@ bool Twine::TFindOnly(Twine& c, int sIn) {
 	return false;
 }
 
-bool Twine::TFindOnly(const char* c, int sIn) {
+bool Twine::FindExclusive(const char* c, int sIn) {
 
 	size_t curLen = this->Length();
 	size_t checkLen = Length(c);
@@ -533,7 +533,7 @@ bool Twine::FindInSpool(Twine tAr[], int size) {
 
 	for (int i = 0; i < size; i++) {
 
-		if (this->TFindOnly(tAr[i])) {
+		if (this->FindExclusive(tAr[i])) {
 			return true;
 		}
 	}
@@ -702,7 +702,7 @@ void Twine::Wobble() {
 
 }
 
-bool Twine::Compare(const Twine& c) const{
+bool Twine::EqualTo(const Twine& c) const{
 
 
 	size_t i = this->LengthNoSpace();
@@ -726,7 +726,7 @@ bool Twine::Compare(const Twine& c) const{
 	}
 }
 
-bool Twine::Compare(const char* c) const {
+bool Twine::EqualTo(const char* c) const {
 
 
 	size_t i = this->Length();
@@ -850,7 +850,7 @@ void Twine::Erase(int delInt, int startIndex) {
 }
 
 void Twine::Replace(Twine& find, Twine& newc) {
-	size_t replaceStringPos = this->TFind(find.twine);
+	size_t replaceStringPos = this->Find(find.twine);
 	if (replaceStringPos == -1) {
 		return;
 	}
@@ -878,13 +878,13 @@ void Twine::Replace(Twine& find, Twine& newc) {
 			finalTracker++;
 		}
 		this->SetTwine(newT);
-		replaceStringPos = this->TFind(find.twine, checkTrack);
+		replaceStringPos = this->Find(find.twine, checkTrack);
 		delete[] newT;
 	}
 }
 
 void Twine::Replace(const char* find, const char* newc) {
-	size_t replaceStringPos = this->TFind(find);
+	size_t replaceStringPos = this->Find(find);
 	if (replaceStringPos == -1) {
 		return;
 	}
@@ -912,7 +912,7 @@ void Twine::Replace(const char* find, const char* newc) {
 			finalTracker++;
 		}
 		this->SetTwine(newT);
-		replaceStringPos = this->TFind(find, checkTrack);
+		replaceStringPos = this->Find(find, checkTrack);
 		delete[] newT;
 	}
 }
@@ -1089,7 +1089,7 @@ Twine& Twine::operator = (Twine& t1) {
 
 bool Twine::operator == (const char* c) const{
 
-	if (this->Compare(c)) {
+	if (this->EqualTo(c)) {
 		return true;
 	}
 	else {
@@ -1100,7 +1100,7 @@ bool Twine::operator == (const char* c) const{
 
 bool Twine::operator == (const Twine& t) const {
 
-	if (this->Compare(t)) {
+	if (this->EqualTo(t)) {
 		return true;
 	}
 	else {
@@ -1111,7 +1111,7 @@ bool Twine::operator == (const Twine& t) const {
 }
 
 bool Twine::operator != (const char* c) const {
-	if (this->Compare(c)) {
+	if (this->EqualTo(c)) {
 		return false;
 	}
 	else {
@@ -1120,7 +1120,7 @@ bool Twine::operator != (const char* c) const {
 }
 
 bool Twine::operator != (const Twine& t) const{
-	if (this->Compare(t)) {
+	if (this->EqualTo(t)) {
 		return false;
 	}
 	else {

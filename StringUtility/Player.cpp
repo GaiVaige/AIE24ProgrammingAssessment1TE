@@ -28,7 +28,7 @@ void Player::CheckForValidCommand(Twine& searchT) {
 	int moveCheck = 0;
 	for (int i = 0; i < 3; i++) {
 
-		if (searchT.ToLower().TFindOnly(validItemCommands[i].ToLower().TStr())) {
+		if (searchT.ToLower().FindExclusive(validItemCommands[i].ToLower().TStr())) {
 			SearchItem(searchT).DisplayTwine();
 			return;
 		}
@@ -37,14 +37,14 @@ void Player::CheckForValidCommand(Twine& searchT) {
 
 	for (int i = 0; i < 5; i++) {
 
-		if (searchT.ToLower().TFindOnly(validRoomCommands[i].ToLower().TStr())) {
+		if (searchT.ToLower().FindExclusive(validRoomCommands[i].ToLower().TStr())) {
 			currentRoom->InspectRoom(searchT).DisplayTwine();
 			return;
 		}
 
 	}
 	for (int i = 0; i < 4; i++) {
-		if (searchT.ToLower().TFindOnly(validDialougeCommands[i].ToLower().TStr())) {
+		if (searchT.ToLower().FindExclusive(validDialougeCommands[i].ToLower().TStr())) {
 			currentRoom->CheckForDialogue(searchT, this);
 			return;
 		}
@@ -52,7 +52,7 @@ void Player::CheckForValidCommand(Twine& searchT) {
 
 	for (int i = 0; i < 4; i++) {
 
-		if (searchT.ToLower().TFindOnly(validCombatCommands[i].ToLower().TStr())) {
+		if (searchT.ToLower().FindExclusive(validCombatCommands[i].ToLower().TStr())) {
 			
 			switch (i) {
 			case 0:
@@ -78,7 +78,7 @@ void Player::CheckForValidCommand(Twine& searchT) {
 
 	for (int i = 0; i < 3; i++) {
 
-		if (searchT.ToLower().TFindOnly(validUtilityCommands[i].ToLower().TStr())) {
+		if (searchT.ToLower().FindExclusive(validUtilityCommands[i].ToLower().TStr())) {
 
 			switch (i) {
 			case 0:
@@ -102,10 +102,10 @@ void Player::CheckForValidCommand(Twine& searchT) {
 
 
 	for (int i = 0; i < 5; i++) {
-		if (searchT.ToLower().TFindOnly(validMoveCommands[i].ToLower().TStr())) {
+		if (searchT.ToLower().FindExclusive(validMoveCommands[i].ToLower().TStr())) {
 
 			for (int y = 0; y < 4; y++) {
-				if (searchT.ToLower().TFindOnly(Directions[y].ToLower().TStr())) {
+				if (searchT.ToLower().FindExclusive(Directions[y].ToLower().TStr())) {
 					MovePlayer(y);
 					moveCheck++;
 				}
@@ -151,7 +151,7 @@ Twine Player::SearchItem(Twine& searchT) {
 	
 
 	for (int i = 0; i < this->numberOfItems; i++) {
-		if (searchT.ToLower().TFind(playerInventory[i]->Name().ToLower().TStr()) != -1) {
+		if (searchT.ToLower().Find(playerInventory[i]->Name().ToLower().TStr()) != -1) {
 			return playerInventory[i]->Use();
 		}
 
@@ -277,7 +277,7 @@ void Player::FullSpellList() {
 void Player::CastSpell(Twine searchT) {
 	for (int i = 0; i < this->spellCount; i++) {
 
-		if (searchT.ToLower().TFindOnly((spells[i]->name.ToLower().TStr()))) {
+		if (searchT.ToLower().FindExclusive((spells[i]->name.ToLower().TStr()))) {
 			if (spells[i]->hasTarget) {
 				Entity* e = currentRoom->CheckEntityNames(searchT);
 				if (e != nullptr) {
@@ -315,19 +315,19 @@ void Player::InitPlayer() {
 
 	while (true) {
 		checkTwine.GetTwine();
-		if (checkTwine.ToLower().TFind(Twine("Strong").ToLower().TStr()) != -1) {
+		if (checkTwine.ToLower().Find(Twine("Strong").ToLower().TStr()) != -1) {
 			checkInt = 1;
 			break;
 		}
-		else if (checkTwine.ToLower().TFind(Twine("Social").ToLower().TStr()) != -1) {
+		else if (checkTwine.ToLower().Find(Twine("Social").ToLower().TStr()) != -1) {
 			checkInt = 2;
 			break;
 		}
-		else if (checkTwine.ToLower().TFind(Twine("Smart").ToLower().TStr()) != -1) {
+		else if (checkTwine.ToLower().Find(Twine("Smart").ToLower().TStr()) != -1) {
 			checkInt = 3;
 			break;
 		}
-		else if (checkTwine.ToLower().TFind(Twine("None").ToLower().TStr()) != -1) {
+		else if (checkTwine.ToLower().Find(Twine("None").ToLower().TStr()) != -1) {
 			checkInt = 4;
 			break;
 		}
@@ -362,7 +362,7 @@ void Player::InitPlayer() {
 	while (true) {
 		checkTwine.GetTwine();
 
-		if (checkTwine.ToLower().TFind("open") != -1){
+		if (checkTwine.ToLower().Find("open") != -1){
 			break;
 		}
 		else {
