@@ -72,15 +72,12 @@ void Twine::SetTwine(const char* c) {
 	twine[l] = '\0';
 }
 
-const char* Twine::TStr() const {
-	//returns twine for use with std::Cout<<
-	//redundant as operator overloaded
-	return this->twine;
+void Twine::Copy(Twine& newTextTwine) {
+	this->SetTwine(newTextTwine);
 }
 
-void Twine::DisplayTwine()  const {
-    //cleaner method of displaying twine
-	std::cout << twine << '\n';
+void Twine::Copy(Twine& twineA, Twine& twineB) {
+	twineA.SetTwine(twineB.twine);
 }
 
 void Twine::GetTwine(){
@@ -110,6 +107,17 @@ void Twine::GetTwine(){
 	&std::ostream::flush;
 }
 
+const char* Twine::TStr() const {
+	//returns twine for use with std::Cout<<
+	//redundant as operator overloaded
+	return this->twine;
+}
+
+void Twine::DisplayTwine()  const {
+    //cleaner method of displaying twine
+	std::cout << twine << '\n';
+}
+
 size_t Twine::Length() const{
 	for (int i = 0; ; i++) {
 		//if end of string detected, return value of i
@@ -119,35 +127,12 @@ size_t Twine::Length() const{
 	}
 }
 
-size_t Twine::LengthNoSpace()  const {
-	int y = 0;
-	for (int i = 0; ; i++) {
-		//only increments return value y if there is no space
-		if (!isspace(this->twine[i])) {
-			//if end of string detected, return current value of y
-			if (this->twine[i] == '\0') {
-				return y;
-			}
-			y++;
-		}
-	}
-	return y;
-}
-
 size_t Twine::Length(const char* c) {
 	for (int i = 0; ; i++) {
 		if (c[i] == '\0') {
 			return i;
 		}
 	}
-}
-
-void Twine::Copy(Twine& newTextTwine) {
-	this->SetTwine(newTextTwine);
-}
-
-void Twine::Copy(Twine& twineA, Twine& twineB) {
-	twineA.SetTwine(twineB.twine);
 }
 
 char Twine::CharAt(int i) const {
@@ -315,238 +300,6 @@ size_t Twine::Find(const char* c, int sIn) const{
 
 }
 
-size_t Twine::ParseForInt() {
-	
-	
-	size_t l = this->Length();
-	int digits = 0;
-	for (int i = 0; i < l; i++) {
-
-		if (isdigit(this->twine[i])) {
-				digits++;
-
-
-		}
-
-	}
-
-
-	int* retInt = new int[digits];
-	retInt[0] = 0;
-	int digTracker = 0;
-	for (int i = 0; i < l; i++) {
-
-		if (isdigit(this->twine[i])){
-			if (digTracker < digits) {
-
-				int x = this->twine[i] - 48;
-				retInt[digTracker] = x;
-				digTracker++;
-			}
-
-		}
-
-	}
-
-	long long int finalNum = 0;
-
-
-	for (int i = digits-1; i >= 0; --i) {
-		long long int multi = 0;
-		multi = (long long int)pow(10, (digits-1) - i);
-		long long int adder = (retInt[i] * multi);
-		finalNum += adder;
-	}
-
-	delete[] retInt;
-	return finalNum;
-}
-
-bool Twine::FindExclusive(Twine& c) {
-
-	size_t curLen = this->Length();
-	size_t checkLen = Length(c.TStr());
-	int searchIndex = 0;
-	int previousWordSpot = 0;
-
-	for (int i = 0; i < curLen + 1; i++) {
-
-		if (isspace(this->twine[i]) || this->twine[i] == '\0') {
-			int wordGap = i - previousWordSpot;
-			previousWordSpot = i + 1;
-			//cout << "Word length is: " << wordGap << '\n';
-
-
-			if (wordGap != checkLen) {
-				//cout << "Word length didn't match" << '\n';
-			}
-			else {
-				searchIndex = i - wordGap;
-				for (int x = 0; x < checkLen; x++) {
-					if (this->twine[searchIndex] == c[x]) {
-						//cout << this->twine[searchIndex] << " & " << c[x] << " are the same!!" << '\n';
-					}
-					else {
-						//cout << this->twine[searchIndex] << " & " << c[x] << " are NOT the same!!" << '\n';
-						break;
-					}
-					searchIndex++;
-				}
-				if (searchIndex == i) {
-					return true;
-				}
-			}
-		}
-
-	}
-
-	return false;
-
-}
-
-bool Twine::FindExclusive(const char* c) {
-
-	size_t curLen = this->Length();
-	size_t checkLen = Length(c);
-	int searchIndex = 0;
-	int previousWordSpot = 0;
-
-	for (int i = 0; i < curLen+1; i++) {
-
-		if (isspace(this->twine[i]) || this->twine[i] == '\0') {
-			int wordGap = i - previousWordSpot;
-			previousWordSpot = i + 1;
-			//cout << "Word length is: " << wordGap << '\n';
-
-
-			if (wordGap != checkLen) {
-				//cout << "Word length didn't match" << '\n';
-			}
-			else{
-				searchIndex = i - wordGap;
-				for (int x = 0; x < checkLen; x++) {
-					if (this->twine[searchIndex] == c[x]) {
-						//cout << this->twine[searchIndex] << " & " << c[x] << " are the same!!" << '\n';
-					}
-					else {
-						//cout << this->twine[searchIndex] << " & " << c[x] << " are NOT the same!!" << '\n';
-						break;
-					}
-					searchIndex++;
-				}
-				if (searchIndex == i) {
-					return true;
-				}
-			}
-		}
-
-	}
-
-	return false;
-
-}
-
-bool Twine::FindExclusive(Twine& c, int sIn) {
-
-	size_t curLen = this->Length();
-	size_t checkLen = Length(c.TStr());
-	int searchIndex = 0;
-	int previousWordSpot = 0;
-
-	for (int i = sIn; i < curLen + 1; i++) {
-
-		if (isspace(this->twine[i]) || this->twine[i] == '\0') {
-			int wordGap = i - previousWordSpot;
-			previousWordSpot = i + 1;
-			//cout << "Word length is: " << wordGap << '\n';
-
-
-			if (wordGap != checkLen) {
-				//cout << "Word length didn't match" << '\n';
-			}
-			else {
-				searchIndex = i - wordGap;
-				for (int x = 0; x < checkLen; x++) {
-					if (this->twine[searchIndex] == c[x]) {
-						//cout << this->twine[searchIndex] << " & " << c[x] << " are the same!!" << '\n';
-					}
-					else {
-						//cout << this->twine[searchIndex] << " & " << c[x] << " are NOT the same!!" << '\n';
-						break;
-					}
-					searchIndex++;
-				}
-				if (searchIndex == i) {
-					return true;
-				}
-			}
-		}
-
-	}
-
-	return false;
-}
-
-bool Twine::FindExclusive(const char* c, int sIn) {
-
-	size_t curLen = this->Length();
-	size_t checkLen = Length(c);
-	int searchIndex = 0;
-	int previousWordSpot = 0;
-
-	for (int i = sIn; i < curLen + 1; i++) {
-
-		if (isspace(this->twine[i]) || this->twine[i] == '\0') {
-			int wordGap = i - previousWordSpot;
-			previousWordSpot = i + 1;
-			//cout << "Word length is: " << wordGap << '\n';
-
-
-			if (wordGap != checkLen) {
-				//cout << "Word length didn't match" << '\n';
-			}
-			else {
-				searchIndex = i - wordGap;
-				for (int x = 0; x < checkLen; x++) {
-					if (this->twine[searchIndex] == c[x]) {
-						//cout << this->twine[searchIndex] << " & " << c[x] << " are the same!!" << '\n';
-					}
-					else {
-						//cout << this->twine[searchIndex] << " & " << c[x] << " are NOT the same!!" << '\n';
-						break;
-					}
-					searchIndex++;
-				}
-				if (searchIndex == i) {
-					return true;
-				}
-			}
-		}
-
-	}
-
-	return false;
-
-}
-
-bool Twine::FindInSpool(Twine tAr[], int size) {
-
-	for (int i = 0; i < size; i++) {
-
-		if (this->FindExclusive(tAr[i])) {
-			return true;
-		}
-	}
-	return false;
-}
-
-Twine Twine::Capital() {
-	if (isalpha(this->twine[0])) {
-		this->twine[0] = (char)toupper(this->twine[0]);
-	}
-	return *this;
-}
-
 Twine Twine::ToLower() const{
 
 	size_t l = this->Length();
@@ -669,38 +422,6 @@ Twine Twine::ToUpper(const char* c) {
 	delete[] newArr;
 	return newT;
 }
-	 
-void Twine::Wobble() {
-
-	size_t l = this->Length();
-	char* nt = new char[l + 1];
-
-	for (int i = 0; i < l; i++) {
-
-		if (!isspace(this->twine[i])) {
-
-			srand (((unsigned int)time(NULL)) + (i%5) - 1);
-			if (rand() % 2 == 0) {
-				nt[i] = (char)toupper(this->twine[i]);
-			}
-			else {
-				nt[i] = (char)tolower(this->twine[i]);
-			}
-
-		}
-		else {
-			nt[i] = ' ';
-		}
-
-
-
-	}
-	nt[l] = '\0';
-	this->SetTwine(nt);
-	delete[] nt;
-
-
-}
 
 bool Twine::EqualTo(const Twine& c) const{
 
@@ -751,101 +472,6 @@ bool Twine::EqualTo(const char* c) const {
 	else {
 		return false;
 	}
-
-}
-
-void Twine::Insert(Twine& c, int insertIndex) {
-
-	size_t curLen = this->Length();
-	size_t newLen = c.Length();
-	size_t newSize = curLen + newLen;
-
-
-	int i = 0; //tracker for for loops
-	int inserti = 0;
-	int finalTracker = 0;
-
-
-	char* newTwine = new char[newSize + 1];
-
-	for (i; i < insertIndex; i++) {
-		newTwine[i] = this->twine[i];
-	}
-	finalTracker = i;
-
-	for (i;i < insertIndex + newLen;i++) {
-		newTwine[i] = c[inserti];
-		inserti++;
-	}
-
-	for (i;i < Length(newTwine);i++) {
-		newTwine[i] = this->twine[finalTracker];
-		finalTracker++;
-	}
-
-	this->SetTwine(newTwine);
-	delete[] newTwine;
-}
-
-void Twine::Insert(const char* c, int insertIndex) {
-
-	size_t curLen = this->Length();
-	size_t newLen = Length(c);
-	size_t newSize = curLen + newLen;
-
-
-	int i = 0; //tracker for for loops
-	int inserti = 0;
-	int finalTracker = 0;
-
-
-	char* newTwine = new char[newSize + 1];
-
-	for (i; i < insertIndex; i++) {
-		newTwine[i] = this->twine[i];
-	}
-	finalTracker = i;
-
-	for (i;i < insertIndex + newLen;i++) {
-		newTwine[i] = c[inserti];
-		inserti++;
-	}
-
-	for (i;i < Length(newTwine);i++) {
-		newTwine[i] = this->twine[finalTracker];
-		finalTracker++;
-	}
-
-	this->SetTwine(newTwine);
-	delete[] newTwine;
-}
-
-void Twine::Erase(int delInt, int startIndex) {
-
-	if (startIndex < 0) {
-		startIndex = 0;
-	}
-
-	if (startIndex >= this->Length()) {
-		return;
-	}
-
-	size_t newsize = this->Length() - delInt;
-	char* newTwine = new char[newsize + 1];
-
-	int i = 0; //tracker for for loops
-
-	for (i; i < startIndex;i++) {
-		newTwine[i] = this->twine[i];
-	}
-
-	for (i;i < Length(newTwine);i++) {
-		newTwine[i] = this->twine[i + delInt];
-	}
-
-	newTwine[newsize] = '\0';
-	this->SetTwine(newTwine);
-	delete[] newTwine;
 
 }
 
@@ -917,6 +543,56 @@ void Twine::Replace(const char* find, const char* newc) {
 	}
 }
 
+void Twine::Prepend(Twine& c) {
+
+	size_t curCSize = this->Length();
+	size_t cSize = c.Length();
+	size_t newSize = cSize + curCSize;
+	char* newC = new char[newSize + 1];
+
+	for (int i = 0; i < cSize; i++) {
+
+		newC[i] = c[i];
+
+	}
+
+	for (int i = 0; i < curCSize; i++) {
+
+		newC[cSize + i] = this->twine[i];
+
+	}
+
+
+	newC[newSize] = '\0';
+	this->SetTwine(newC);
+	delete[] newC;
+
+}
+
+void Twine::Prepend(const char* c) {
+
+	size_t curCSize = this->Length();
+	size_t cSize = Length(c);
+	size_t newSize = cSize + curCSize;
+	char* newC = new char[newSize + 1];
+
+	for (int i = 0; i < cSize; i++) {
+
+		newC[i] = c[i];
+
+	}
+
+	for (int i = 0; i < curCSize; i++) {
+
+		newC[cSize + i] = this->twine[i];
+
+	}
+	newC[newSize] = '\0';
+	this->SetTwine(newC);
+	delete[] newC;
+
+}
+
 void Twine::Append(Twine& c) {
 
 	size_t curCSize = this->Length();
@@ -963,92 +639,6 @@ void Twine::Append(const char* c) {
 	this->SetTwine(newC);
 	delete[] newC;
 
-}
-
-void Twine::Prepend(Twine& c) {
-
-	size_t curCSize = this->Length();
-	size_t cSize = c.Length();
-	size_t newSize = cSize + curCSize;
-	char* newC = new char[newSize + 1];
-
-	for (int i = 0; i < cSize; i++) {
-
-		newC[i] = c[i];
-
-	}
-
-	for (int i = 0; i < curCSize; i++) {
-
-		newC[cSize + i] = this->twine[i];
-
-	}
-
-
-	newC[newSize] = '\0';
-	this->SetTwine(newC);
-	delete[] newC;
-
-}
-			
-void Twine::Prepend(const char* c) {
-
-	size_t curCSize = this->Length();
-	size_t cSize = Length(c);
-	size_t newSize = cSize + curCSize;
-	char* newC = new char[newSize + 1];
-
-	for (int i = 0; i < cSize; i++) {
-
-		newC[i] = c[i];
-
-	}
-
-	for (int i = 0; i < curCSize; i++) {
-
-		newC[cSize + i] = this->twine[i];
-
-	}
-	newC[newSize] = '\0';
-	this->SetTwine(newC);
-	delete[] newC;
-
-}	
-
-void Twine::Caesar(int displaceVal) {
-
-	Twine cc = this->ToUpper();
-
-	for (int i = 0; i < this->Length(); i++) {
-		if (cc.twine[i] >= 'A' && cc.twine[i] <= 'Z') {
-			cc.twine[i] = cc.twine[i] + displaceVal % 26;
-			if (cc.twine[i] > 'Z' || cc.twine[i] < 'A') {
-				cc.twine[i] = cc.twine[i] - 'Z' + 'A' - 1;
-			}
-		}
-
-
-
-	}
-	this->SetTwine(cc);
-
-}
-
-Twine& Twine::Colour(int r, int g, int b, bool fg) {
-
-	char buff[64];
-
-	if (fg) {
-		sprintf_s(buff, "\x1B[38;2;%d;%d;%dm", r, g, b);
-	}
-	else {
-		sprintf_s(buff, "\x1B[48;2;%d;%d;%dm", r, g, b);
-	}
-
-
-	this->Prepend(buff);
-	this->Append("\x1b[0m");
-	return *this;
 }
 
 std::ostream& operator << (std::ostream &out, Twine &t) {
@@ -1259,6 +849,425 @@ bool Twine::operator > (const Twine& t) const{
 
 	}
 
+}
+
+
+
+
+
+
+
+
+//extra functions below!!!
+
+size_t Twine::LengthNoSpace()  const {
+	int y = 0;
+	for (int i = 0; ; i++) {
+		//only increments return value y if there is no space
+		if (!isspace(this->twine[i])) {
+			//if end of string detected, return current value of y
+			if (this->twine[i] == '\0') {
+				return y;
+			}
+			y++;
+		}
+	}
+	return y;
+}
+
+size_t Twine::ParseForInt() {
+
+
+	size_t l = this->Length();
+	int digits = 0;
+	for (int i = 0; i < l; i++) {
+
+		if (isdigit(this->twine[i])) {
+			digits++;
+
+
+		}
+
+	}
+
+
+	int* retInt = new int[digits];
+	retInt[0] = 0;
+	int digTracker = 0;
+	for (int i = 0; i < l; i++) {
+
+		if (isdigit(this->twine[i])) {
+			if (digTracker < digits) {
+
+				int x = this->twine[i] - 48;
+				retInt[digTracker] = x;
+				digTracker++;
+			}
+
+		}
+
+	}
+
+	long long int finalNum = 0;
+
+
+	for (int i = digits - 1; i >= 0; --i) {
+		long long int multi = 0;
+		multi = (long long int)pow(10, (digits - 1) - i);
+		long long int adder = (retInt[i] * multi);
+		finalNum += adder;
+	}
+
+	delete[] retInt;
+	return finalNum;
+}
+
+bool Twine::FindExclusive(Twine& c) {
+
+	size_t curLen = this->Length();
+	size_t checkLen = Length(c.TStr());
+	int searchIndex = 0;
+	int previousWordSpot = 0;
+
+	for (int i = 0; i < curLen + 1; i++) {
+
+		if (isspace(this->twine[i]) || this->twine[i] == '\0') {
+			int wordGap = i - previousWordSpot;
+			previousWordSpot = i + 1;
+			//cout << "Word length is: " << wordGap << '\n';
+
+
+			if (wordGap != checkLen) {
+				//cout << "Word length didn't match" << '\n';
+			}
+			else {
+				searchIndex = i - wordGap;
+				for (int x = 0; x < checkLen; x++) {
+					if (this->twine[searchIndex] == c[x]) {
+						//cout << this->twine[searchIndex] << " & " << c[x] << " are the same!!" << '\n';
+					}
+					else {
+						//cout << this->twine[searchIndex] << " & " << c[x] << " are NOT the same!!" << '\n';
+						break;
+					}
+					searchIndex++;
+				}
+				if (searchIndex == i) {
+					return true;
+				}
+			}
+		}
+
+	}
+
+	return false;
+
+}
+
+bool Twine::FindExclusive(const char* c) {
+
+	size_t curLen = this->Length();
+	size_t checkLen = Length(c);
+	int searchIndex = 0;
+	int previousWordSpot = 0;
+
+	for (int i = 0; i < curLen + 1; i++) {
+
+		if (isspace(this->twine[i]) || this->twine[i] == '\0') {
+			int wordGap = i - previousWordSpot;
+			previousWordSpot = i + 1;
+			//cout << "Word length is: " << wordGap << '\n';
+
+
+			if (wordGap != checkLen) {
+				//cout << "Word length didn't match" << '\n';
+			}
+			else {
+				searchIndex = i - wordGap;
+				for (int x = 0; x < checkLen; x++) {
+					if (this->twine[searchIndex] == c[x]) {
+						//cout << this->twine[searchIndex] << " & " << c[x] << " are the same!!" << '\n';
+					}
+					else {
+						//cout << this->twine[searchIndex] << " & " << c[x] << " are NOT the same!!" << '\n';
+						break;
+					}
+					searchIndex++;
+				}
+				if (searchIndex == i) {
+					return true;
+				}
+			}
+		}
+
+	}
+
+	return false;
+
+}
+
+bool Twine::FindExclusive(Twine& c, int sIn) {
+
+	size_t curLen = this->Length();
+	size_t checkLen = Length(c.TStr());
+	int searchIndex = 0;
+	int previousWordSpot = 0;
+
+	for (int i = sIn; i < curLen + 1; i++) {
+
+		if (isspace(this->twine[i]) || this->twine[i] == '\0') {
+			int wordGap = i - previousWordSpot;
+			previousWordSpot = i + 1;
+			//cout << "Word length is: " << wordGap << '\n';
+
+
+			if (wordGap != checkLen) {
+				//cout << "Word length didn't match" << '\n';
+			}
+			else {
+				searchIndex = i - wordGap;
+				for (int x = 0; x < checkLen; x++) {
+					if (this->twine[searchIndex] == c[x]) {
+						//cout << this->twine[searchIndex] << " & " << c[x] << " are the same!!" << '\n';
+					}
+					else {
+						//cout << this->twine[searchIndex] << " & " << c[x] << " are NOT the same!!" << '\n';
+						break;
+					}
+					searchIndex++;
+				}
+				if (searchIndex == i) {
+					return true;
+				}
+			}
+		}
+
+	}
+
+	return false;
+}
+
+bool Twine::FindExclusive(const char* c, int sIn) {
+
+	size_t curLen = this->Length();
+	size_t checkLen = Length(c);
+	int searchIndex = 0;
+	int previousWordSpot = 0;
+
+	for (int i = sIn; i < curLen + 1; i++) {
+
+		if (isspace(this->twine[i]) || this->twine[i] == '\0') {
+			int wordGap = i - previousWordSpot;
+			previousWordSpot = i + 1;
+			//cout << "Word length is: " << wordGap << '\n';
+
+
+			if (wordGap != checkLen) {
+				//cout << "Word length didn't match" << '\n';
+			}
+			else {
+				searchIndex = i - wordGap;
+				for (int x = 0; x < checkLen; x++) {
+					if (this->twine[searchIndex] == c[x]) {
+						//cout << this->twine[searchIndex] << " & " << c[x] << " are the same!!" << '\n';
+					}
+					else {
+						//cout << this->twine[searchIndex] << " & " << c[x] << " are NOT the same!!" << '\n';
+						break;
+					}
+					searchIndex++;
+				}
+				if (searchIndex == i) {
+					return true;
+				}
+			}
+		}
+
+	}
+
+	return false;
+
+}
+
+bool Twine::FindInSpool(Twine tAr[], int size) {
+
+	for (int i = 0; i < size; i++) {
+
+		if (this->FindExclusive(tAr[i])) {
+			return true;
+		}
+	}
+	return false;
+}
+
+Twine Twine::Capital() {
+	if (isalpha(this->twine[0])) {
+		this->twine[0] = (char)toupper(this->twine[0]);
+	}
+	return *this;
+}
+
+void Twine::Wobble() {
+
+	size_t l = this->Length();
+	char* nt = new char[l + 1];
+
+	for (int i = 0; i < l; i++) {
+
+		if (!isspace(this->twine[i])) {
+
+			srand(((unsigned int)time(NULL)) + (i % 5) - 1);
+			if (rand() % 2 == 0) {
+				nt[i] = (char)toupper(this->twine[i]);
+			}
+			else {
+				nt[i] = (char)tolower(this->twine[i]);
+			}
+
+		}
+		else {
+			nt[i] = ' ';
+		}
+
+
+
+	}
+	nt[l] = '\0';
+	this->SetTwine(nt);
+	delete[] nt;
+
+
+}
+
+void Twine::Insert(Twine& c, int insertIndex) {
+
+	size_t curLen = this->Length();
+	size_t newLen = c.Length();
+	size_t newSize = curLen + newLen;
+
+
+	int i = 0; //tracker for for loops
+	int inserti = 0;
+	int finalTracker = 0;
+
+
+	char* newTwine = new char[newSize + 1];
+
+	for (i; i < insertIndex; i++) {
+		newTwine[i] = this->twine[i];
+	}
+	finalTracker = i;
+
+	for (i;i < insertIndex + newLen;i++) {
+		newTwine[i] = c[inserti];
+		inserti++;
+	}
+
+	for (i;i < Length(newTwine);i++) {
+		newTwine[i] = this->twine[finalTracker];
+		finalTracker++;
+	}
+
+	this->SetTwine(newTwine);
+	delete[] newTwine;
+}
+
+void Twine::Insert(const char* c, int insertIndex) {
+
+	size_t curLen = this->Length();
+	size_t newLen = Length(c);
+	size_t newSize = curLen + newLen;
+
+
+	int i = 0; //tracker for for loops
+	int inserti = 0;
+	int finalTracker = 0;
+
+
+	char* newTwine = new char[newSize + 1];
+
+	for (i; i < insertIndex; i++) {
+		newTwine[i] = this->twine[i];
+	}
+	finalTracker = i;
+
+	for (i;i < insertIndex + newLen;i++) {
+		newTwine[i] = c[inserti];
+		inserti++;
+	}
+
+	for (i;i < Length(newTwine);i++) {
+		newTwine[i] = this->twine[finalTracker];
+		finalTracker++;
+	}
+
+	this->SetTwine(newTwine);
+	delete[] newTwine;
+}
+
+void Twine::Erase(int delInt, int startIndex) {
+
+	if (startIndex < 0) {
+		startIndex = 0;
+	}
+
+	if (startIndex >= this->Length()) {
+		return;
+	}
+
+	size_t newsize = this->Length() - delInt;
+	char* newTwine = new char[newsize + 1];
+
+	int i = 0; //tracker for for loops
+
+	for (i; i < startIndex;i++) {
+		newTwine[i] = this->twine[i];
+	}
+
+	for (i;i < Length(newTwine);i++) {
+		newTwine[i] = this->twine[i + delInt];
+	}
+
+	newTwine[newsize] = '\0';
+	this->SetTwine(newTwine);
+	delete[] newTwine;
+
+}
+
+void Twine::Caesar(int displaceVal) {
+
+	Twine cc = this->ToUpper();
+
+	for (int i = 0; i < this->Length(); i++) {
+		if (cc.twine[i] >= 'A' && cc.twine[i] <= 'Z') {
+			cc.twine[i] = cc.twine[i] + displaceVal % 26;
+			if (cc.twine[i] > 'Z' || cc.twine[i] < 'A') {
+				cc.twine[i] = cc.twine[i] - 'Z' + 'A' - 1;
+			}
+		}
+
+
+
+	}
+	this->SetTwine(cc);
+
+}
+
+Twine& Twine::Colour(int r, int g, int b, bool fg) {
+
+	char buff[64];
+
+	if (fg) {
+		sprintf_s(buff, "\x1B[38;2;%d;%d;%dm", r, g, b);
+	}
+	else {
+		sprintf_s(buff, "\x1B[48;2;%d;%d;%dm", r, g, b);
+	}
+
+
+	this->Prepend(buff);
+	this->Append("\x1b[0m");
+	return *this;
 }
 
 #pragma warning (pop)
