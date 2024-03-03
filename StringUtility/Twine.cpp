@@ -212,8 +212,8 @@ size_t Twine::TFind(const char* c) const {
 
 	size_t a = this->Length();
 	size_t b = Length(c);
-	int cL = 0;
-	int t = 0;
+	size_t cL = 0;
+	size_t t = 0;
 
 
 	for (int i = 0; i < a; i++) {
@@ -240,7 +240,7 @@ size_t Twine::TFind(const char* c) const {
 
 	}
 	t = -1;
-	return t;
+	return (size_t)t;
 
 }
 
