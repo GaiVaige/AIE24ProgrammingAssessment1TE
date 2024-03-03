@@ -1153,8 +1153,13 @@ Twine Twine::operator + (Twine& t) {
 
 }
 
-char Twine::operator [] (int i) {
+char& Twine::operator [] (int i){
 
+	return this->twine[i];
+
+}
+
+const char& Twine::operator [] (int i) const {
 	return this->twine[i];
 
 }

@@ -46,6 +46,7 @@ int main() {
 		std::cout << "File read successfully!" << '\n';
 		const auto now = std::chrono::system_clock::now();
 		const std::time_t nowT = std::chrono::system_clock::to_time_t(now);
+		tFile << "\n";
 		tFile << Twine("Tested at: ").TStr() << std::ctime(&nowT) << '\n';
 		Twine test;
 		if (test == "") {

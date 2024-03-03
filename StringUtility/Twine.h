@@ -6,11 +6,6 @@
 
 
 	class Twine {
-
-
-	protected:
-		char* twine;
-
 	public:
 
 		//constructors and destructors
@@ -105,8 +100,6 @@
 
 		Twine& Colour(int r, int g, int b, bool fg = true);
 
-		
-
 		//OPERATORS
 
 		friend std::ostream& operator << (std::ostream& out, Twine& t);
@@ -119,9 +112,13 @@
 		bool operator != (const Twine& t) const;
 		Twine& operator += (Twine& t);
 		Twine operator + (Twine& t);
-		char operator [] (int n);
+		char& operator [] (int n);
+		const char& operator [] (int n) const;
 		bool operator < (const Twine& t) const;
 		bool operator > (const Twine& t) const;
+
+	private:
+		char* twine;
 
 
 	};
