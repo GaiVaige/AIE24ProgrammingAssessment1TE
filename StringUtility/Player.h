@@ -8,10 +8,11 @@
 #include "Spell.h"
 #include "Stats.h"
 
-static Twine validUtilityCommands[3]{
+static Twine validUtilityCommands[4]{
 		"help",
 		"stats",
-		"list",
+		"spells",
+		"items",
 };
 
 static Twine validItemCommands[3]{
@@ -107,6 +108,7 @@ public:
 	void CastSpell(Twine searchT);
 	void InitPlayer();
 	void FullSpellList();
+	void Inventory();
 	void PlayerStats();
 	void SpellSort();
 	void CommandOutput();

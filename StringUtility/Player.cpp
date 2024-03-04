@@ -79,7 +79,7 @@ void Player::CheckForValidCommand(Twine& searchT) {
 
 	}
 
-	for (int i = 0; i < 3; i++) {
+	for (int i = 0; i < 4; i++) {
 
 		if (searchT.ToLower().FindExclusive(validUtilityCommands[i].ToLower().TStr())) {
 
@@ -95,6 +95,11 @@ void Player::CheckForValidCommand(Twine& searchT) {
 				FullSpellList();
 				displaceVal = spellCount + 1;
 				break;
+			case 3:
+				Inventory();
+				displaceVal = numberOfItems + 1;
+				break;
+
 
 			}
 
@@ -274,6 +279,16 @@ void Player::FullSpellList() {
 	for (int i = 0; i < spellCount; i++) {
 		Twine t = spells[i]->name;
 		std::cout << "\t" << t.Colour(255,0,255,true) << '\n';
+	}
+}
+
+void Player::Inventory() {
+
+	std::cout << Twine("I have in my pockets: ").TStr() << '\n';
+
+	for (int i = 0; i < numberOfItems; i++) {
+		Twine t = playerInventory[i]->Name();
+		std::cout << "\t" << t.Colour(0, 255, 255, true) << '\n';
 	}
 }
 

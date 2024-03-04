@@ -8,7 +8,7 @@ class Knife : public Item {
 private:
 	Twine name = "Knife";
 	bool hasItem = false;
-	int itemSlot = 3;
+	int itemSlot = 2;
 
 
 

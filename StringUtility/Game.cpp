@@ -25,18 +25,16 @@
 
 Game::Game() {
 	p = new Player;
-	Spell* fireball = new Spell(Twine("Fireball"), Twine("Make fireball!"), 8, 6, true, Spell::FIRE);
+	Spell* fireball = new Spell(Twine("Fireball"), Twine("Summon a great blaze of flame."), 8, 6, true, Spell::FIRE);
 	p->LearnSpell(fireball);
-	Spell* test = new Spell(Twine("Test1"), Twine("Test"));
-	p->LearnSpell(test);
-	Spell* test2 = new Spell(Twine("Test1"), Twine("Test"));
-	p->LearnSpell(test2);
-	Spell* dance = new Spell(Twine("Dance Macabre"), Twine("Make em dance till they're dead!"));
+	Spell* vicmock = new Spell(Twine("Vicious Mockery"), Twine("Hurl mean words at your target."));
+	p->LearnSpell(vicmock);
+	Spell* gethint = new Spell(Twine("Guidance"), Twine("Call upon a favour from the gods above in these trying times..."));
+	p->LearnSpell(gethint);
+	Spell* dance = new Spell(Twine("Dance Macabre"), Twine("Make em dance till they're dead!"), 12, 4, true, Spell::NECROTIC);
 	p->LearnSpell(dance);
-	Spell* ahhh = new Spell(Twine("Maddening Scream"), Twine("AHHHHHHHHHHHHHHHHHHHH"));
+	Spell* ahhh = new Spell(Twine("Maddening Scream"), Twine("Send a horrendous torrent of psychic shock to your target's skull."), 3, 12, true, Spell::PSYCHIC);
 	p->LearnSpell(ahhh);
-	Spell* ahhh2 = new Spell(Twine("Maddening Scream2"), Twine("AHHHHHHHHHHHHHHHHHHHH"));
-	p->LearnSpell(ahhh2);
 	p->SpellSort();
 	Mansion[0][0] = new Hallway;
 	Mansion[0][1] = new Hallway;
@@ -55,8 +53,8 @@ Game::Game() {
 	Mansion[2][4] = new Hallway;
 	Mansion[3][0] = new Kitchen;
 	Mansion[3][1] = new Library;
-	Mansion[3][2] = new Kitchen;
-	Mansion[3][3] = new Piano;
+	Mansion[3][2] = new Piano;
+	Mansion[3][3] = new Hallway;
 	Mansion[3][4] = new Hallway;
 	Mansion[4][0] = new Library;
 	Mansion[4][1] = new Hallway;
