@@ -128,7 +128,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Candle.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Item.cpp" />
@@ -147,6 +146,7 @@
     <ClInclude Include="Hallway.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Kitchen.h" />
+    <ClInclude Include="Knife.h" />
     <ClInclude Include="Library.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Piano.h" />

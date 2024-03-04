@@ -30,6 +30,7 @@ void Player::CheckForValidCommand(Twine& searchT) {
 
 		if (searchT.ToLower().FindExclusive(validItemCommands[i].ToLower().TStr())) {
 			SearchItem(searchT).DisplayTwine();
+			displaceVal = 2;
 			return;
 		}
 
@@ -39,6 +40,7 @@ void Player::CheckForValidCommand(Twine& searchT) {
 
 		if (searchT.ToLower().FindExclusive(validRoomCommands[i].ToLower().TStr())) {
 			currentRoom->InspectRoom(searchT).DisplayTwine();
+			displaceVal = 2;
 			return;
 		}
 
@@ -46,6 +48,7 @@ void Player::CheckForValidCommand(Twine& searchT) {
 	for (int i = 0; i < 4; i++) {
 		if (searchT.ToLower().FindExclusive(validDialougeCommands[i].ToLower().TStr())) {
 			currentRoom->CheckForDialogue(searchT, this);
+			displaceVal = 2;
 			return;
 		}
 	}

@@ -1,7 +1,12 @@
 #include "Game.h"
+#include "Windows.h"
+
+
+//items
 #include "Item.h"
 #include "Candle.h"
-#include "Windows.h"
+#include "Knife.h"
+
 
 //room includes
 #include "Room.h"
@@ -13,8 +18,8 @@
 #include "Piano.h"
 
 
-bool doNoPlay = false;
-bool isCreated = false;
+//bool doNoPlay = false;
+//bool isCreated = false;
 
 
 
@@ -96,120 +101,122 @@ void Game::Run() {
 
 
 		p->currentRoom->DescribeRoom();
-		if (!isCreated) {
-			p->isMoving = false;
-			//music!
-			CreateThread(NULL, NULL, [](LPVOID lpThreadParameter) {
-				if (doNoPlay) {
-					Sleep(1200);
-				}
-
-				doNoPlay = false;
-				while (!doNoPlay) {
-					if (doNoPlay) {
-						break;
-					}
-					Beep(260, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(320, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(380, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(260, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(320, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(380, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(260, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(320, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(380, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(260, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(320, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(380, 80); Sleep(150);
-
-					if (doNoPlay) {
-						break;
-					}
-					Beep(440, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(500, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(560, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(440, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(500, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(560, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(440, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(500, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(560, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(440, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(500, 80); Sleep(150);
-					if (doNoPlay) {
-						break;
-					}
-					Beep(560, 80); Sleep(150);
-				}
-
-				return (DWORD)TRUE;
-
-				}, (bool*)&doNoPlay, NULL, NULL);
-		}
-		isCreated = true;
+		//music! currently disabled
+		//if (!isCreated) {
+		//	p->isMoving = false;
+		//	//music!
+			//CreateThread(NULL, NULL, [](LPVOID lpThreadParameter) {
+			//	if (doNoPlay) {
+			//		Sleep(1200);
+			//	}
+		//
+		//	//	doNoPlay = false;
+			//	// music loop
+			//	while (!doNoPlay) {
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(260, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(320, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(380, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(260, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(320, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(380, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(260, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(320, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(380, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(260, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(320, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(380, 80); Sleep(150);
+		//
+		//	//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(440, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(500, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(560, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(440, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(500, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(560, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(440, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(500, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(560, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(440, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(500, 80); Sleep(150);
+			//		if (doNoPlay) {
+			//			break;
+			//		}
+			//		Beep(560, 80); Sleep(150);
+			//	} 
+		//
+		//	//	return (DWORD)TRUE;
+		//
+		//	//	}, (bool*)&doNoPlay, NULL, NULL);
+		//}
+		//isCreated = true;
 		p->inputTwine.GetTwine();
 		if (p->inputTwine.ToLower() == "quit game") {
 			doGame = false;
@@ -221,10 +228,10 @@ void Game::Run() {
 		
 		std::cout << p->name << ": " << p->health << "HP" << '\n';
 		p->CheckForValidCommand(p->inputTwine);
-		if (p->isMoving) {
-			doNoPlay = true;
-			isCreated = false;
-		}
+		//if (p->isMoving) {
+		//	doNoPlay = true;
+		//	isCreated = false;
+		//}
 		p->currentRoom = Mansion[p->xCord][p->yCord];
 
 
@@ -293,4 +300,6 @@ void Game::DrawMap() {
 	std::cout << '\n';
 
 }
+
+
 

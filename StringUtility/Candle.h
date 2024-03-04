@@ -3,15 +3,15 @@
 #define CANDLE_H
 #include "Item.h"
 #include "Twine.h"
-
+#include "Knife.h"
 
 
 
 
 class Candle : public Item {
 
-public:
-	Game* g;
+private:
+
 	Twine candleLevels[3]{
 	"bright",
 	"dim",
@@ -25,6 +25,7 @@ public:
 	
 
 public:
+	Game* g;
 	Candle() {
 		g = nullptr;
 	}
@@ -48,8 +49,18 @@ public:
 		}
 
 		if (g->p->currentRoom->name == "Kitchen") {
-			candle.Append("The lamp lights up the benches.\n");
-			g->p->flags[0] = true;
+
+			if (g->p->flags[0] != true) {
+				candle.Append("The candle lights up the benches. You collect a knife!\n");
+				Knife* k = new Knife;
+				g->p->AddItem(*k);
+				k->g = this->g;
+				g->p->flags[0] = true;
+			}
+			else {
+				candle.Append("The candle lights up the benches.");
+			}
+
 			return candle;
 		}
 
