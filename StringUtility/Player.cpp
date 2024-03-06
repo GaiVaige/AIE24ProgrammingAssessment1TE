@@ -211,9 +211,9 @@ void Player::MovePlayer(int i) {
 
 }
 
-Spell* Player::SpellLookUp(Twine searchT) {
+Spell* Player::SpellLookUp(Twine& searchT) {
 
-	int search = spellCount/ 2;
+	size_t search = spellCount/ 2;
 	size_t highest = spellCount;
 	size_t lowest = 0;
 	searchT.Replace("search ", "");
@@ -237,7 +237,9 @@ Spell* Player::SpellLookUp(Twine searchT) {
 				}
 				search = lowest + ((highest - lowest) / 2);		
 	}
-
+	if (search >= spellCount) {
+		return nullptr;
+	}
 	if (spells[search]->name.ToLower() == searchT.ToLower()) {
 		return spells[search];
 	}
@@ -290,7 +292,7 @@ void Player::Inventory() {
 	}
 }
 
-void Player::CastSpell(Twine searchT) {
+void Player::CastSpell(Twine& searchT) {
 	for (int i = 0; i < this->spellCount; i++) {
 
 		if (searchT.ToLower().FindExclusive((spells[i]->name.ToLower().TStr()))) {
@@ -405,20 +407,22 @@ void Player::SpellSort() {
 
 	for (int i = 0; i < spellCount - 1; i++) {
 		swapped = false;
-
+	
 		for (int y = 0; y < spellCount - i - 1; y++) {
-
-			if (Spell::Compare(*spells[y], *spells[y + 1])) {
+	
+			if (Spell::Compare(*(spells[y]), *(spells[y + 1]))) {
 				std::swap(this->spells[y], this->spells[y + 1]);
 				swapped = true;
 			}
 		}
-
+	
 		if (swapped == false) {
 			break;
 		}
-
+	
 	}
+
+	//std::sort(spells, spells+spellCount);
 
 
 }
@@ -459,7 +463,7 @@ void Player::CommandOutput() {
 	displaceVal = 37;
 }
 
-void Player::Attack(Twine searchT) {
+void Player::Attack(Twine& searchT) {
 	Entity* e = currentRoom->CheckEntityNames(searchT);
 	if (e != nullptr) {
 		bool crit = false;;

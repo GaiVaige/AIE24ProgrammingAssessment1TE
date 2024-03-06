@@ -584,17 +584,18 @@ const char& Twine::operator [] (int i) const {
 }
 
 bool Twine::operator < (const Twine& t) const {
+	
+	Twine t2 = t.ToLower();
+	Twine t1 = this->ToLower();
 
-	Twine t1 = t.ToLower();
-	Twine t2 = this->ToLower();
 
 	char cA = t1.twine[0];
 	char cB = t2.twine[0];
 
 	for (int i = 0; ; i++) {
 
-		cA = t1.twine[i];
-		cB = t2.twine[i];
+		cA = t1[i];
+		cB = t2[i];
 
 		if (isspace(cA)) {
 			return true;
@@ -603,81 +604,32 @@ bool Twine::operator < (const Twine& t) const {
 			return false;
 		}
 		else if (cA < cB) {
-
-			if (t1.twine[i + 1] == '\0') {
-				return true;
-			}
-			else if (t2.twine[i + 1] == '\0') {
-
-				return false;
-			}
-
 			return true;
 		}
-		else if (cB < cA) {
-
-			if (t1.twine[i + 1] == '\0') {
-
-				return true;
-			}
-			else if (t2.twine[i + 1] == '\0') {
-
-				return false;
-			}
+		else if (cA > cB) {
 			return false;
 		}
-		return false;
+
+		if (t1[i + 1] == '\0') {
+			return false;
+		}
+		else if (t2[i + 1] == '\0') {
+			return true;
+		}
+
 
 	}
+	return false;
 }
 
 bool Twine::operator > (const Twine& t) const{
 
-	Twine t1 = t.ToLower();
-	Twine t2 = this->ToLower();
-
-	char cA = t1.twine[0];
-	char cB = t2.twine[0];
-
-	for (int i = 0; ; i++) {
-
-		cA = t1.twine[i];
-		cB = t2.twine[i];
-
-		if (isspace(cA)) {
-			return false;
-		}
-		else if (isspace(cB)) {
-			return true;
-		}
-		else if (cA < cB) {
-
-			if (t1.twine[i + 1] == '\0') {
-				return false;
-			}
-			else if (t2.twine[i + 1] == '\0') {
-
-				return true;
-			}
-
-			return false;
-		}
-		else if (cB < cA) {
-
-			if (t1.twine[i + 1] == '\0') {
-
-				return false;
-			}
-			else if (t2.twine[i + 1] == '\0') {
-
-				return true;
-			}
-			return true;
-		}
-		return false;
-
+	if (!this->EqualTo(t) && !(*this < t)) {
+		return true;
 	}
-
+	else {
+		return false;
+	}
 }
 
 

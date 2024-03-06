@@ -96,11 +96,11 @@ public:
 	void AddItem(Item& c);
 	Twine SearchItem(Twine& searchT);
 	void MovePlayer(int i);
-	Spell* SpellLookUp(Twine searchT);
+	Spell* SpellLookUp(Twine& searchT);
 	void LearnSpell(Spell* sp);
-	void Attack(Twine searchT);
+	void Attack(Twine& searchT);
 	void ApplyDam(Entity* e, bool crit);
-	void CastSpell(Twine searchT);
+	void CastSpell(Twine& searchT);
 	void InitPlayer();
 	void FullSpellList();
 	void Inventory();

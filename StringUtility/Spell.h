@@ -33,8 +33,8 @@ public:
 	Spell(Twine n, Twine de, int dAm, int dMax, bool hasTarget, DamageType dm);
 	virtual void Cast();
 	virtual void Cast(Entity* target);
-	static bool SpellEqualTo(Spell a, Spell b);
-	static bool Compare(Spell a, Spell b);
+	static bool SpellEqualTo(Spell& a, Spell& b);
+	static bool Compare(Spell& a, Spell& b);
 	void ApplyDamage(Entity* target);
 };
 

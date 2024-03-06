@@ -35,7 +35,7 @@ void Spell::Cast(Entity* target) {
 	}
 }
 
-bool Spell::SpellEqualTo(Spell a, Spell b) {
+bool Spell::SpellEqualTo(Spell& a, Spell& b) {
 	if (a.name == b.name) {
 		return true;
 	}
@@ -44,7 +44,7 @@ bool Spell::SpellEqualTo(Spell a, Spell b) {
 	}
 }
 
-bool Spell::Compare(Spell a, Spell b) {
+bool Spell::Compare(Spell& a, Spell& b) {
 	if (a.name > b.name) {
 		return true;
 	}

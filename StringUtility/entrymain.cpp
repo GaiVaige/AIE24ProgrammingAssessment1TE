@@ -164,6 +164,14 @@ void DoTest() {
 
 int main() {
 
+	//Twine a = "vicious mockery";
+	//Twine b = "guidance";
+	//
+	//std::cout << std::boolalpha << (a < b);
+	//
+	//return 0;
+
+
 	//DoTest();
 	//
 	//return 0;
