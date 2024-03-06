@@ -139,6 +139,7 @@
     <ClCompile Include="entrymain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BoxODons.h" />
     <ClInclude Include="Butler.h" />
     <ClInclude Include="Dining1.h" />
     <ClInclude Include="Candle.h" />
@@ -150,10 +151,12 @@
     <ClInclude Include="Knife.h" />
     <ClInclude Include="Library.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Painting.h" />
     <ClInclude Include="Piano.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Roll.h" />
     <ClInclude Include="Room.h" />
+    <ClInclude Include="Shoelace.h" />
     <ClInclude Include="Spell.h" />
     <ClInclude Include="Spool.h" />
     <ClInclude Include="Stats.h" />

@@ -113,5 +113,14 @@
     <ClInclude Include="Butler.h">
       <Filter>Header Files\Rooms\Entities</Filter>
     </ClInclude>
+    <ClInclude Include="Painting.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxODons.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Shoelace.h">
+      <Filter>Header Files\Items</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

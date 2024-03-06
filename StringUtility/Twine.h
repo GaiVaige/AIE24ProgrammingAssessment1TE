@@ -64,14 +64,16 @@
 		//adds char* c to the start of char* curC
 		void Prepend(const Twine& c);
 		void Prepend(const char* c);
+		void Prepend(char c);
 
 		//adds char* c to the end of char* curC
 		void Append(const Twine& c);
 		void Append(const char* c);
+		void Append(char c);
 
 		//OPERATORS
 
-		friend std::ostream& operator << (std::ostream& out, Twine& t);
+		friend std::ostream& operator << (std::ostream& out, const Twine& t);
 		friend std::istream& operator >> (std::istream& in, Twine& t);
 		Twine& operator = (const char* c);
 		Twine& operator = (Twine& t);

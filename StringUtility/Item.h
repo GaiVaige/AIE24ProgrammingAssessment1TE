@@ -15,7 +15,7 @@ public:
 
 	virtual Twine Name();
 
-	virtual Twine Desc();
+	virtual Twine Description();
 
 	virtual Twine Use();
 

@@ -1,6 +1,6 @@
 #include "Game.h"
 #include "Windows.h"
-
+#include "Roll.h"
 
 //items
 #include "Item.h"
@@ -21,7 +21,10 @@
 //bool doNoPlay = false;
 //bool isCreated = false;
 
-
+//items for random
+#include "Painting.h"
+#include "BoxODons.h"
+#include "Shoelace.h"
 
 Game::Game() {
 	p = new Player;
@@ -64,7 +67,7 @@ Game::Game() {
 
 	for (int y = 0; y < 5; y++) {
 		for (int x = 0; x < 5; x++) {
-			Mansion[x][y]->roomItem = new Item;
+			Mansion[x][y]->roomItem = GenItem(x, y);
 		}
 	}
 }
@@ -96,8 +99,10 @@ void Game::Run() {
 			std::cout << '\n';
 		}
 		p->displaceVal = 0;
-
 		p->currentRoom->DescribeRoom();
+		if (p->currentRoom->roomItem != nullptr) {
+			p->currentRoom->roomItem->Description().DisplayTwine();
+		}
 		p->inputTwine.GetTwine();
 		if (p->inputTwine.ToLower() == Twine("quit game").ToLower()) {
 			doGame = false;
@@ -140,7 +145,7 @@ void Game::DrawMap() {
 
 
 			if (x == 0) {
-				std::cout << Twine("{").TStr();
+				std::cout << Twine("{");
 			}
 
 			if (x == pPos.X && (5 - yPos) == pPos.Y) {
@@ -164,7 +169,7 @@ void Game::DrawMap() {
 				}
 				else {
 
-					std::cout << Twine(" X ").TStr();
+					std::cout << Twine(" X ");
 				}
 
 			}
@@ -176,6 +181,29 @@ void Game::DrawMap() {
 	
 	std::cout << '\n';
 
+}
+
+Item* Game::GenItem(int x, int y) {
+	srand(time(NULL) + x * y);
+	if (rand()%2 != 0) {
+
+		int dCheck = rand()%3 + 1;
+
+		switch (dCheck) {
+
+		case 1:
+			return new Painting;
+			break;
+		case 2:
+			return new BoxODons;
+			break;
+		case 3:
+			return new Shoelace;
+			break;
+
+		}
+	}
+	return nullptr;
 }
 
 

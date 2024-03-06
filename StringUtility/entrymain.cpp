@@ -4,10 +4,7 @@
 #include <string>
 #include "Windows.h"
 
-
 #include "Game.h"
-#include "Twine.h"
-#include "Roll.h"
 
 void DoTest() {
 
@@ -27,7 +24,7 @@ void DoTest() {
 		const auto now = std::chrono::system_clock::now();
 		const std::time_t nowT = std::chrono::system_clock::to_time_t(now);
 		tFile << "\n";
-		tFile << Twine("Tested at: ").TStr() << std::ctime(&nowT) << '\n';
+		tFile << Twine("Tested at: ") << std::ctime(&nowT) << '\n';
 		Twine test;
 		if (test == "") {
 			tFile << "Test 1: Empty Construction Successful!" << '\n';
@@ -163,14 +160,6 @@ void DoTest() {
 }
 
 int main() {
-
-	//Twine a = "vicious mockery";
-	//Twine b = "guidance";
-	//
-	//std::cout << std::boolalpha << (a < b);
-	//
-	//return 0;
-
 
 	//DoTest();
 	//

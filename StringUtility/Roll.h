@@ -2,11 +2,6 @@
 #include "time.h"
 #include "random"
 struct Roll {
-
-
-
-
-
 	static int RollDice(int amnt, int maxFace) {
 		
 		int retVal = 0;
@@ -15,8 +10,6 @@ struct Roll {
 			retVal += rand() % (maxFace) + 1;
 		}
 		return retVal;
-
-		
 	}
 
 

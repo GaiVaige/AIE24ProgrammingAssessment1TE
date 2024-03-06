@@ -6,7 +6,7 @@
 		return "Missingna";
 	}
 
-	Twine Item::Desc() {
+	Twine Item::Description() {
 		return "Desc";
 	}
 

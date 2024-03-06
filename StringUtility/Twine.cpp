@@ -422,6 +422,23 @@ void Twine::Prepend(const char* c) {
 
 }
 
+void Twine::Prepend(char c) {
+
+	size_t curCSize = this->Length();
+	char* newC = new char[curCSize + 2];
+
+	newC[0] = c;
+	for (int i = 0; i < curCSize + 1; i++) {
+
+		newC[i] = this->twine[i];
+
+	}
+	newC[curCSize+1] = '\0';
+	this->SetTwine(newC);
+	delete[] newC;
+
+}
+
 void Twine::Append(const Twine& c) {
 
 	size_t curCSize = this->Length();
@@ -470,7 +487,24 @@ void Twine::Append(const char* c) {
 
 }
 
-std::ostream& operator << (std::ostream &out, Twine &t) {
+void Twine::Append(char c) {
+
+	size_t curCSize = this->Length();
+	char* newC = new char[curCSize + 2];
+
+	for (int i = 0; i < curCSize; i++) {
+
+		newC[i] = this->twine[i];
+
+	}
+	newC[curCSize] = c;
+	newC[curCSize + 1] = '\0';
+	this->SetTwine(newC);
+	delete[] newC;
+
+}
+
+std::ostream& operator << (std::ostream &out, const Twine &t) {
 
 	int i = 0;
 	char* c = t.twine;

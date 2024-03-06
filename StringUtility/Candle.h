@@ -6,22 +6,10 @@
 #include "Knife.h"
 
 
-
-
 class Candle : public Item {
 
 private:
-
-	Twine candleLevels[3]{
-	"bright",
-	"dim",
-	"dul",
-
-	};
-	Twine name = "Candle";
-	bool hasItem = false;
 	int CandleTrack = 0;
-	int itemSlot = 0;
 	
 
 public:
@@ -34,15 +22,28 @@ public:
 		return "Candle";
 	}
 
-	Twine Desc() override {
+	Twine Description() override {
 		return "A nice candle.";
 	}
 
 
 	Twine Use() override {
 		Twine candle = "The candle in your hand burns ";
-		Twine level = candleLevels[CandleTrack];
-		candle.Append(level);
+		int level = CandleTrack;
+		switch (level) {
+		case 1:
+			candle.Append("bright");
+			break;
+		case 2:
+			candle.Append("dim");
+			break;
+		case 3:
+			candle.Append("dull");
+			break;
+
+		}
+
+
 		candle.Append("ly.\n");
 		if (CandleTrack < 2) {
 			CandleTrack++;

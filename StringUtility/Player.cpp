@@ -167,7 +167,11 @@ Twine Player::SearchItem(Twine& searchT) {
 
 
 	}
-	Twine itemFailedTwine = "I don't think I have that in my pouch...";
+		if (searchT.ToLower().Find(currentRoom->roomItem->Name().ToLower().TStr()) != -1) {
+			return currentRoom->roomItem->Use();
+		}
+
+	Twine itemFailedTwine = "I don't think I've seen anything like that...";
 	return itemFailedTwine;
 }
 
@@ -274,7 +278,7 @@ void Player::LearnSpell(Spell* sp) {
 
 void Player::FullSpellList() {
 
-	std::cout << Twine("I currently know: ").TStr() << '\n';
+	std::cout << Twine("I currently know: ") << '\n';
 
 	for (int i = 0; i < spellCount; i++) {
 		Twine t = spells[i]->name;
@@ -284,7 +288,7 @@ void Player::FullSpellList() {
 
 void Player::Inventory() {
 
-	std::cout << Twine("I have in my pockets: ").TStr() << '\n';
+	std::cout << Twine("I have in my pockets: ") << '\n';
 
 	for (int i = 0; i < numberOfItems; i++) {
 		Twine t = playerInventory[i]->Name();
@@ -368,7 +372,7 @@ void Player::InitPlayer() {
 		break;
 	case 4:
 		s.InitStats(4, 4, 4, 4, 4, 4);
-		std::cout << Twine("Oh my... well, if you truly are that pitiable...\n").TStr();
+		std::cout << Twine("Oh my... well, if you truly are that pitiable...\n");
 
 	}
 
@@ -470,11 +474,11 @@ void Player::Attack(Twine& searchT) {
 		int roll = Roll::RollDice(1, 20);
 		if (roll == 20) {
 			crit = true;
-			std::cout << Twine("CRITICAL HIT!! ").TStr();
+			std::cout << Twine("CRITICAL HIT!! ");
 		}
 
 		roll += ((this->s.Strength - 10) / 2);
-		std::cout << Twine("Rolled ").TStr() << roll << "! ";
+		std::cout << Twine("Rolled ") << roll << "! ";
 		if (!crit) {
 			roll -= e->ac;
 		}
@@ -503,12 +507,12 @@ void Player::Attack(Twine& searchT) {
 void Player::ApplyDam(Entity* e, bool crit) {
 
 	if (crit) {
-		std::cout << Twine("That's a hit! Dealt ").TStr() << (5 + ((this->s.Strength - 10))) << " damage!" << '\n';
+		std::cout << Twine("That's a hit! Dealt ") << (5 + ((this->s.Strength - 10))) << " damage!" << '\n';
 		e->hp -= 5 + ((this->s.Strength - 10));
 		return;
 	}
 	else {
-		std::cout << Twine("That's a hit! Dealt ").TStr() << (5 + ((this->s.Strength - 10) / 2)) << " damage!" << '\n';
+		std::cout << Twine("That's a hit! Dealt ") << (5 + ((this->s.Strength - 10) / 2)) << " damage!" << '\n';
 		e->hp -= 5 + ((this->s.Strength - 10) / 2);
 		return;
 	}

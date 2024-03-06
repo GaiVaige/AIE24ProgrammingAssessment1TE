@@ -9,6 +9,8 @@ static int maxFlagID = 10;
 static int roomXDim = 5;
 static int roomYDim = 5;
 
+
+
 class Game {
 
 public:
@@ -21,7 +23,7 @@ public:
 	void SetFlag(int boolID, bool stateID);
 	void DrawMap();
 	void Run();
-
+	Item* GenItem(int x, int y);
 
 
 };

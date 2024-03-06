@@ -23,7 +23,7 @@ public:
 		return "Knife";
 	}
 
-	Twine Desc() override {
+	Twine Description() override {
 		return "A somewhat bloody knife. The metal is pretty thick.";
 	}
 
