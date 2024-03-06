@@ -16,15 +16,14 @@
 		~Twine();
 
 		//set a Twine objects char* to a new char*
-		void SetTwine(Twine& c);
-		void SetTwine(char* c);
+		void SetTwine(const Twine& c);
 		void SetTwine(const char* c);
 
 		//two copies, one is 'quick' and overwties the char* twine on the
 		//Twine object that clals it, the other can be called seperatley to
 		//an object
-		void Copy(Twine& newTextTwine);
-		static void Copy(Twine& twineA, Twine& twineB);
+		void Copy(const Twine& newTextTwine);
+		static void Copy(Twine& twineA, const Twine& twineB);
 
 
 		//get input from std::cin
@@ -45,35 +44,29 @@
 		//TFind OL 1 returns the index of SubTwine start point sIn, and distance from sIn
 		char CharAt(int i) const;
 		size_t CharFind(char c) const;
-		size_t Find(Twine& c) const;
-		size_t Find(const char* c) const;
-		size_t Find(Twine& c, int sIn) const;
-		size_t Find(const char* c, int sIn) const;
+		size_t Find(const Twine& c) const;
+		size_t Find(const Twine& c, int sIn) const;
 
 		//Shifts all chars in Twine to lowercase and returns it as a NEW twine object
 		Twine ToLower() const;
-		Twine ToLower(Twine& c) const;
-		Twine ToLower(const char* c) const;
 
 		//Shifts all chars in Twine to uppercase and returns it as a NEW twine object
-		Twine ToUpper();
-		Twine ToUpper(Twine& c);
-		Twine ToUpper(const char* c);
+		Twine ToUpper() const;
 
 		//Compares two strings to see if they are the same
 		bool EqualTo(const Twine& c) const;
 		bool EqualTo(const char* c) const;
 
 		//replaces instance of const char* current in char* sC with const char* newc and resizes the array
-		void Replace(Twine& current, Twine& newc);
+		void Replace(const Twine& current, const Twine& newc);
 		void Replace(const char* current, const char* newc);
 
 		//adds char* c to the start of char* curC
-		void Prepend(Twine& c);
+		void Prepend(const Twine& c);
 		void Prepend(const char* c);
 
 		//adds char* c to the end of char* curC
-		void Append(Twine& c);
+		void Append(const Twine& c);
 		void Append(const char* c);
 
 		//OPERATORS

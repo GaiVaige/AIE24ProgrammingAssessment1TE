@@ -13,14 +13,18 @@ Player::Player() {
 	playerInventory = new Item*[0];
 	spells = new Spell*[0];
 	spellCount = 0;
-	for (int i = 0; i < 10; i++) {
-		flags[i] = false;
-	}
 	InitPlayer();
 }
 
 Player::~Player() {
+	for (int i = 0; i < numberOfItems; i++) {
+		delete playerInventory[i];
+	}
 	delete[] playerInventory;
+
+	for (int i = 0; i < spellCount; i++) {
+		delete spells[i];
+	}
 	delete[] spells;
 }
 
@@ -62,12 +66,17 @@ void Player::CheckForValidCommand(Twine& searchT) {
 				CastSpell(searchT);
 				break;
 			case 1:
-				this->SpellLookUp(searchT);
-				displaceVal = 1;
-				break;
 			case 2:
-				this->SpellLookUp(searchT);
-				displaceVal = 1;
+			{Spell* sA = SpellLookUp(searchT);
+			if (sA != nullptr) {
+				sA->name.DisplayTwine();
+				sA->description.DisplayTwine();
+			}
+			else {
+				std::cout << "I don't know that spell...\n";
+			}
+			displaceVal = 1;
+			}
 				break;
 			case 3:
 				this->Attack(searchT);
@@ -134,23 +143,16 @@ void Player::CheckForValidCommand(Twine& searchT) {
 
 void Player::AddItem(Item& c) {
 	numberOfItems++;
-	Item** tempArr = new Item*[numberOfItems];
+	Item** newInventory = new Item*[numberOfItems];
 
 	for (int i = 0; i < numberOfItems - 1; i++) {
-			tempArr[i] = this->playerInventory[i];
+			newInventory[i] = this->playerInventory[i];
 
 
 	}
-	tempArr[numberOfItems - 1] = &c;
+	newInventory[numberOfItems - 1] = &c;
 	delete[] playerInventory;
-	playerInventory = new Item*[numberOfItems];
-
-	for (int i = 0; i < numberOfItems; i++) {
-		this->playerInventory[i] = tempArr[i];
-	}
-
-
-	delete[] tempArr;
+	playerInventory = newInventory;
 	
 }
 
@@ -209,7 +211,7 @@ void Player::MovePlayer(int i) {
 
 }
 
-void Player::SpellLookUp(Twine searchT) {
+Spell* Player::SpellLookUp(Twine searchT) {
 
 	int search = spellCount/ 2;
 	size_t highest = spellCount;
@@ -237,13 +239,9 @@ void Player::SpellLookUp(Twine searchT) {
 	}
 
 	if (spells[search]->name.ToLower() == searchT.ToLower()) {
-		std::cout << "Name: " << spells[search]->name << '\n';
-		std::cout << "Description: " << spells[search]->description << '\n';
-		return;
+		return spells[search];
 	}
-
-	std::cout << "I don't know that spell..." << '\n';
-	return;
+	return nullptr;
 }
 
 void Player::LearnSpell(Spell* sp) {
@@ -252,7 +250,7 @@ void Player::LearnSpell(Spell* sp) {
 			std::cout << "I already know this spell!" << '\n';
 		}
 	}
-	spellBook.Add(sp->name);
+	//spellBook.Add(sp->name);
 	this->spellCount++;
 	Spell** tempArr = new Spell*[spellCount];
 	for (int i = 0; i < spellCount - 1; i++) {

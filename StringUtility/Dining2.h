@@ -5,7 +5,7 @@ class Dining2 : public Room {
 
 public:
 	Dining2() {
-		mapChar = "D";
+		mapChar = "d";
 		ASCII =
 " =============================\n\
       |                        \n\
@@ -16,16 +16,16 @@ public:
                     |          \n\
  ___________________|__________\n";
 		name = "Foot of the Dining Room";
-		description = "Ooooooooooo spooky. Monkey?";
+		description = "No chairs sit in the half of the dining room, simply a chandelier hanging over a long, long table.\nThe room stinks, as if whoever eats in here is almost beastly.";
 		keyWords = new Twine[3]{
-			"gorilla",
-			"shrine",
-			"lanterns",
+			"chandelier",
+			"table",
+			"stench",
 		};
 		extraDescriptions = new Twine[3]{
-			"Ooga booga ah ah ah",
-			"A dark shrine, ooooo...",
-			"Damn this gorilla got good lighting",
+			"The chandelier's bulbs are all but burnt out. It clearly isn't needed.",
+			"The table is sratched, with foot and hand prints all over it, indenting into the wood.",
+			"Smells like a zoo in here...",
 		};
 		descLength = 3;
 

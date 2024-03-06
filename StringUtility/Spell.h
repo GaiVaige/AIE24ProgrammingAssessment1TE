@@ -5,12 +5,16 @@
 class Spell {
 
 protected:
+
 	int damage;
 	int dFace;
 	int dAmnt;
 
 public:
 
+	Twine name;
+	Twine description;
+	bool hasTarget;
 	enum DamageType {
 		FIRE,
 		ICE,
@@ -21,9 +25,8 @@ public:
 	};
 
 
-	Twine name;
-	Twine description;
-	bool hasTarget;
+
+
 	Spell();
 	~Spell();
 	Spell(Twine n, Twine de);

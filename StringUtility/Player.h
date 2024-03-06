@@ -78,12 +78,7 @@ public:
 	int numberOfItems = 0;
 	int health;
 	bool isMoving;
-	bool flags[10]{
-	false,
-	false,
-	false,
-	false,
-	false,
+	bool flags[5]{
 	false,
 	false,
 	false,
@@ -101,7 +96,7 @@ public:
 	void AddItem(Item& c);
 	Twine SearchItem(Twine& searchT);
 	void MovePlayer(int i);
-	void SpellLookUp(Twine searchT);
+	Spell* SpellLookUp(Twine searchT);
 	void LearnSpell(Spell* sp);
 	void Attack(Twine searchT);
 	void ApplyDam(Entity* e, bool crit);

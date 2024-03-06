@@ -110,5 +110,8 @@
     <ClInclude Include="Knife.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>
+    <ClInclude Include="Butler.h">
+      <Filter>Header Files\Rooms\Entities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

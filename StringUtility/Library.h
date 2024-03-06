@@ -23,38 +23,32 @@ public:
  ------------------------------\n";
 		description = "This is the library.\n\n\
 Atop a small table rests a small candle, it's smoke puffing in the air.\n\n\
-The bookshelves to the left are packed full.\n";
-		extraDescriptions = new Twine[5]{
-			"Gun! Bang! Dead!",
-			"Oh lol this is just smut...",
-			"The fuck is a pizza oven doing in this thing",
-			"WHY IS THERE A GODDAMN GORILLA IN HERE",
-			"Do you really want to open the fridge?",
+The bookshelves to the left are packed full. A ghostly old man places books back on the shelves.\n";
+		extraDescriptions = new Twine[3]{
+			"Books on the table are old, dusty, and clearly well read. Although many are just strewn about.",
+			"The shelves are overflowing. Clearly none of the books are being taken off anymore.",
+			"The ghost doesn't respond, his blue glow lighting up the room.",
 		};
 
-		keyWords = new Twine[5]{
-			"gun",
+		keyWords = new Twine[3]{
 			"book",
-			"pizza",
-			"gorilla",
-			"fridge",
-
+			"shelves",
+			"ghost",
 		};
 		delete[] this->roomEntities;
 
-		Entity* John = new Entity(Twine("John"), Twine("A guy named John."), Twine("Hi! I'm John!"), Twine("You killed John! You monster!"), 6, true, 0);
-		Entity* Jack = new Entity(Twine("Jack"), Twine("A guy named Jack."), Twine("Fuck you! I'm Jack!"), Twine("You killed Jack! You monster!"), 2, false, 0);
+		Entity* John = new Entity(Twine("Ghost"), Twine("A sickly, transparent old man hovers before you. He murmurs as he places books back on the shelves."), Twine("Oh! You must be here for the master... he rests at the moment.\nGoffry, the butler, may be able to help you."), Twine("Why would you hit me, you know that won't work!"), -9, false, 50);
 
 
 
-		this->roomEntities = new Entity*[2] {
+		this->roomEntities = new Entity * [1] {
 			John,
-				Jack,
 			};
 
-		this->entityNum = 2;
-		descLength = 5;
-	
+		this->entityNum = 1;
+		descLength = 3;
+
+
 	}
 
 	~Library() {

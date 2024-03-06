@@ -1,5 +1,6 @@
 #pragma once
 #include "Room.h"
+#include "Butler.h"
 class Hallway : public Room {
 public:
 	Hallway() {
@@ -14,39 +15,32 @@ public:
  ||       ____u______        ||\n\
  ||       |         |        ||\n\
  ||-------|---------|--------||\n";
-		description = "This is the library.\n\n\
+description = "This is the library.\n\n\
 Atop a small table rests a small candle, it's smoke puffing in the air.\n\n\
-The bookshelves to the left are packed full.\n";
-		extraDescriptions = new Twine[5]{
-			"Gun! Bang! Dead!",
-			"Oh lol this is just smut...",
-			"The fuck is a pizza oven doing in this thing",
-			"WHY IS THERE A GODDAMN GORILLA IN HERE",
-			"Do you really want to open the fridge?",
+The bookshelves to the left are packed full. A ghostly old man places books back on the shelves.\n";
+		extraDescriptions = new Twine[3]{
+			"Books on the table are old, dusty, and clearly well read. Although many are just strewn about.",
+			"The shelves are overflowing. Clearly none of the books are being taken off anymore.",
+			"The ghost doesn't respond, his blue glow lighting up the room.",
 		};
 
-		keyWords = new Twine[5]{
-			"gun",
+		keyWords = new Twine[3]{
 			"book",
-			"pizza",
-			"gorilla",
-			"fridge",
-
+			"shelves",
+			"ghost",
 		};
 		delete[] this->roomEntities;
 
-		Entity* John = new Entity(Twine("John"), Twine("A guy named John."), Twine("Hi! I'm John!"), Twine("You killed John! You monster!"), 6, true, 0);
-		Entity* Jack = new Entity(Twine("Jack"), Twine("A guy named Jack."), Twine("Fuck you! I'm Jack!"), Twine("You killed Jack! You monster!"), 2, false, 0);
+		Entity* John = new Butler(Twine("Goffry"), Twine("A short, stocky man with a big forehead looks you up and down.\nHe has no hands."), Twine("Please sir... kill Mr. Gorilla Gorillatonne, take my gun.\nI can't get it out of the holster."), Twine("The butler is dead, a gun sits in his pocket."), 1, true, 4);
 
 
 
-		this->roomEntities = new Entity * [2] {
+		this->roomEntities = new Entity * [1] {
 			John,
-				Jack,
 			};
 
-		this->entityNum = 2;
-		descLength = 5;
+		this->entityNum = 1;
+		descLength = 3;
 
 	}
 

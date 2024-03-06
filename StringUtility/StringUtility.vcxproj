@@ -139,6 +139,7 @@
     <ClCompile Include="entrymain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Butler.h" />
     <ClInclude Include="Dining1.h" />
     <ClInclude Include="Candle.h" />
     <ClInclude Include="Dining2.h" />

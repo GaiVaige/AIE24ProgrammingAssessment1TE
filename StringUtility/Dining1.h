@@ -16,16 +16,16 @@ public:
     |____  |                   \n\
  ___|___|__|___________________\n";
 		name = "Head of the Dining Room";
-		description = "Ooooooooooo spooky. Gorilla?";
+		description = "Old plates and dishes line the table. A painting of some clouds and birds sits on the wall.\nIt is clear that a meal was eaten here recently.";
 		keyWords = new Twine[3]{
-			"gorilla",
-			"shrine",
-			"lanterns",
+			"painting",
+			"dishes",
+			"chair",
 		};
 		extraDescriptions = new Twine[3]{
-			"Ooga booga ah ah ah",
-			"A dark shrine, ooooo...",
-			"Damn this gorilla got good lighting",
+			"A mostly standard image of some birds in the sky.",
+			"The dishes are entirely empty, as if picked clean.",
+			"The chair is grimey, and covered in oil and blood. Who, or what, ate here must have been a slob.",
 		};
 		descLength = 3;
 

@@ -164,6 +164,9 @@ void DoTest() {
 
 int main() {
 
+	//DoTest();
+	//
+	//return 0;
 
 	DWORD mode;
 	GetConsoleMode(GetStdHandle(STD_OUTPUT_HANDLE), &mode);
@@ -178,9 +181,6 @@ int main() {
 	system("cls");
 	g.Run();
 	
-
-
-
 
 
 

@@ -64,7 +64,6 @@ Game::Game() {
 }
 
 Game::~Game() {
-
 	delete p;
 	for (int y = 0; y < 5; y++) {
 		for (int x = 0; x < 5; x++) {
@@ -92,131 +91,9 @@ void Game::Run() {
 		}
 		p->displaceVal = 0;
 
-
-
-		
-
-
-
 		p->currentRoom->DescribeRoom();
-		//music! currently disabled
-		//if (!isCreated) {
-		//	p->isMoving = false;
-		//	//music!
-			//CreateThread(NULL, NULL, [](LPVOID lpThreadParameter) {
-			//	if (doNoPlay) {
-			//		Sleep(1200);
-			//	}
-		//
-		//	//	doNoPlay = false;
-			//	// music loop
-			//	while (!doNoPlay) {
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(260, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(320, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(380, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(260, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(320, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(380, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(260, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(320, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(380, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(260, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(320, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(380, 80); Sleep(150);
-		//
-		//	//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(440, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(500, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(560, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(440, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(500, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(560, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(440, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(500, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(560, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(440, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(500, 80); Sleep(150);
-			//		if (doNoPlay) {
-			//			break;
-			//		}
-			//		Beep(560, 80); Sleep(150);
-			//	} 
-		//
-		//	//	return (DWORD)TRUE;
-		//
-		//	//	}, (bool*)&doNoPlay, NULL, NULL);
-		//}
-		//isCreated = true;
 		p->inputTwine.GetTwine();
-		if (p->inputTwine.ToLower() == "quit game") {
+		if (p->inputTwine.ToLower() == Twine("quit game").ToLower()) {
 			doGame = false;
 			system("CLS");
 			std::cout << "rude, bye.";
@@ -226,10 +103,6 @@ void Game::Run() {
 		
 		std::cout << p->name << ": " << p->health << "HP" << '\n';
 		p->CheckForValidCommand(p->inputTwine);
-		//if (p->isMoving) {
-		//	doNoPlay = true;
-		//	isCreated = false;
-		//}
 		p->currentRoom = Mansion[p->xCord][p->yCord];
 
 
