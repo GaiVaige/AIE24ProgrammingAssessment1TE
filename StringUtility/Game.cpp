@@ -61,6 +61,12 @@ Game::Game() {
 	Mansion[4][2] = new Library;
 	Mansion[4][3] = new Hallway;
 	Mansion[4][4] = new Library;
+
+	for (int y = 0; y < 5; y++) {
+		for (int x = 0; x < 5; x++) {
+			Mansion[x][y]->roomItem = new Item;
+		}
+	}
 }
 
 Game::~Game() {

@@ -116,3 +116,22 @@ Test 13: Replace Successful!
 FINAL RESULT: 100%
 TEST SUCCESSFUL!
 END OF TEST
+
+Tested at: Wed Mar  6 13:52:08 2024
+
+Test 1: Empty Construction Successful!
+Test 2: In IDE Overwrite Successful!
+Test 3: Read From Console Successful!
+Test 4: Length Successful!
+Test 5: CharAt Successful!
+Test 6: Compare Successful!
+Test 7: Append Successful!
+Test 8: Prepend Successful!
+Test 9: To Upper Successful!
+Test 10: To Lower Successful!
+Test 11: Find Successful!
+Test 12: Find From Index Successful!
+Test 13: Replace Successful!
+FINAL RESULT: 100%
+TEST SUCCESSFUL!
+END OF TEST

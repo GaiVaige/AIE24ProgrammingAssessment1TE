@@ -1,9 +1,8 @@
 #pragma once
-#ifndef ROOM_HEADER
-#define ROOM_HEADER
 #include "Twine.h"
 #include "Entity.h"
 class Player;
+#include "Item.h"
 
 
 class Room {
@@ -25,6 +24,7 @@ public:
 	bool doDesc = true;
 	Twine name;
 	Twine mapChar;
+	Item* roomItem;
 	Room();
 	~Room();
 	virtual void DescribeRoom();
@@ -37,10 +37,3 @@ public:
 
 
 };
-
-
-
-
-
-
-#endif
