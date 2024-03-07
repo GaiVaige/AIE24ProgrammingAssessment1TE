@@ -224,7 +224,7 @@ Spell* Player::SpellLookUp(Twine& searchT) {
 	searchT.Replace("spell ", "");
 
 	if (searchT[searchT.Length() - 1] == ' ') {
-		for (int i = searchT.Length() - 1; searchT[i] == ' '; i--) {
+		for (size_t i = searchT.Length() - 1; searchT[i] == ' '; i--) {
 			searchT.Erase(1, i);
 		}
 	}

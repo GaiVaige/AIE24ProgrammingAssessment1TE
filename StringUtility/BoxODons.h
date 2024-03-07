@@ -25,7 +25,7 @@ public:
 			char b = (char)(numOfDons + 48);
 			t.Append(b);
 			t.Append(" donuts left.");
-			this - numOfDons--;
+			this->numOfDons--;
 			return t;
 		}
 		else {

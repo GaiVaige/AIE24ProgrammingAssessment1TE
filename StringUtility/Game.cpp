@@ -135,9 +135,9 @@ void Game::DrawMap() {
 
 
 	int yPos = 5;
-	COORD pPos = { p->xCord, p->yCord };
+	COORD pPos = { (short)p->xCord, (short)p->yCord };
 	for (int y = roomYDim - 1; y > -1; y--) {
-		COORD cursorPos = { 70, yPos };
+		COORD cursorPos = { 70, (short)yPos };
 
 		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), cursorPos);
 
@@ -184,7 +184,7 @@ void Game::DrawMap() {
 }
 
 Item* Game::GenItem(int x, int y) {
-	srand(time(NULL) + x * y);
+	srand((unsigned int)time(NULL) + x * y);
 	if (rand()%2 != 0) {
 
 		int dCheck = rand()%3 + 1;

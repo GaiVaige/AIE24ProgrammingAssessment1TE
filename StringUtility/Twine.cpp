@@ -1,8 +1,6 @@
 ﻿#include "Twine.h"
 #include <iostream>
 #include <time.h>
-#pragma warning (push)
-#pragma warning (disable:6386)
 
 
 
@@ -292,24 +290,24 @@ void Twine::Replace(const Twine& find, const Twine& newc) {
 		size_t findLength = find.Length();
 		size_t newStringLen = newc.Length();
 		int currentSwapPos = 0;
-		size_t returnStringLen = (newStringLen - findLength) + this->Length();
-		char* newT = new char[returnStringLen + 1];
+		size_t returnStringLen = (newStringLen - findLength) + this->Length() + 1;
+		char* newT = new char[returnStringLen];
 
 		int newCTracker = 0;
 		int checkTrack = 0;
 		//copy until the beginning of replacement
-		for (currentSwapPos; currentSwapPos < replaceStringPos; currentSwapPos++) {
+		for (currentSwapPos; currentSwapPos < replaceStringPos && currentSwapPos < returnStringLen; currentSwapPos++) {
 
 			newT[currentSwapPos] = this->twine[currentSwapPos];
 		}
 		//until currentSwapPos reaches the end of the replaceString
-		for (currentSwapPos; currentSwapPos < replaceStringPos + newStringLen; currentSwapPos++) {
+		for (currentSwapPos; currentSwapPos < replaceStringPos + newStringLen && currentSwapPos < returnStringLen; currentSwapPos++) {
 			newT[currentSwapPos] = newc[newCTracker];
 			newCTracker++;
 			checkTrack = currentSwapPos;
 		}
 		//copy any remanining data
-		for (int finalTracker = 0; currentSwapPos < returnStringLen + 1; currentSwapPos++) {
+		for (int finalTracker = 0; currentSwapPos < returnStringLen; currentSwapPos++) {
 			size_t j = replaceStringPos + findLength + finalTracker;
 			newT[currentSwapPos] = this->twine[j];
 			finalTracker++;
@@ -326,16 +324,16 @@ void Twine::Prepend(const Twine& c) {
 
 	size_t curCSize = this->Length();
 	size_t cSize = c.Length();
-	size_t newSize = cSize + curCSize;
-	char* newC = new char[newSize + 1];
+	size_t newSize = cSize + curCSize + 1;
+	char* newC = new char[newSize];
 	//copies new characters to start of new array
-	for (int i = 0; i < cSize; i++) {
+	for (int i = 0; i < cSize && i < newSize; i++) {
 
 		newC[i] = c[i];
 
 	}
 	//copies old twine over
-	for (int i = 0; i < curCSize; i++) {
+	for (int i = 0; i < curCSize && cSize + i < newSize; i++) {
 
 		newC[cSize + i] = this->twine[i];
 
@@ -378,7 +376,7 @@ void Twine::Append(const Twine& c) {
 
 	}
 	//copies new data
-	for (int i = 0; i < cSize; i++) {
+	for (int i = 0; i < cSize && cSize + i < newSize; i++) {
 
 		newC[curCSize + i] = c[i];
 
@@ -483,7 +481,7 @@ Twine Twine::operator + (Twine& t) {
 
 }
 
-char& Twine::operator [] (int i) const{
+char& Twine::operator [] (size_t i) const{
 
 	return this->twine[i];
 
@@ -731,31 +729,34 @@ void Twine::Wobble() {
 
 }
 
-void Twine::Insert(Twine& c, int insertIndex) {
+void Twine::Insert(const Twine& c, size_t insertIndex) {
 
 	size_t curLen = this->Length();
-	size_t newLen = c.Length();
-	size_t newSize = curLen + newLen;
+
+	if (insertIndex >= curLen || insertIndex < 0) {
+		return;
+	}
+	size_t insInd = insertIndex;
+	size_t insStringLen = c.Length();
+	size_t newSize = curLen + insStringLen + 1;
+
+	size_t i = 0; //tracker for for loops
+	size_t inserti = 0;
 
 
-	int i = 0; //tracker for for loops
-	int inserti = 0;
-	int finalTracker = 0;
+	char* newTwine = new char[newSize];
 
-
-	char* newTwine = new char[newSize + 1];
-
-	for (i; i < insertIndex; i++) {
+	for (i; i < insInd && i < newSize; i++) {
 		newTwine[i] = this->twine[i];
 	}
-	finalTracker = i;
+	size_t finalTracker = i;
 
-	for (i;i < insertIndex + newLen;i++) {
+	for (i;i < insInd + insStringLen && i < newSize;i++) {
 		newTwine[i] = c[inserti];
 		inserti++;
 	}
 
-	for (i;i < Length(newTwine);i++) {
+	for (i;i < newSize; i++) {
 		newTwine[i] = this->twine[finalTracker];
 		finalTracker++;
 	}
@@ -764,30 +765,24 @@ void Twine::Insert(Twine& c, int insertIndex) {
 	delete[] newTwine;
 }
 
-void Twine::Erase(int delInt, int startIndex) {
-
-	if (startIndex < 0) {
-		startIndex = 0;
-	}
+void Twine::Erase(int delInt, size_t startIndex) {
 
 	if (startIndex >= this->Length()) {
 		return;
 	}
 
-	size_t newsize = this->Length() - delInt;
-	char* newTwine = new char[newsize + 1];
+	size_t newsize = this->Length() - delInt + 1;
+	char* newTwine = new char[newsize];
 
 	int i = 0; //tracker for for loops
 
-	for (i; i < startIndex;i++) {
+	for (i; i < startIndex && i < newsize;i++) {
 		newTwine[i] = this->twine[i];
 	}
 
-	for (i;i < Length(newTwine);i++) {
+	for (i;i < newsize;i++) {
 		newTwine[i] = this->twine[i + delInt];
 	}
-
-	newTwine[newsize] = '\0';
 	this->SetTwine(newTwine);
 	delete[] newTwine;
 
@@ -829,4 +824,3 @@ Twine& Twine::Colour(int r, int g, int b, bool fg) {
 	return *this;
 }
 
-#pragma warning (pop)

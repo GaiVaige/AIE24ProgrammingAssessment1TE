@@ -74,7 +74,7 @@
 		bool operator != (const Twine& t) const;
 		Twine& operator += (Twine& t);
 		Twine operator + (Twine& t);
-		char& operator [] (int n) const;
+		char& operator [] (size_t n) const;
 		bool operator < (const Twine& t) const;
 		bool operator > (const Twine& t) const;
 
@@ -95,10 +95,10 @@
 
 
 		//Inserts char* newC at index insertIndex of twine
-		void Insert(Twine& c, int insertIndex);
+		void Insert(const Twine& c, size_t insertIndex);
 
 		//erases number of chars delInt starting at startIndex, then resizes array
-		void Erase(int delInt, int startIndex);
+		void Erase(int delInt, size_t startIndex);
 		void Caesar(int displaceVal);
 
 		Twine& Colour(int r, int g, int b, bool fg = true);
