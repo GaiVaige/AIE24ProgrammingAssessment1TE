@@ -435,32 +435,38 @@ void Player::CommandOutput() {
 
 	std::cout << "Utility commands:\n";
 	for (int i = 0; i < 3; i++) {
-		validDialougeCommands[i].DisplayTwine();
+		Twine t = validUtilityCommands[i];
+		t.Capital().DisplayTwine();
 	}
 	std::cout << '\n';
 	std::cout << "Item commands:\n";
 	for (int i = 0; i < 3; i++) {
-		validItemCommands[i].DisplayTwine();
+		Twine t = validItemCommands[i];
+		t.Capital().DisplayTwine();
 	}
 	std::cout << '\n';
 	std::cout << "Room commands:\n";
 	for (int i = 0; i < 5; i++) {
-		validRoomCommands[i].DisplayTwine();
+		Twine t = validRoomCommands[i];
+		t.Capital().DisplayTwine();
 	}
 	std::cout << '\n';
 	std::cout << "Move commands:\n";
 	for (int i = 0; i < 5; i++) {
-		validMoveCommands[i].DisplayTwine();
+		Twine t = validMoveCommands[i];
+		t.Capital().DisplayTwine();
 	}
 	std::cout << '\n';
 	std::cout << "Combat commands:\n";
 	for (int i = 0; i < 4; i++) {
-		validCombatCommands[i].DisplayTwine();
+		Twine t = validCombatCommands[i];
+		t.Capital().DisplayTwine();
 	}
 	std::cout << '\n';
 	std::cout << "Dialogue commands:\n";
 	for (int i = 0; i < 4; i++) {
-		validDialougeCommands[i].DisplayTwine();
+		Twine t = validDialougeCommands[i];
+		t.Capital().DisplayTwine();
 	}
 	std::cout << '\n';
 
