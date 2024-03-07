@@ -14,12 +14,14 @@ public:
 	void Interact(Player* p) override{
 
 		if (this->alive) {
+			this->Dialogue.Wobble();
 			this->Dialogue.DisplayTwine();
 			if (this->setsFlag) {
 				p->flags[flagToSet] = true;
 			}
 		}
 		else {
+			this->deadDesc.Wobble();
 			this->deadDesc.DisplayTwine();
 			if (this->setsFlag) {
 				p->flags[flagToSet] = true;

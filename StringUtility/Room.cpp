@@ -26,7 +26,7 @@ Twine Room::InspectRoom(Twine& t) {
 
 	for (int i = 0; i < this->descLength; i++) {
 
-		if (t.ToLower().FindExclusive(this->keyWords[i].ToLower().TStr()))
+		if (t.ToLower().FindExclusive(this->keyWords[i].ToLower()))
 		{
 			return this->extraDescriptions[i];
 		}
@@ -34,7 +34,7 @@ Twine Room::InspectRoom(Twine& t) {
 	}
 
 	for (int i = 0; i < this->entityNum; i++) {
-		if (t.ToLower().FindExclusive(this->roomEntities[i]->name.ToLower().TStr())) {
+		if (t.ToLower().FindExclusive(this->roomEntities[i]->name.ToLower())) {
 			return this->roomEntities[i]->description;
 		}
 	}
@@ -45,7 +45,7 @@ Twine Room::InspectRoom(Twine& t) {
 
 void Room::CheckForDialogue(Twine& t, Player* p) {
 	for (int i = 0; i < this->entityNum; i++) {
-		if (t.ToLower().FindExclusive(this->roomEntities[i]->name.ToLower().TStr())) {
+		if (t.ToLower().FindExclusive(this->roomEntities[i]->name.ToLower())) {
 			roomEntities[i]->Interact(p);
 			return;
 		}

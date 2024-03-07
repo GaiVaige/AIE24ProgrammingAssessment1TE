@@ -17,7 +17,7 @@ public:
 
 	Twine Use() override {
 
-		return "The shoelace... it...\n\n Did it just move?\n";
+		return "The shoelace... it...\n\nDid it just move?\n";
 	}
 
 

@@ -16,7 +16,7 @@ public:
                     |          \n\
  ___________________|__________\n";
 		name = "Foot of the Dining Room";
-		description = "No chairs sit in the half of the dining room, simply a chandelier hanging over a long, long table.\nThe room stinks, as if whoever eats in here is almost beastly.";
+		description = Twine("No chairs sit in the half of the dining room, simply a chandelier hanging over a long, long table.\nThe room stinks, as if whoever eats in here is almost beastly.");
 		keyWords = new Twine[3]{
 			"chandelier",
 			"table",

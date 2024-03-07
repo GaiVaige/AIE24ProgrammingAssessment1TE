@@ -1,7 +1,7 @@
 #pragma once
 #ifndef CUSTOM_TWINE_HEADER
 #define CUSTOM_TWINE_HEADER
-
+#include <cstddef>
 #include <iostream>
 
 
@@ -16,13 +16,11 @@
 		~Twine();
 
 		//set a Twine objects char* to a new char*
-		void SetTwine(const Twine& c);
-		void SetTwine(const char* c);
+		//void SetTwine(Twine c);
+		void SetTwine(const Twine c);
 
-		//two copies, one is 'quick' and overwties the char* twine on the
-		//Twine object that clals it, the other can be called seperatley to
+		//the other can be called seperatley to
 		//an object
-		void Copy(const Twine& newTextTwine);
 		static void Copy(Twine& twineA, const Twine& twineB);
 
 
@@ -55,36 +53,28 @@
 
 		//Compares two strings to see if they are the same
 		bool EqualTo(const Twine& c) const;
-		bool EqualTo(const char* c) const;
 
 		//replaces instance of const char* current in char* sC with const char* newc and resizes the array
 		void Replace(const Twine& current, const Twine& newc);
-		void Replace(const char* current, const char* newc);
 
 		//adds char* c to the start of char* curC
 		void Prepend(const Twine& c);
-		void Prepend(const char* c);
 		void Prepend(char c);
 
 		//adds char* c to the end of char* curC
 		void Append(const Twine& c);
-		void Append(const char* c);
 		void Append(char c);
 
 		//OPERATORS
 
 		friend std::ostream& operator << (std::ostream& out, const Twine& t);
 		friend std::istream& operator >> (std::istream& in, Twine& t);
-		Twine& operator = (const char* c);
-		Twine& operator = (Twine& t);
-		bool operator == (const char* c) const;
+		Twine& operator = (const Twine& t);
 		bool operator == (const Twine& t) const;
-		bool operator != (const char* c) const;
 		bool operator != (const Twine& t) const;
 		Twine& operator += (Twine& t);
 		Twine operator + (Twine& t);
-		char& operator [] (int n);
-		const char& operator [] (int n) const;
+		char& operator [] (int n) const;
 		bool operator < (const Twine& t) const;
 		bool operator > (const Twine& t) const;
 
@@ -95,11 +85,8 @@
 
 		size_t ParseForInt();
 
-		bool FindExclusive(Twine& c);
-		bool FindExclusive(const char* c);
-		bool FindExclusive(Twine& c, int sIn);
-		bool FindExclusive(const char* c, int sIn);
-		bool FindInSpool(Twine tAr[], int size);
+		bool FindExclusive(const Twine& c);
+		bool FindExclusive(const Twine& c, int sIn);
 
 		Twine Capital();
 
@@ -109,14 +96,9 @@
 
 		//Inserts char* newC at index insertIndex of twine
 		void Insert(Twine& c, int insertIndex);
-		void Insert(const char* c, int insertIndex);
 
 		//erases number of chars delInt starting at startIndex, then resizes array
 		void Erase(int delInt, int startIndex);
-
-
-
-
 		void Caesar(int displaceVal);
 
 		Twine& Colour(int r, int g, int b, bool fg = true);

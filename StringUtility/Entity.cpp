@@ -6,7 +6,7 @@ Entity::Entity() {
 	maxHP = 0;
 	s.InitStats(0, 0, 0, 0, 0, 0);
 	ac = 10 + ((s.Dexterity - 10) / 2);
-	Dialogue = nullptr;
+	Dialogue = "";
 	alive = true;
 }
 
