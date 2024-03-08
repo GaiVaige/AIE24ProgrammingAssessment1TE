@@ -433,37 +433,37 @@ void Player::SpellSort() {
 
 void Player::CommandOutput() {
 
-	std::cout << "Utility commands:\n";
+	std::cout << "Utility commands:				Form for commands: [command]\n";
 	for (int i = 0; i < 3; i++) {
 		Twine t = validUtilityCommands[i];
 		t.Capital().DisplayTwine();
 	}
 	std::cout << '\n';
-	std::cout << "Item commands:\n";
+	std::cout << "Item commands:				Form for commands: [command][item name]\n";
 	for (int i = 0; i < 3; i++) {
 		Twine t = validItemCommands[i];
 		t.Capital().DisplayTwine();
 	}
 	std::cout << '\n';
-	std::cout << "Room commands:\n";
+	std::cout << "Room commands:				Form for commands: [command][keyword in room]\n";
 	for (int i = 0; i < 5; i++) {
 		Twine t = validRoomCommands[i];
 		t.Capital().DisplayTwine();
 	}
 	std::cout << '\n';
-	std::cout << "Move commands:\n";
+	std::cout << "Move commands:				Form for commands: [command][cardinal direction(s)]\n";
 	for (int i = 0; i < 5; i++) {
 		Twine t = validMoveCommands[i];
 		t.Capital().DisplayTwine();
 	}
 	std::cout << '\n';
-	std::cout << "Combat commands:\n";
+	std::cout << "Combat commands:				Form for commands: [attack][spell name(if spell] and/or [target]\n";
 	for (int i = 0; i < 4; i++) {
 		Twine t = validCombatCommands[i];
 		t.Capital().DisplayTwine();
 	}
 	std::cout << '\n';
-	std::cout << "Dialogue commands:\n";
+	std::cout << "Dialogue commands:			Form for commands: [talk][target]\n";
 	for (int i = 0; i < 4; i++) {
 		Twine t = validDialougeCommands[i];
 		t.Capital().DisplayTwine();
