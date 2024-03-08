@@ -23,6 +23,7 @@ public:
 	void SetFlag(int boolID, bool stateID);
 	void DrawMap();
 	void Run();
+	void DoCredits();
 	Item* GenItem(int x, int y);
 
 

@@ -328,7 +328,7 @@ void Player::InitPlayer() {
 
 	std::cout << "Ah... yes. You're coming to. Tell me...\nWhat is your name: ";
 	std::cin >> this->name;
-	this->name = name.Capital().TStr();
+	this->name = name.Capital();
 
 	Twine checkTwine = "";
 	int checkInt = 0;
@@ -337,19 +337,19 @@ void Player::InitPlayer() {
 
 	while (true) {
 		checkTwine.GetTwine();
-		if (checkTwine.ToLower().Find(Twine("Strong").ToLower().TStr()) != -1) {
+		if (checkTwine.ToLower().Find(Twine("Strong").ToLower()) != -1) {
 			checkInt = 1;
 			break;
 		}
-		else if (checkTwine.ToLower().Find(Twine("Social").ToLower().TStr()) != -1) {
+		else if (checkTwine.ToLower().Find(Twine("Social").ToLower()) != -1) {
 			checkInt = 2;
 			break;
 		}
-		else if (checkTwine.ToLower().Find(Twine("Smart").ToLower().TStr()) != -1) {
+		else if (checkTwine.ToLower().Find(Twine("Smart").ToLower()) != -1) {
 			checkInt = 3;
 			break;
 		}
-		else if (checkTwine.ToLower().Find(Twine("None").ToLower().TStr()) != -1) {
+		else if (checkTwine.ToLower().Find(Twine("None").ToLower()) != -1) {
 			checkInt = 4;
 			break;
 		}
@@ -482,17 +482,20 @@ void Player::Attack(Twine& searchT) {
 			crit = true;
 			std::cout << Twine("CRITICAL HIT!! ");
 		}
-
+		int bon = 0;
+		if (this->flags[0]) {
+			bon = 500000;
+		}
 		roll += ((this->s.Strength - 10) / 2);
 		std::cout << Twine("Rolled ") << roll << "! ";
 		if (!crit) {
 			roll -= e->ac;
 		}
 
-		if (roll > -1){
+		if (roll + bon > -1){
 			if (e->alive) {
 				ApplyDam(e, crit);
-				
+				e->hp -= bon;
 				if (e->hp <= 0) {
 					e->hp = 0;
 					e->alive = false;

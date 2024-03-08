@@ -30,7 +30,7 @@ public:
 	virtual void DescribeRoom();
 	virtual Twine InspectRoom(Twine& t);
 	virtual void CheckForDialogue(Twine& t, Player* p);
-	Entity* CheckEntityNames(Twine& searchT);
+	Entity* CheckEntityNames(const Twine& searchT);
 
 
 

@@ -141,10 +141,12 @@
   <ItemGroup>
     <ClInclude Include="BoxODons.h" />
     <ClInclude Include="Butler.h" />
+    <ClInclude Include="ButlersRoom.h" />
     <ClInclude Include="Dining1.h" />
     <ClInclude Include="Candle.h" />
     <ClInclude Include="Dining2.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Gorilla.h" />
     <ClInclude Include="Hallway.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Kitchen.h" />

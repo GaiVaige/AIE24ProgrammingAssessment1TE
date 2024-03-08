@@ -78,11 +78,7 @@ public:
 	int numberOfItems = 0;
 	int health;
 	bool isMoving;
-	bool flags[5]{
-	false,
-	false,
-	false,
-	false,
+	bool flags[1]{
 	false,
 	};
 

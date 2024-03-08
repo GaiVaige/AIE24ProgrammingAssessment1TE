@@ -22,7 +22,7 @@ int main() {
 	g.Run();
 	
 
-
+	g.DoCredits();
 
 
 }

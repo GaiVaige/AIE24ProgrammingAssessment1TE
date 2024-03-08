@@ -52,6 +52,7 @@ The bookshelves to the left are packed full. A ghostly old man places books back
 	}
 
 	~Library() {
+
 	}
 
 };

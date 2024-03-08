@@ -16,6 +16,7 @@
 #include "Dining2.h"
 #include "Hallway.h"
 #include "Piano.h"
+#include "ButlersRoom.h"
 
 
 //bool doNoPlay = false;
@@ -45,25 +46,25 @@ Game::Game() {
 	Mansion[0][3] = new Kitchen;
 	Mansion[0][4] = new Dining1;
 	Mansion[1][0] = new Hallway;
-	Mansion[1][1] = new Library;
-	Mansion[1][2] = new Kitchen;
+	Mansion[1][1] = new Hallway;
+	Mansion[1][2] = new Hallway;
 	Mansion[1][3] = new Hallway;
 	Mansion[1][4] = new Dining2;
-	Mansion[2][0] = new Library;
+	Mansion[2][0] = new Hallway;
 	Mansion[2][1] = new Hallway;
 	Mansion[2][2] = new Hallway;
 	Mansion[2][3] = new Library;
 	Mansion[2][4] = new Hallway;
-	Mansion[3][0] = new Kitchen;
-	Mansion[3][1] = new Library;
+	Mansion[3][0] = new Hallway;
+	Mansion[3][1] = new Hallway;
 	Mansion[3][2] = new Piano;
 	Mansion[3][3] = new Hallway;
 	Mansion[3][4] = new Hallway;
-	Mansion[4][0] = new Library;
+	Mansion[4][0] = new ButlersRoom;
 	Mansion[4][1] = new Hallway;
-	Mansion[4][2] = new Library;
+	Mansion[4][2] = new Hallway;
 	Mansion[4][3] = new Hallway;
-	Mansion[4][4] = new Library;
+	Mansion[4][4] = new Hallway;
 
 	for (int y = 0; y < 5; y++) {
 		for (int x = 0; x < 5; x++) {
@@ -94,6 +95,11 @@ void Game::Run() {
 	std::cout << p->name << ": " << p->health << "HP" << '\n';
 	while (doGame) {
 		std::cout << '\n';
+
+		if (Mansion[0][4]->CheckEntityNames("Gorilla")->alive == false) {
+			break;
+		}
+
 		this->DrawMap();
 		for (int i = 0; i < p->displaceVal; i++) {
 			std::cout << '\n';
@@ -119,6 +125,12 @@ void Game::Run() {
 
 		
 	}
+}
+
+void Game::DoCredits()
+{
+	std::cout << "Done!\n";
+	std::cout << "Thank you for playing my game!\n";
 }
 
 void Game::SetFlag(int boolID, bool stateID) {
