@@ -62,47 +62,52 @@ static Twine Directions[4]{
 
 
 class Player {
-public:
 
-	Room* currentRoom = nullptr;
+
+
+
+private:
 	Stats s;
-	Item** playerInventory;
-	Spell** spells;
-	Spool spellBook;
+	//searches for an item by name and calls its Use() function
+	Twine UseItem(Twine& searchT);
+	//returns a spell pointer to be used for casting spells, or returns its description
+	void CastSpell(Twine& searchT);
+	Spell* SpellLookUp(Twine& searchT);
+	//finds an entity with the correct name
+	void Attack(Twine& searchT);
+	//uses the entity found above to apply damage
+	void ApplyDam(Entity* e, bool crit);
+
+	//outputs for commands 'items', 'stats', 'spells' and 'help' respectively
+	void FullSpellList();
+	void Inventory();
+	void PlayerStats();
+	void CommandOutput();
+
+public:
+	Room* currentRoom = nullptr;
 	Twine inputTwine;
 	Twine name;
+	Item** playerInventory;
+	Spell** spells;
 	int spellCount;
 	int displaceVal;
 	int xCord = 0;
 	int yCord = 0;
 	int numberOfItems = 0;
 	int health;
-	bool isMoving;
 	bool flags[1]{
 	false,
 	};
-
-
-
-	
 	Player();
 	~Player();
-
-	void CheckForValidCommand(Twine& searchT);
 	void AddItem(Item& c);
-	Twine SearchItem(Twine& searchT);
+	void CheckForValidCommand(Twine& searchT);
 	void MovePlayer(int i);
-	Spell* SpellLookUp(Twine& searchT);
 	void LearnSpell(Spell* sp);
-	void Attack(Twine& searchT);
-	void ApplyDam(Entity* e, bool crit);
-	void CastSpell(Twine& searchT);
-	void InitPlayer();
-	void FullSpellList();
-	void Inventory();
-	void PlayerStats();
 	void SpellSort();
-	void CommandOutput();
+	void InitPlayer();
+
 
 };
 

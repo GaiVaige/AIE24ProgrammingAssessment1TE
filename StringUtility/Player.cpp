@@ -33,7 +33,7 @@ void Player::CheckForValidCommand(Twine& searchT) {
 	for (int i = 0; i < 3; i++) {
 
 		if (searchT.ToLower().FindExclusive(validItemCommands[i].ToLower().TStr())) {
-			SearchItem(searchT).DisplayTwine();
+			UseItem(searchT).DisplayTwine();
 			displaceVal = 2;
 			return;
 		}
@@ -156,7 +156,7 @@ void Player::AddItem(Item& c) {
 	
 }
 
-Twine Player::SearchItem(Twine& searchT) {
+Twine Player::UseItem(Twine& searchT) {
 
 	
 
@@ -203,7 +203,6 @@ void Player::MovePlayer(int i) {
 		}
 		break;
 	}
-	isMoving = true;
 	CreateThread(NULL, NULL, [](LPVOID lpThreadParameter){
 		Beep(100, 200);
 		Beep(50, 200);

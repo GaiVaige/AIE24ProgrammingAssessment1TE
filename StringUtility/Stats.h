@@ -7,7 +7,7 @@ struct Stats {
 	int Strength, Dexterity, Constitution, Intelligence, Wisdom, Charisma;
 
 
-
+	//initialises stats at set values
 	void InitStats(int Str, int Dex, int Con, int Int, int Wis, int Cha) {
 		Strength = Str;
 		Dexterity = Dex;
@@ -17,7 +17,7 @@ struct Stats {
 		Charisma = Cha;
 	}
 
-
+	//updates a stat (ID from 1-6) by adding a value
 	void UpdateStat(int ID, int addVal) {
 		switch (ID) {
 		default:
@@ -35,29 +35,5 @@ struct Stats {
 		case 6:
 			Charisma += addVal;
 		}
-	}
-
-	int Roll(int ID) {
-
-		srand((unsigned int)(time(NULL)));
-		int rollRaw = rand()%20;
-
-		switch (ID) {
-		default:
-			break;
-		case 1:
-			return rollRaw + this->Strength;
-		case 2:
-			return rollRaw + this->Dexterity;
-		case 3:
-			return rollRaw + this->Constitution;
-		case 4:
-			return rollRaw + this->Intelligence;
-		case 5:
-			return rollRaw + this->Wisdom;
-		case 6:
-			return rollRaw + this->Charisma;
-		}
-
 	}
 };

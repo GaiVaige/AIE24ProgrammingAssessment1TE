@@ -2,7 +2,10 @@
 #include "Roll.h"
 
 Spell::Spell() {
-
+	hasTarget = false;
+	dFace = 0;
+	dAmnt = 0;
+	damage = 0;
 }
 Spell::~Spell() {
 

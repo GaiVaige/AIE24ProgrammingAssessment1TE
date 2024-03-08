@@ -20,13 +20,16 @@ public:
 
 	Game();
 	~Game();
-	void SetFlag(int boolID, bool stateID);
+
 	void DrawMap();
 	void Run();
 	void DoCredits();
+
+private:
+	//unused
+	void SetFlag(int boolID, bool stateID);
+	//generates item for each room at game construction
 	Item* GenItem(int x, int y);
-
-
 };
 
 

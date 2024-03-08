@@ -23,6 +23,7 @@ public:
 	Entity();
 	~Entity();
 	Entity(Twine t, Twine t2, Twine dia, Twine deadD, int statBon, bool doesSetFlag, int flagToSet);
+	//can be used to set the boolean values in the players flags[] variable
 	virtual void Interact(Player* p);
 
 private:
