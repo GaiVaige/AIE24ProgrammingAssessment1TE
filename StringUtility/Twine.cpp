@@ -376,7 +376,7 @@ void Twine::Append(const Twine& c) {
 
 	}
 	//copies new data
-	for (int i = 0; i < cSize && cSize + i < newSize; i++) {
+	for (int i = 0; i < cSize && i < newSize; i++) {
 
 		newC[curCSize + i] = c[i];
 

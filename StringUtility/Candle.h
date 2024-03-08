@@ -9,7 +9,7 @@
 class Candle : public Item {
 
 private:
-	int CandleTrack = 0;
+	int CandleTrack = 1;
 	
 
 public:
@@ -52,11 +52,10 @@ public:
 		if (g->p->currentRoom->name == "Kitchen") {
 
 			if (g->p->flags[0] != true) {
-				candle.Append("The candle lights up the benches. You collect a knife!\n");
+				candle.Append("The candle lights up the benches.\nYou collect a knife!\n");
 				Knife* k = new Knife;
 				g->p->AddItem(*k);
 				k->g = this->g;
-				g->p->flags[0] = true;
 			}
 			else {
 				candle.Append("The candle lights up the benches.");

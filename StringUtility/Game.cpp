@@ -93,7 +93,7 @@ void Game::Run() {
 	p->xCord = 2;
 	p->yCord = 0;
 	std::cout << p->name << ": " << p->health << "HP" << '\n';
-	std::cout << Twine("Type command HELP to check list of commands!\n");
+	std::cout << Twine("Type \"help\" to check list of commands! Type \"quit\" to quit!\n");
 	while (doGame) {
 		std::cout << '\n';
 
@@ -110,6 +110,7 @@ void Game::Run() {
 		if (p->currentRoom->roomItem != nullptr) {
 			p->currentRoom->roomItem->Description().DisplayTwine();
 		}
+		std::cout << ">";
 		p->inputTwine.GetTwine();
 		if (p->inputTwine.ToLower().Find(Twine("Quit").ToLower()) != -1) {
 			doGame = false;

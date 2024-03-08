@@ -32,7 +32,6 @@ public:
 		Twine knife = "You brandish the knife.\n";
 		if (g->p->currentRoom->name == "Library") {
 			knife.Append(" You cut open the books in a frenzy, you find a key!\n");
-			g->p->flags[1] = true;
 			return knife;
 		}
 		else {
