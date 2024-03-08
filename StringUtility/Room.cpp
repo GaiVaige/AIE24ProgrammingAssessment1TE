@@ -7,6 +7,11 @@ Room::Room() {
 
 Room::~Room() {
 	delete roomItem;
+
+	for (int i = 0; i < entityNum; i++) {
+		delete roomEntities[i];
+	}
+	delete[] roomEntities;
 }
 
 
@@ -55,7 +60,7 @@ void Room::CheckForDialogue(Twine& t, Player* p) {
 	fail.DisplayTwine();
 }
 
-Entity* Room::CheckEntityNames(Twine& searchT) {
+Entity* Room::CheckEntityNames(const Twine& searchT) {
 	for (int i = 0; i < entityNum; i++) {
 		if (searchT.ToLower().FindExclusive(roomEntities[i]->name.ToLower().TStr())) {
 			return roomEntities[i];

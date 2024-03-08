@@ -1,6 +1,6 @@
 #pragma once
 #include "Room.h"
-#include "Butler.h"
+
 class Hallway : public Room {
 public:
 	Hallway() {
@@ -29,18 +29,7 @@ The bookshelves to the left are packed full. A ghostly old man places books back
 			"shelves",
 			"ghost",
 		};
-		delete[] this->roomEntities;
 
-		Entity* John = new Butler(Twine("Goffry"), Twine("A short, stocky man with a big forehead looks you up and down.\nHe has no hands."), Twine("Please sir... kill Mr. Gorilla Gorillatonne, take my gun.\nI can't get it out of the holster."), Twine("The butler is dead, a gun sits in his pocket."), 1, true, 4);
-
-
-
-		this->roomEntities = new Entity * [1] {
-			John,
-			};
-
-		this->entityNum = 1;
-		descLength = 3;
 
 	}
 

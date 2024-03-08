@@ -122,5 +122,11 @@
     <ClInclude Include="Shoelace.h">
       <Filter>Header Files\Items</Filter>
     </ClInclude>
+    <ClInclude Include="ButlersRoom.h">
+      <Filter>Header Files\Rooms</Filter>
+    </ClInclude>
+    <ClInclude Include="Gorilla.h">
+      <Filter>Header Files\Rooms\Entities</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

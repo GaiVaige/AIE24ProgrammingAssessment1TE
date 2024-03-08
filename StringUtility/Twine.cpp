@@ -340,7 +340,7 @@ void Twine::Prepend(const Twine& c) {
 	}
 
 
-	newC[newSize] = '\0';
+	newC[newSize - 1] = '\0';
 	this->SetTwine(newC);
 	delete[] newC;
 
@@ -348,16 +348,16 @@ void Twine::Prepend(const Twine& c) {
 
 void Twine::Prepend(char c) {
 
-	size_t curCSize = this->Length();
-	char* newC = new char[curCSize + 2];
+	size_t curCSize = this->Length() + 2;
+	char* newC = new char[curCSize];
 	//sets first char of new array to c
 	newC[0] = c;
-	for (int i = 0; i < curCSize + 1; i++) {
+	for (int i = 0; i < curCSize; i++) {
 
 		newC[i] = this->twine[i];
 
 	}
-	newC[curCSize+1] = '\0';
+	newC[curCSize-1] = '\0';
 	this->SetTwine(newC);
 	delete[] newC;
 
@@ -367,10 +367,10 @@ void Twine::Append(const Twine& c) {
 
 	size_t curCSize = this->Length();
 	size_t cSize = c.Length();
-	size_t newSize = cSize + curCSize;
-	char* newC = new char[newSize + 1];
+	size_t newSize = cSize + curCSize + 1;
+	char* newC = new char[newSize];
 	//copies original twine to new array
-	for (int i = 0; i < curCSize; i++) {
+	for (int i = 0; i < newSize; i++) {
 
 		newC[i] = this->twine[i];
 
@@ -381,7 +381,7 @@ void Twine::Append(const Twine& c) {
 		newC[curCSize + i] = c[i];
 
 	}
-	newC[newSize] = '\0';
+	newC[newSize -1] = '\0';
 	this->SetTwine(newC);
 	delete[] newC;
 
@@ -389,8 +389,8 @@ void Twine::Append(const Twine& c) {
 
 void Twine::Append(char c) {
 
-	size_t curCSize = this->Length();
-	char* newC = new char[curCSize + 2];
+	size_t curCSize = this->Length() + 2;
+	char* newC = new char[curCSize];
 
 	for (int i = 0; i < curCSize; i++) {
 
@@ -399,7 +399,7 @@ void Twine::Append(char c) {
 	}
 	//copies new character to end of array
 	newC[curCSize] = c;
-	newC[curCSize + 1] = '\0';
+	newC[curCSize - 1] = '\0';
 	this->SetTwine(newC);
 	delete[] newC;
 
@@ -716,9 +716,8 @@ void Twine::Wobble() {
 
 		}
 		else {
-			nt[i] = ' ';
+			nt[i] = this->twine[i];
 		}
-
 
 
 	}
