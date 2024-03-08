@@ -17,26 +17,19 @@ public:
       _---------               \n\
      ===========               \n\
  ----|--L-Ll---|---------------\n";
-		description = "This is the library.\n\n\
-Atop a small table rests a small candle, it's smoke puffing in the air.\n\n\
-The bookshelves to the left are packed full.\n";
-		extraDescriptions = new Twine[5]{
+		description = "This is the Piano room.\n\n\
+A piano is playing itself in the centre, an eerie glow dances across the keys.\n";
+		extraDescriptions = new Twine[2]{
 			"A piano, chords are playing without anyone sitting there... \7",
-			"Oh lol this is just smut...",
-			"The fuck is a pizza oven doing in this thing",
-			"WHY IS THERE A GODDAMN GORILLA IN HERE",
-			"Do you really want to open the fridge?",
+			"Ah... Aria of the Soul...",
 		};
 
-		keyWords = new Twine[5]{
+		keyWords = new Twine[2]{
 			"piano",
-			"book",
-			"pizza",
-			"gorilla",
-			"fridge",
+			"song",
 
 		};
-		descLength = 5;
+		descLength = 2;
 
 	}
 

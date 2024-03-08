@@ -33,7 +33,7 @@ There is a hanging rack with two empty hooks attached.\n";
 	"The hanger is covered in layers of dust. It clearly has never been used. Someone doesn't take breaks...",
 		};
 
-
+		descLength = 3;
 
 
 		delete[] this->roomEntities;

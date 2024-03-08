@@ -36,7 +36,7 @@ The bookshelves to the left are packed full. A ghostly old man places books back
 			"ghost",
 		};
 		delete[] this->roomEntities;
-
+		descLength = 3;
 		Entity* John = new Entity(Twine("Ghost"), Twine("A sickly, transparent old man hovers before you. He murmurs as he places books back on the shelves."), Twine("Oh! You must be here for the master... he rests at the moment.\nGoffry, the butler, may be able to help you."), Twine("Why would you hit me, you know that won't work!"), -9, false, 50);
 
 

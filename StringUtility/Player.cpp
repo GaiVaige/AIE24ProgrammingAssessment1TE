@@ -458,6 +458,7 @@ void Player::CommandOutput() {
 	}
 	std::cout << '\n';
 	std::cout << "Combat commands:				Form for commands: [attack][spell name(if spell] and/or [target]\n";
+	std::cout << Twine("NOTE: Attacking and casting certain spells requires a target.\n");
 	for (int i = 0; i < 4; i++) {
 		Twine t = validCombatCommands[i];
 		t.Capital().DisplayTwine();

@@ -93,6 +93,7 @@ void Game::Run() {
 	p->xCord = 2;
 	p->yCord = 0;
 	std::cout << p->name << ": " << p->health << "HP" << '\n';
+	std::cout << Twine("Type command HELP to check list of commands!\n");
 	while (doGame) {
 		std::cout << '\n';
 
@@ -110,10 +111,9 @@ void Game::Run() {
 			p->currentRoom->roomItem->Description().DisplayTwine();
 		}
 		p->inputTwine.GetTwine();
-		if (p->inputTwine.ToLower() == Twine("quit game").ToLower()) {
+		if (p->inputTwine.ToLower().Find(Twine("Quit").ToLower()) != -1) {
 			doGame = false;
 			system("CLS");
-			std::cout << "rude, bye.";
 			break;
 		}
 		system("CLS");
@@ -129,8 +129,14 @@ void Game::Run() {
 
 void Game::DoCredits()
 {
-	std::cout << "Done!\n";
-	std::cout << "Thank you for playing my game!\n";
+	if (Mansion[0][4]->CheckEntityNames("Gorilla")->alive == false) {
+		std::cout << Twine("Done!\n");
+		std::cout << Twine("Thank you for playing my game!\n");
+	}
+	else {
+		std::cout << Twine("Game shutting down...");
+	}
+
 }
 
 void Game::SetFlag(int boolID, bool stateID) {
